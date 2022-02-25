@@ -49,5 +49,9 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+  },
+
+  server: {
+    host: 'hij2ifw7oy23da2z.azurewebsites.net'
   }
 }
