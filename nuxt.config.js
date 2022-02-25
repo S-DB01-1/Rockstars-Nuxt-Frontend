@@ -52,6 +52,7 @@ export default {
   },
 
   server: {
-    host: 'hij2ifw7oy23da2z.azurewebsites.net'
+    host: 'hij2ifw7oy23da2z.azurewebsites.net',
+    port: process.env.PORT
   }
 }
