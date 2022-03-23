@@ -45,10 +45,12 @@
         ACTIVE STATE
       </Button>
     </section>
-    <section class="bg-black text-white">
+    <section class="p-4">
       <Title size="1">
         FORMS
       </Title>
+      <FormInput type="text" />
+      <FormInput status="error" />
     </section>
   </main>
 </template>
