@@ -1,12 +1,11 @@
 <template>
-  <div class="bg-black">
-    Test
-  </div>
+  <footer class="px-6 p-8 bg-rockstar-yellow mt-6">
+  </footer>
 </template>
 
 <script>
 export default {
-  name: 'IndexPage'
+  name: 'Footer'
 }
 </script>
 
