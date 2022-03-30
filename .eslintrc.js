@@ -1,16 +1,16 @@
 module.exports = {
-  root: true,
+  root: false,
   env: {
-    browser: true,
-    node: true
+    browser: false,
+    node: false
   },
   parserOptions: {
     parser: '@babel/eslint-parser',
-    requireConfigFile: false
+    requireConfigFile: false,
+    sourceType: "module",
+    ecmaVersion: 2020
   },
   extends: [
-    '@nuxtjs',
-    'plugin:nuxt/recommended'
   ],
   plugins: [
   ],

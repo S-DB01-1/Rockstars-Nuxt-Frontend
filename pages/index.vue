@@ -11,7 +11,7 @@ export default {
   name: 'IndexPage',
   data () {
     return {
-      tribe: this.$store.getters.tribeRead
+      tribe: this.$store.state.tribe
     }
   },
   methods: {

@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 const resourceURL = 'tribes'
+const tribeList = []
 
 export const getters = {
   tribeRead: state => {
@@ -15,7 +16,7 @@ export const mutations = {
   }
 }
 
-axios.defaults.baseURL = "http://localhost:8000/api/v1/"
+axios.defaults.baseURL = "https://s8ifzokvp35u68fi.azurewebsites.net/api/v1"
 
 export const actions = {
     tribeRead({ commit }) {
@@ -27,8 +28,10 @@ export const actions = {
             // and add it to the state.
             // response = JSON.parse(response)
             response.data.results.forEach(item => {
-                commit('tribeSet', objects)
+                // commit('tribeSet', item)
+                tribeList.push(item)
             })
+            commit('tribeSet', tribeList)
         }).catch(error => {
             console.error(error)
         })
