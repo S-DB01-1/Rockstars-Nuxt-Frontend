@@ -5,6 +5,15 @@ p {
   font-size: 16px;
 }
 
+body {
+  background: $black;
+}
+
+.content {
+  z-index: 10; 
+  position: relative;
+}
+
 .bg-rockstar-yellow {
   background-color: $rockstar-yellow;
 }
