@@ -1,5 +1,7 @@
 <template>
-
+<section>
+  <TribeDescription />
+</section>
 </template>
 
 <script>

@@ -1,7 +1,7 @@
 <template>
   <div>
-    <Header/>
-    <TribeDescription />
-    <Footer/>
+  <Header/>
+    <Nuxt/>
+  <Footer/>
   </div>
 </template>
