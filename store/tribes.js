@@ -5,13 +5,13 @@ const tribeList = []
 
 export const getters = {
   tribeRead: state => {
-    return state.tribe
+    return state.tribes
   }
 }
 
 export const mutations = {
   tribeSet(state, item) {
-    
+
     state.tribes = item
   }
 }
@@ -48,7 +48,7 @@ export const actions = {
         })
     }
 }
- 
+
 export default {
     actions,
     getters,

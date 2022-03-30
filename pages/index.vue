@@ -1,6 +1,6 @@
 <template>
   <div class="bg-white">
-    {{ tribe }}
+
   </div>
 </template>
 
@@ -9,16 +9,15 @@ import { mapActions } from 'vuex'
 
 export default {
   name: 'IndexPage',
-  data () {
-    return {
-      tribe: this.$store.state.tribe
-    }
-  },
   methods: {
-    ...mapActions(['tribeRead'])
+    ...mapActions(['tribeRead']),
+    ...mapActions(['articleRead']),
+    ...mapActions(['rockstarRead'])
   },
   created () {
-    this.$store.dispatch('tribeRead')
+      this.$store.dispatch('tribeRead'),
+      this.$store.dispatch('articleRead'),
+      this.$store.dispatch('rockstarRead')
   }
 }
 </script>

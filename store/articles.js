@@ -5,13 +5,13 @@ const articleList = []
 
 export const getters = {
   articleRead: state => {
-    return state.article
+    return state.articles
   }
 }
 
 export const mutations = {
   articleSet(state, item) {
-    
+
     state.articles = item
   }
 }
@@ -48,7 +48,7 @@ export const actions = {
         })
     }
 }
- 
+
 export default {
     actions,
     getters,
