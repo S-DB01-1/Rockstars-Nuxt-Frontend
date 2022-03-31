@@ -29,13 +29,6 @@
                 </div>
             </div>
         </div>
-
-      <iframe allow="encrypted-media"
-              allowtransparency="true"
-              frameborder="0"
-              height="232"
-              src="https://open.spotify.com/embed-podcast/episode/7d9QeMg8T5XY5y85gyp0wb"
-              width="100%"></iframe>
     </div>
 
     <!--<div class="hero-image mt-16" v-bind:style="{ backgroundImage: 'url(' + require('assets/img/Buildings.jpg') + ')' }">
@@ -45,7 +38,14 @@
       <img class="hero-banner" :src="require('assets/img/Buildings.jpg')">
       <Carousel />
     </div>
-  <div class="container">
+  <div class="container mt-96 mb-8">
+
+    <iframe allow="encrypted-media"
+            allowtransparency="true"
+            frameborder="0"
+            height="232"
+            src="https://open.spotify.com/embed-podcast/episode/7d9QeMg8T5XY5y85gyp0wb"
+            width="100%"></iframe>
   </div>
   <section>
 

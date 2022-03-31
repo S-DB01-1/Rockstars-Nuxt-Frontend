@@ -4,14 +4,14 @@
       <VueSlickCarousel v-bind="settings" :arrows="true" :dots="true" class="carousel-wrapper">
         <div>
           <div>
-            <div @click="$router.push('/tribe/1/article/1')" class="max-w-sm rounded overflow-hidden shadow-lg m-8 bg-white">
+            <div @click="$router.push('/tribe/2/article/2')" class="max-w-sm rounded overflow-hidden shadow-lg m-8 bg-white">
               <div>
                 <img class="w-full thumbnail" :src="require('assets/img/Banner.png')">
               </div>
               <div class="px-6 py-4">
-                <div class="font-bold text-xl mb-2">"Eerste Artikel"</div>
+                <div class="font-bold text-xl mb-2">"Tweede Artikel"</div>
                 <p class="text-gray-700 text-base">
-                  Mijn eerste Artikel
+                  Waarom Python coool is
                 </p>
               </div>
             </div>
