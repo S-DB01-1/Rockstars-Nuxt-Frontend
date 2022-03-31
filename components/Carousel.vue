@@ -22,7 +22,6 @@ export default {
         VueSlickCarousel
     },
     data() {
-        console.log("test");
         return {
             settings: {
                 "dots": true,
@@ -31,7 +30,8 @@ export default {
                 "speed": 560,
                 "slidesToShow": 3,
                 "slidesToScroll": 3,
-                "touchThreshold": 5
+                "touchThreshold": 5,
+                
             }
         }
     }
@@ -43,6 +43,25 @@ export default {
 
 .carousel-wrapper {
     width: calc(100% - 40px);
+}
+
+.slick-dots li button:before {
+    color: #FFE000;
+}
+.slick-dots li.slick-active button:before {
+    color: #FFE000;
+}
+
+// .slick-next:before {
+//     content: url("../../assets/img/chevron-right-solid.svg");
+// }
+
+// .slick-prev:before {
+//     content: '←';
+// }
+
+.slick-prev:before, .slick-next:before {
+    color: #FFE000;
 }
 </style>
 

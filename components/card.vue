@@ -1,6 +1,9 @@
 <template>
 <div>
     <div class="max-w-sm rounded overflow-hidden shadow-lg m-8 bg-white">
+        <div class="bg-rockstar-yellow author-block -mt-4 ml-4">
+           <p>Author</p>
+        </div>
         <div>
             <img class="w-full thumbnail" :src="require('assets/img/Banner.png')">
         </div>
@@ -9,6 +12,11 @@
             <p class="text-gray-700 text-base">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
             </p>
+        </div>
+        <div>
+            <Button theme="light">
+                NORMAL STATE
+            </Button>
         </div>
     </div>
 </div>
@@ -23,8 +31,13 @@ export default {
 <style lang="scss">
 @import "assets/css/variables";
 
-.thumbnail{
+.thumbnail {
     height: 200px;
     object-fit: cover;
+}
+
+.author-block {
+    position: absolute;
+    width: 7%;
 }
 </style>

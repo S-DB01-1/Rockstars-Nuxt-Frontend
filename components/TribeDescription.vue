@@ -37,12 +37,20 @@
     <!--<div class="hero-image mt-16" v-bind:style="{ backgroundImage: 'url(' + require('assets/img/Buildings.jpg') + ')' }">
         <Carousel />
     </div>-->
-    <div class="hero-image mt-10" >
-      <img class="hero-banner" :src="require('assets/img/Buildings.jpg')">  
-      <Carousel />
+    <div class="container mx-auto">
+        <div class="hero-image mt-10">
+            <img class="hero-banner" :src="require('assets/img/Buildings.jpg')">
+            <div class="px-8 lg:px-16">
+                <Carousel />
+            </div>
+        </div>
+    </div>
+    <div class="container mx-auto px-8 lg:px-16">
+        <div class="pt-24">
+            <Spotify />
+        </div>
     </div>
 </div>
-
 </template>
 
 <script>
@@ -69,7 +77,7 @@ export default {
 }
 
 // .hero-image {
-    
+
 //     background-size: cover;
 //     background-position: center;
 //     background-repeat: no-repeat;
@@ -85,14 +93,14 @@ export default {
 // }
 
 .hero-image {
-  width: 100%;
-
-  .hero-banner {
     width: 100%;
-    position: absolute;
-    height: 50%;
-    object-fit: cover;
-    filter: brightness(0.5);
-  }
+
+    .hero-banner {
+        width: 100%;
+        position: absolute;
+        height: 42%;
+        object-fit: cover;
+        filter: brightness(0.5);
+    }
 }
 </style>
