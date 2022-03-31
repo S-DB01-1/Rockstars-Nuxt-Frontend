@@ -5,14 +5,11 @@
         <div class="bg-rockstar-yellow -mt-16 p-4">
             <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-4">
                 <div>
-                    <Title size="5">
-                        Rockstar Tribes
-                    </Title>
                     <Title size="1">
                         JAVA TRIBE
                     </Title>
                     <Title size="6">
-                        Java, een van de populairste programmeertalen van het moment, is veel meer dan alleen dat. Het is een ecosysteem, een denkwijze, een opleidingsplan en bovenal: een hele actieve community. Java op zichzelf is niets; het zijn de ontwikkelaars die de taal hebben gemaakt tot wat het is. Precies dat wordt in de Java Tribe binnen Team Rockstars IT benadrukt.
+                      Java Developers
                     </Title>
                     <br><br>
                 </div>
@@ -32,22 +29,47 @@
                 </div>
             </div>
         </div>
+
+      <iframe allow="encrypted-media"
+              allowtransparency="true"
+              frameborder="0"
+              height="232"
+              src="https://open.spotify.com/embed-podcast/episode/7d9QeMg8T5XY5y85gyp0wb"
+              width="100%"></iframe>
     </div>
 
     <!--<div class="hero-image mt-16" v-bind:style="{ backgroundImage: 'url(' + require('assets/img/Buildings.jpg') + ')' }">
         <Carousel />
     </div>-->
     <div class="hero-image mt-10" >
-      <img class="hero-banner" :src="require('assets/img/Buildings.jpg')">  
+      <img class="hero-banner" :src="require('assets/img/Buildings.jpg')">
       <Carousel />
     </div>
+  <div class="container">
+  </div>
+  <section>
+
+  </section>
 </div>
 
 </template>
 
 <script>
+import {mapActions} from "vuex";
+
 export default {
-    name: 'TribeDescription'
+    name: 'TribeDescription',
+    methods: {
+      ...mapActions(['tribeGet']),
+      ...mapActions(['articleRead']),
+      ...mapActions(['rockstarRead'])
+    },
+    created () {
+      this.$store.dispatch('tribeGet', {id: this.$route.params.tribe_id}),
+        this.$store.dispatch('articleRead'),
+      this.$store.dispatch('articleRead'),
+        this.$store.dispatch('rockstarRead')
+    }
 }
 </script>
 
@@ -69,7 +91,7 @@ export default {
 }
 
 // .hero-image {
-    
+
 //     background-size: cover;
 //     background-position: center;
 //     background-repeat: no-repeat;
