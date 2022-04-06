@@ -10,14 +10,12 @@ import { mapActions } from 'vuex'
 export default {
   name: 'IndexPage',
   methods: {
-    ...mapActions(['tribeRead']),
-    ...mapActions(['articleRead']),
-    ...mapActions(['rockstarRead'])
+    ...mapActions(['tribeRead', 'articleRead', 'rockstarRead']),
   },
   created () {
-      this.$store.dispatch('tribeRead'),
-      this.$store.dispatch('articleRead'),
-      this.$store.dispatch('rockstarRead')
+    this.rockstarRead()
+    this.tribeRead()
+    this.articleRead()
   }
 }
 </script>
