@@ -1,25 +1,13 @@
 <template>
-  <section>
+<section>
     <client-only>
-      <VueSlickCarousel v-bind="settings" :arrows="true" :dots="true" class="carousel-wrapper">
-        <div>
-          <div>
-            <div @click="$router.push('/tribe/1/article/1')" class="max-w-sm rounded overflow-hidden shadow-lg m-8 bg-white">
-              <div>
-                <img class="w-full thumbnail" :src="require('assets/img/Banner.png')">
-              </div>
-              <div class="px-6 py-4">
-                <div class="font-bold text-xl mb-2">"Eerste Artikel"</div>
-                <p class="text-gray-700 text-base">
-                  Mijn eerste Artikel
-                </p>
-              </div>
+        <VueSlickCarousel v-bind="settings" :arrows="true" :dots="true" class="carousel-wrapper">
+            <div v-for="i in 5" :key="i">
+                <Card />
             </div>
-          </div>
-        </div>
-      </VueSlickCarousel>
+        </VueSlickCarousel>
     </client-only>
-  </section>
+</section>
 </template>
 
 <script>
@@ -29,24 +17,23 @@ import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 
 export default {
-  name: 'Carousel',
-  components: {
-    VueSlickCarousel
-  },
-  data() {
-    console.log("test");
-    return {
-      settings: {
-        "dots": true,
-        "focusOnSelect": true,
-        "infinite": false,
-        "speed": 560,
-        "slidesToShow": 3,
-        "slidesToScroll": 3,
-        "touchThreshold": 5
-      }
+    name: 'Carousel',
+    components: {
+        VueSlickCarousel
+    },
+    data() {
+        return {
+            settings: {
+              "dots": true,
+              "infinite": true,
+              "centerMode": true,
+              "centerPadding": "20px",
+              "slidesToShow": 1,
+              "slidesToScroll": 1,
+              "variableWidth": true
+            }
+        }
     }
-  }
 }
 </script>
 
@@ -54,7 +41,17 @@ export default {
 @import "assets/css/variables";
 
 .carousel-wrapper {
-  width: calc(100% - 40px);
+    width: calc(100% - 40px);
+}
+
+.slick-dots li button:before {
+    color: #FFE000;
+}
+.slick-dots li.slick-active button:before {
+    color: #FFE000;
+}
+.slick-prev:before, .slick-next:before {
+    color: #FFE000;
 }
 </style>
 
