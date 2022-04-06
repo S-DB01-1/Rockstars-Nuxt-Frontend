@@ -1,7 +1,7 @@
 <template>
 <div>
     <div class="max-w-sm rounded overflow-hidden shadow-lg m-8 bg-white">
-        <div class="bg-rockstar-yellow author-block -mt-4 ml-4">
+        <div class="bg-rockstar-yellow author-block -mt-4 ml-4 pl-4 pr-4 pb-2 pt-2">
            <p>Author</p>
         </div>
         <div>
@@ -38,6 +38,6 @@ export default {
 
 .author-block {
     position: absolute;
-    width: 7%;
 }
+
 </style>

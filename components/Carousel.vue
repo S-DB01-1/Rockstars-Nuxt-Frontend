@@ -24,14 +24,13 @@ export default {
     data() {
         return {
             settings: {
-                "dots": true,
-                "focusOnSelect": true,
-                "infinite": false,
-                "speed": 560,
-                "slidesToShow": 3,
-                "slidesToScroll": 3,
-                "touchThreshold": 5,
-                
+              "dots": true,
+              "infinite": true,
+              "centerMode": true,
+              "centerPadding": "20px",
+              "slidesToShow": 1,
+              "slidesToScroll": 1,
+              "variableWidth": true
             }
         }
     }
@@ -51,15 +50,6 @@ export default {
 .slick-dots li.slick-active button:before {
     color: #FFE000;
 }
-
-// .slick-next:before {
-//     content: url("../../assets/img/chevron-right-solid.svg");
-// }
-
-// .slick-prev:before {
-//     content: '←';
-// }
-
 .slick-prev:before, .slick-next:before {
     color: #FFE000;
 }
