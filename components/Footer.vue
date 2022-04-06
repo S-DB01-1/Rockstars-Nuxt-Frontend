@@ -2,7 +2,7 @@
   <section class="bg-rockstar-yellow p-4">
     <div class="my-4">
       <div class="container mx-auto px-16">
-        <div class="grid grid-cols-3 gap-8">
+        <div class="grid lg:grid-cols-3 gap-8  md:grid-cols-2  sm:grid-cols-1">
           <div>
             <Title size="4">
               TRIBES
