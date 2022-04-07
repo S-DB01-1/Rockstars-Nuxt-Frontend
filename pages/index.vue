@@ -1,6 +1,6 @@
 <template>
   <div class="bg-black">
-    <author-description/>
+
   </div>
 </template>
 
