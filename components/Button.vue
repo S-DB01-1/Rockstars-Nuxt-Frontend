@@ -1,7 +1,7 @@
 <template>
   <button
     :class="{
-      'm-4 p-4 px-6 duration-500 ease-in-out  font-semibold': true,
+      'p-4 px-6 duration-500 ease-in-out  font-semibold': true,
       'hover:p-8': status === 'normal',
       'bg-rockstar-yellow text-black': theme === 'default',
       'bg-black text-white': theme === 'dark',
