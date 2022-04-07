@@ -1,45 +1,46 @@
 import axios from 'axios'
 import Vue from "vue";
 
-const resourceURL = 'articles'
+const resourceURL = 'videos'
 export const state = () => ({})
 
 export const getters = {
-  articleRead: state => {
-    return state.articles
+  videoRead: state => {
+    return state.videos
   },
-  articleGet: state => (id) => {
-    return state.articles[id]
+  videoGet: state => (id) => {
+    return state.videos[id]
   }
 }
 
 export const mutations = {
-  articleSet(state, item) {
-    Vue.set(state.articles, item.id, item)
+  videoSet(state, item) {
+    Vue.set(state.videos, item.id, item)
   }
 }
 
 axios.defaults.baseURL = "https://s8ifzokvp35u68fi.azurewebsites.net/api/v1"
 
 export const actions = {
-  articleRead({ commit }) {
+  videoRead({ commit }) {
+    // Send get request to the backend.
     axios.get(
       resourceURL
     ).then(response => {
       response.data.results.forEach(item => {
-        commit('articleSet', item)
+        commit('videoSet', item)
       })
     }).catch(error => {
       console.error(error)
     })
   },
-  articleGet({ commit }, { id }) {
+  videoGet({ commit }, { id }) {
     // Send get request to the backend.
     axios.get(
       `${resourceURL}/${id}`
     ).then(response => {
       // If request is successful then add the item to the state.
-      commit('articleSet', response.data)
+      commit('videoSet', response.data)
     }).catch(error => {
       console.error(error)
     })

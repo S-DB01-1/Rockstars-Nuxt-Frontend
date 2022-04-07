@@ -1,32 +1,35 @@
 import axios from 'axios'
-import Vue from 'vue'
+import Vue from "vue";
 
 const resourceURL = 'rockstars'
-const rockstarList = []
+export const state = () => ({})
 
 export const getters = {
   rockstarRead: state => {
     return state.rockstars
+  },
+  rockstarGet: state => (id) => {
+    return state.rockstars[id]
   }
 }
 
 export const mutations = {
   rockstarSet(state, item) {
-    state.rockstars = item
-  },
+    Vue.set(state.rockstars, item.id, item)
+  }
 }
 
 axios.defaults.baseURL = "https://s8ifzokvp35u68fi.azurewebsites.net/api/v1"
 
 export const actions = {
   rockstarRead({ commit }) {
+    // Send get request to the backend.
     axios.get(
-      'rockstars'
+      resourceURL
     ).then(response => {
       response.data.results.forEach(item => {
-        rockstarList.push(item)
+        commit('rockstarSet', item)
       })
-      commit('rockstarSet', rockstarList)
     }).catch(error => {
       console.error(error)
     })
