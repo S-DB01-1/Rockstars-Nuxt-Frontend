@@ -77,7 +77,7 @@ export default {
     color: #FFE000 !important;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1024px) {
   .slick-arrow {
       display: none !important;
   }
