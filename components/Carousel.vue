@@ -68,16 +68,16 @@ export default {
 <style lang="scss">
 @import "assets/css/variables";
 .slick-dots li button:before {
-    color: #FFE000;
+    color: #FFE000 !important;
 }
 .slick-dots li.slick-active button:before {
-    color: #FFE000;
+    color: #FFE000 !important;
 }
 .slick-prev:before, .slick-next:before {
-    color: #FFE000;
+    color: #FFE000 !important;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1024px) {
   .slick-arrow {
       display: none !important;
   }

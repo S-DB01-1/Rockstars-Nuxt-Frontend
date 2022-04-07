@@ -98,4 +98,11 @@ export default {
     text-align: center;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .profileBox {
+    margin: auto;
+    text-align: center;
+  }
+}
 </style>
