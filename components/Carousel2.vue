@@ -2,18 +2,24 @@
   <section>
     <client-only>
       <VueSlickCarousel v-bind="settings" :arrows="true" :dots="true" class="carousel-wrapper">
-        <div>
-          <div>
-            <div @click="$router.push('/tribe/2/article/2')" class="max-w-sm rounded overflow-hidden shadow-lg m-8 bg-white">
-              <div>
-                <img class="w-full thumbnail" :src="require('assets/img/Banner.png')">
-              </div>
-              <div class="px-6 py-4">
-                <div class="font-bold text-xl mb-2">"Tweede Artikel"</div>
-                <p class="text-gray-700 text-base">
-                  Waarom Python coool is
-                </p>
-              </div>
+        <div v-for="i in 5" :key="i">
+          <div @click="$router.push('/tribe/2/article/2')" class="max-w-sm rounded overflow-hidden shadow-lg m-8 bg-white">
+            <div class="bg-rockstar-yellow author-block -mt-4 ml-4 pl-4 pr-4 pb-2 pt-2">
+              <p>Author</p>
+            </div>
+            <div>
+              <img class="w-full thumbnail" :src="require('assets/img/Banner.png')">
+            </div>
+            <div class="px-6 py-4">
+              <div class="font-bold text-xl mb-2">"Tweede Artikel"</div>
+              <p class="text-gray-700 text-base">
+                Waarom Python coool is
+              </p>
+            </div>
+            <div>
+              <Button theme="light">
+                READ ARTICLE
+              </Button>
             </div>
           </div>
         </div>
@@ -29,7 +35,7 @@ import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 
 export default {
-  name: 'Carousel',
+  name: 'Carousel2',
   components: {
     VueSlickCarousel
   },
@@ -55,6 +61,15 @@ export default {
 
 .carousel-wrapper {
   width: calc(100% - 40px);
+}
+
+.thumbnail {
+  height: 200px;
+  object-fit: cover;
+}
+
+.author-block {
+  position: absolute;
 }
 </style>
 
