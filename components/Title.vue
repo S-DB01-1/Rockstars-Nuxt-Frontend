@@ -1,21 +1,21 @@
 <template>
   <div class="title">
-    <h1 v-show="size === '1'" class="mx-4">
+    <h1 v-show="size === '1'" class="text-xl">
       <slot />
     </h1>
-    <h2 v-show="size === '2'" class="mx-4">
+    <h2 v-show="size === '2'" class="text-lg">
       <slot />
     </h2>
-    <h3 v-show="size === '3'" class="mx-4 my-2">
+    <h3 v-show="size === '3'" class="text-base">
       <slot />
     </h3>
-    <h4 v-show="size === '4'" class="m-4">
+    <h4 v-show="size === '4'" class="text-tiny">
       <slot />
     </h4>
-    <h5 v-show="size === '5'" class="m-4">
+    <h5 v-show="size === '5'" class="text-sm">
       <slot />
     </h5>
-    <h6 v-show="size === '6'" class="m-4">
+    <h6 v-show="size === '6'" class="text-xs">
       <slot />
     </h6>
   </div>
@@ -39,28 +39,27 @@ export default {
 .title {
   h1 {
     font-family: DIN2014-Bold;
-    font-size: 70px;
   }
 
   h2 {
     font-family: DIN2014-Regular;
-    font-size: 45px;
   }
 
   h3 {
     font-family: DIN2014-Regular;
-    font-size: 32px;
     color: #444444;
   }
 
   h4 {
     font-family: DIN2014-Regular;
-    font-size: 24px;
   }
 
   h5 {
     font-family: DIN2014-Regular;
-    font-size: 20px;
+  }
+
+  h6 {
+    font-family: DIN2014-Regular;
   }
 }
 </style>

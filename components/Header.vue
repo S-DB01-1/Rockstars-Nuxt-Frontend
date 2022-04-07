@@ -1,9 +1,9 @@
 <template>
   <div class="hero" v-bind:style="{ backgroundImage: 'url(' + require('assets/img/Banner.png') + ')' }">
     <header>
-    <div class="container mx-auto px-16 py-4">
+    <div class="container py-4">
         <img :src="require('assets/img/Logo.png')"/>
-    </div> 
+    </div>
     </header>
   </div>
 </template>
@@ -36,9 +36,9 @@ header img {
   .hero::before {
     content: "";
     position: absolute;
-    left: 0; 
+    left: 0;
     right: 0;
-    top: 0; 
+    top: 0;
     bottom: 0;
     height: 40vh;
     background: rgba(0,0,0,.5);

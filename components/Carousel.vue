@@ -1,7 +1,7 @@
 <template>
-<section>
+<section >
     <client-only>
-        <VueSlickCarousel v-bind="settings" :arrows="true" :dots="true" class="carousel-wrapper">
+        <VueSlickCarousel v-bind="settings">
             <div v-for="i in 5" :key="i">
                 <Card />
             </div>
@@ -24,13 +24,41 @@ export default {
     data() {
         return {
             settings: {
-              "dots": true,
-              "infinite": true,
-              "centerMode": true,
-              "centerPadding": "20px",
-              "slidesToShow": 1,
-              "slidesToScroll": 1,
-              "variableWidth": true
+              "dots": false,
+              "infinite": false,
+              "speed": 500,
+              "slidesToShow": 3,
+              "slidesToScroll": 2,
+              "initialSlide": 0,
+              "touchThreshold": 5,
+              "responsive": [
+                {
+                  "breakpoint": 1024,
+                  "settings": {
+                    "slidesToShow": 2,
+                    "slidesToScroll": 2,
+                    "infinite": false,
+                    "dots": false
+                  }
+                },
+                {
+                  "breakpoint": 600,
+                  "settings": {
+                    "dots": false,
+                    "slidesToShow": 1,
+                    "slidesToScroll": 1,
+                    "initialSlide": 1
+                  }
+                },
+                {
+                  "breakpoint": 480,
+                  "settings": {
+                    "dots": false,
+                    "slidesToShow": 1,
+                    "slidesToScroll": 1
+                  }
+                }
+              ]
             }
         }
     }
@@ -39,11 +67,6 @@ export default {
 
 <style lang="scss">
 @import "assets/css/variables";
-
-.carousel-wrapper {
-    width: calc(100% - 40px);
-}
-
 .slick-dots li button:before {
     color: #FFE000;
 }
@@ -52,6 +75,12 @@ export default {
 }
 .slick-prev:before, .slick-next:before {
     color: #FFE000;
+}
+
+@media screen and (max-width: 600px) {
+  .slick-arrow {
+      display: none !important;
+  }
 }
 </style>
 
