@@ -31,6 +31,8 @@ export const actions = {
       })
     }).catch(error => {
       console.error(error)
+    }).finally(() => {
+      console.log("i finishedddd")
     })
   },
   articleGet({ commit }, { id }) {

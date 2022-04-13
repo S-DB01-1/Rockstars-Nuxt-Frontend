@@ -41,7 +41,7 @@
     <div class="container mx-auto">
         <div class="hero-image mt-10">
             <img class="hero-banner" :src="require('assets/img/Buildings.jpg')">
-            <div class="px-8 lg:px-16">
+            <div class="px-8 lg:px-16" v-if="articles">
               <Carousel2 />
             </div>
         </div>
@@ -56,14 +56,22 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import Carousel2 from '../components/Carousel2.vue'
+
 export default {
   components: { Carousel2 },
   name: 'tribe',
-  created() {
-    console.log("test")
-    console.log(this.$route.params)
-    console.log(this.$route.params.tribe_id)
+  methods: {
+    ...mapActions(['articleRead'])
+  },
+  async mounted() {
+    await this.articleRead()
+  },
+  data() {
+    return {
+      articles: this.$store.state.articles
+    }
   }
 }
 </script>
@@ -79,12 +87,6 @@ export default {
   margin-right: auto;
 }
 
-.profileBox {
-  margin: auto;
-  text-align: center;
-}
-
-
 .hero-image {
   width: 100%;
 }
@@ -95,6 +97,30 @@ export default {
   height: 42%;
   object-fit: cover;
   filter: brightness(0.5);
+}
+
+.profileBox {
+  margin: auto;
+  text-align: center;
+  animation-delay: 20s;
+  -webkit-animation: fadeinout 10s linear forwards;
+  animation: fadeinout 10s linear forwards;
+  animation-iteration-count: infinite;
+}
+
+.profileBox:hover {
+  animation-play-state: paused;
+  animation: none;
+}
+
+@-webkit-keyframes fadeinout {
+  0%,100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes fadeinout {
+  0%,100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 </style>

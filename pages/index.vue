@@ -1,6 +1,6 @@
 <template>
   <div class="bg-white">
-    {{ $store.getters.tribeGet(1) }}
+    {{ tribes[1].Name }}
   </div>
 </template>
 
@@ -12,13 +12,18 @@ export default {
   methods: {
     ...mapActions(['tribeRead', 'articleRead', 'rockstarRead', 'podcastRead', 'videoRead']),
   },
-  created () {
+  mounted () {
     this.tribeRead()
     this.articleRead()
     this.rockstarRead()
     this.podcastRead()
     this.videoRead()
-  }
+  },
+  data () {
+    return {
+      tribes: this.$store.getters.tribeRead
+    }
+  },
 }
 </script>
 
