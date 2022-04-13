@@ -1,18 +1,21 @@
 <template>
   <div class="bg-white">
-    {{ tribes[1].Name }}
+    {{ $store.getters.tribeGet(1) }}
+    <div class="bg-black">
+
+    </div>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import {mapActions} from 'vuex'
 
 export default {
   name: 'IndexPage',
   methods: {
     ...mapActions(['tribeRead', 'articleRead', 'rockstarRead', 'podcastRead', 'videoRead']),
   },
-  mounted () {
+  created() {
     this.tribeRead()
     this.articleRead()
     this.rockstarRead()
