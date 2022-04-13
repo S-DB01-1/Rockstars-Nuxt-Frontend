@@ -1,5 +1,13 @@
 <template>
   <section >
+    <div class="relative text-center">
+      <Title size="2" style="color: white">
+        Artikelen
+      </Title>
+      <Title size="4" style="color: white">
+        WAAR ZIJN WIJ ZOAL MEE BEZIG ?
+      </Title>
+    </div>
     <client-only>
       <VueSlickCarousel v-bind="settings">
         <div v-for="i in 5" :key="i">
@@ -82,4 +90,5 @@ export default {
     display: none !important;
   }
 }
+
 </style>
