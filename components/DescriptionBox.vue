@@ -76,11 +76,6 @@ export default {
     },
     leave: function (el) {
       el.style.opacity = 0
-      if (this.rockstarsLength == 1)
-      {
-        el.style.opacity = 1
-      }
-      else {
         if (this.index <= this.rockstarsLength)
         {
           if (this.index === 0) {
@@ -101,7 +96,6 @@ export default {
           console.log("index > length")
           this.index = 0
         }
-      }
     },
   },
   data() {

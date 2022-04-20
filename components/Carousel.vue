@@ -1,33 +1,61 @@
 <template>
-  <section >
-    <div class="relative text-center">
-      <Title size="2" style="color: white">
+  <div class="hero-image mt-10 relative">
+    <img class="hero-banner" :src="require('assets/img/Buildings.jpg')" alt="">
+    <div class="relative text-center text-white">
+      <Title size="2">
         Artikelen
       </Title>
-      <Title size="4" style="color: white">
+      <Title size="4">
         WAAR ZIJN WIJ ZOAL MEE BEZIG ?
       </Title>
     </div>
-    <client-only>
-      <VueSlickCarousel v-bind="settings">
-        <div v-for="i in 5" :key="i">
-          <Card />
+    <div class="container">
+      <client-only>
+        <div v-if="articles">
+          <VueSlickCarousel v-bind="settings">
+            <div v-for="article in articles">
+              <div class="rounded overflow-hidden shadow-lg m-8 bg-white">
+                <div class="bg-rockstar-yellow author-block -mt-4 ml-4 pl-4 pr-4 pb-2 pt-2">
+                  <p>{{ article.Author }}</p>
+                </div>
+                <div>
+                  <img class="w-full thumbnail" :src="require('assets/img/Banner.png')">
+                </div>
+                <div class="px-6 py-4">
+                  <Title size="3" class="font-bold mb-2">
+                    {{ article.Name }}
+                  </Title>
+                  <p class="text-gray-700 text-xs">
+                    {{ article.Description }}
+                  </p>
+                </div>
+                <div>
+                  <Button theme="light">
+                    GA NAAR
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </VueSlickCarousel>
         </div>
-      </VueSlickCarousel>
-    </client-only>
-  </section>
+      </client-only>
+    </div>
+  </div>
 </template>
 
 <script>
-import VueSlickCarousel from 'vue-slick-carousel'
-import 'vue-slick-carousel/dist/vue-slick-carousel.css'
+import VueSlickCarousel from 'vue-slick-carousel';
+import 'vue-slick-carousel/dist/vue-slick-carousel.css';
 // optional style for arrows & dots
-import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
+import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css';
 
 export default {
   name: 'Carousel',
   components: {
     VueSlickCarousel
+  },
+  props: {
+    articles: [],
   },
   data() {
     return {
@@ -68,19 +96,22 @@ export default {
           }
         ]
       }
-    }
+    };
   }
-}
+};
 </script>
 
 <style lang="scss">
 @import "assets/css/variables";
+
 .slick-dots li button:before {
   color: #FFE000 !important;
 }
+
 .slick-dots li.slick-active button:before {
   color: #FFE000 !important;
 }
+
 .slick-prev:before, .slick-next:before {
   color: #FFE000 !important;
 }

@@ -45,6 +45,17 @@ export const actions = {
     }).catch(error => {
       console.error(error)
     })
+  },
+  tribeArticlesGet({commit}, {id}) {
+    axios.get(
+      `${resourceURL}/?tribe=${id}`
+    ).then(response => {
+      response.data.results.forEach(item => {
+        commit('rockstarSetFilter', item);
+      });
+    }).catch(error => {
+      console.error(error);
+    });
   }
 }
 
