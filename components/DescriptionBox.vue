@@ -4,16 +4,13 @@
       <div class="grid md:grid-cols-1 lg:grid-cols-2">
         <div>
           <Title size="5" class="py-4">
-            Rockstar Tribes
+            {{ title }}
           </Title>
           <Title size="1" class="mb-4">
-            JAVA TRIBE
+            {{ subtitle }}
           </Title>
           <Title size="6">
-            Java, een van de populairste programmeertalen van het moment, is veel meer dan alleen dat. Het is een
-            ecosysteem, een denkwijze, een opleidingsplan en bovenal: een hele actieve community. Java op zichzelf is
-            niets; het zijn de ontwikkelaars die de taal hebben gemaakt tot wat het is. Precies dat wordt in de Java
-            Tribe binnen Team Rockstars IT benadrukt.
+            {{ description }}
           </Title>
           <br><br>
         </div>
@@ -32,6 +29,11 @@
                 Software Developer
               </Title>
             </div>
+            <div v-if="linkedIn" class="flex justify-center items-center">
+              <a :href="linkedIn">
+                <img :src="require('assets/image/linkedin.svg')" class="h-10 w-10">
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -41,7 +43,24 @@
 
 <script>
 export default {
-  name: "DescriptionBox"
+  name: 'DescriptionBox',
+  props: {
+    title: {
+      String,
+    },
+    subtitle: {
+      String,
+    },
+    description: {
+      String,
+    },
+    avatar: [],
+    authorName: [],
+    authorRole: [],
+    linkedIn: {
+      String,
+    },
+  }
 }
 </script>
 
