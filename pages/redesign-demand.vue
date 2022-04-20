@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="container">
-      <form>
+      <form  v-on:submit.prevent="submitForm()">
         <div class="mb-4">
           <Title size="2" class="mb-4" style="color: white">
             Jouw Gegevens
@@ -70,6 +70,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "redesign-demand",
   data() {
@@ -80,6 +82,18 @@ export default {
       datetime: null,
       subject: null,
       picked: null,
+    }
+  },
+  methods: {
+    submitForm: async function () {
+     const res = await axios.post('https://s8ifzokvp35u68fi.azurewebsites.net/api/v1/ondemand/', {
+       name: this.name,
+       email: this.email,
+       phone_number: "test",
+       date: this.datetime,
+       subject: this.subject
+     });
+     alert(res.status);
     }
   }
 }
