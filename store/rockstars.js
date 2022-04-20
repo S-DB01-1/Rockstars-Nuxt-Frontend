@@ -1,6 +1,7 @@
 import axios from 'axios'
 import Vue from "vue";
 
+var indexFilter = 0;
 const resourceURL = 'rockstars'
 export const state = () => ({})
 
@@ -16,6 +17,10 @@ export const getters = {
 export const mutations = {
   rockstarSet(state, item) {
     Vue.set(state.rockstars, item.id, item)
+  },
+  rockstarSetFilter(state, item) {
+    Vue.set(state.rockstars, indexFilter, item)
+    indexFilter++
   }
 }
 
@@ -44,8 +49,20 @@ export const actions = {
     }).catch(error => {
       console.error(error)
     })
+  },
+  tribeRockstarGet({commit}) {
+    axios.get(
+        `${resourceURL}/?tribe=2`
+    ).then(response => {
+        response.data.results.forEach(item => {
+            commit('rockstarSetFilter', item)
+        })
+    }).catch(error => {
+      console.error(error)
+    })
   }
 }
+
 
 export default {
   actions,

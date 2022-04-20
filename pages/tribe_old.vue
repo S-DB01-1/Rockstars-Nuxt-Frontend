@@ -17,19 +17,22 @@
                   </Title>
                   <br><br>
                 </div>
-
-                <div class="profileBox">
-                    <div>
-                        <img :src="require('assets/img/User.jpg')" class="avatar" />
+                <div class="loading" v-if="!isEmpty(rockstars)">
+                  <transition name="fade" v-on:before-enter="beforeEnter" v-on:enter="enter" v-on:leave="leave">
+                    <div v-if="show" class="profileBox">
+                        <div>
+                            <img :src="require('assets/img/User.jpg')" class="avatar" />
+                        </div>
+                        <div>
+                            <Title size="1">
+                              {{ rockstars[index].Name }}
+                            </Title>
+                            <Title size="3">
+                              {{rockstars.length}}
+                            </Title>
+                        </div>
                     </div>
-                    <div>
-                        <Title size="1">
-                          Naam
-                        </Title>
-                        <Title size="3">
-                          Software Developer
-                        </Title>
-                    </div>
+                  </transition>
                 </div>
             </div>
         </div>
@@ -63,16 +66,60 @@ export default {
   components: { Carousel2 },
   name: 'tribe',
   methods: {
-    ...mapActions(['articleRead'])
+    ...mapActions(['articleRead']),
+    ...mapActions(['tribeRockstarGet']),
+    isEmpty(object) {
+      return object && Object.keys(object).length === 0 && Object.getPrototypeOf(object) === Object.prototype
+    },
+    beforeEnter: function (el) {
+    
+    },
+    enter: function (el) {
+      
+    },
+    leave: function (el) {
+      el.style.opacity = 0
+      if (this.index <= this.rockstarsLength)
+      {
+        if (this.index === 0) {
+          for (var i in this.rockstars) {
+            this.rockstarsLength = i
+          }
+          this.index++
+          this.rockstarsLength--
+        }
+        else{
+          this.index++
+          console.log("index:" + this.index)
+          console.log("rockstarsLength:" + this.rockstarsLength)
+        }
+      }
+      else 
+      {
+        console.log("index > length")
+        this.index = 0
+      }
+      },
   },
   async mounted() {
     await this.articleRead()
+    await this.tribeRockstarGet()
   },
   data() {
     return {
-      articles: this.$store.state.articles
+      articles: this.$store.state.articles,
+      show: true,
+      namen: ["kerel1", "test2", "test3"],
+      rockstars: this.$store.state.rockstars,
+      index: 0,
+      rockstarsLength: 0
     }
-  }
+  },
+  created () {
+    setInterval(() => {
+      this.show = !this.show
+    }, 2000)
+  },
 }
 </script>
 
@@ -99,7 +146,7 @@ export default {
   filter: brightness(0.5);
 }
 
-.profileBox {
+/* .profileBox {
   margin: auto;
   text-align: center;
   animation-delay: 20s;
@@ -121,6 +168,13 @@ export default {
 @keyframes fadeinout {
   0%,100% { opacity: 1; }
   50% { opacity: 0; }
+} */
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 2s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 
 </style>

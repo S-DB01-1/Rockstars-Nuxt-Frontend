@@ -1,6 +1,8 @@
 <template>
   <div class="bg-white">
-    {{ $store.getters.tribeGet(1) }}
+    <div v-if="!isEmpty(tribes)">
+      {{ tribes[1].Name }}
+    </div>
     <div class="bg-black">
 
     </div>
@@ -14,6 +16,9 @@ export default {
   name: 'IndexPage',
   methods: {
     ...mapActions(['tribeRead', 'articleRead', 'rockstarRead', 'podcastRead', 'videoRead']),
+    isEmpty(object) {
+      return object && Object.keys(object).length === 0 && Object.getPrototypeOf(object) === Object.prototype
+    }
   },
   created() {
     this.tribeRead()

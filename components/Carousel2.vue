@@ -1,19 +1,19 @@
 <template>
   <section>
-      <div class="test2344" v-if="ReadAllArticles">
-      <!-- <VueSlickCarousel v-bind="settings" :arrows="true" :dots="true" class="carousel-wrapper" v-if="articles">
+      <div class="test2344" v-if="!isEmpty(articles)">
+      <VueSlickCarousel v-bind="settings" :arrows="true" :dots="true" class="carousel-wrapper" v-if="articles">
         <div v-for="(value, index) in ReadAllArticles" :key="index">
           <div @click="$router.push('/tribe/2/article/2')" class="max-w-sm rounded overflow-hidden shadow-lg m-8 bg-white">
             <div class="bg-rockstar-yellow author-block -mt-4 ml-4 pl-4 pr-4 pb-2 pt-2">
-              <p>Author</p>
+              <p>{{articles[value].Author}}</p>
             </div>
             <div>
               <img class="w-full thumbnail" :src="require('assets/img/Banner.png')">
             </div>
             <div class="px-6 py-4">
-              <div class="font-bold text-xl mb-2">test</div>
+              <div class="font-bold text-xl mb-2">{{articles[value].Name}}</div>
               <p class="text-gray-700 text-base">
-                Waarom Python coool is
+                {{articles[value].Description}}
               </p>
             </div>
             <div>
@@ -23,7 +23,7 @@
             </div>
           </div>
         </div>
-      </VueSlickCarousel> -->
+      </VueSlickCarousel>
       </div>
       <div class="test" v-else>kutcarousel</div>
   </section>
@@ -43,6 +43,9 @@ export default {
   },
   methods: {
     ...mapActions(['articleRead']),
+    isEmpty(object) {
+      return object && Object.keys(object).length === 0 && Object.getPrototypeOf(object) === Object.prototype
+    },
   },
   mounted() {
     this.articleRead()
