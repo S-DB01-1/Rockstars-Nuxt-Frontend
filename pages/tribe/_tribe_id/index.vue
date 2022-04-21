@@ -7,7 +7,7 @@
       </div>
     </div>
     <div v-if="tribeArticles" >
-<!--      <Carousel :articles="tribeArticles" />-->
+      <Carousel :articles="tribeArticles" />
     </div>
   </div>
 </template>

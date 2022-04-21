@@ -13,20 +13,20 @@
       <client-only>
         <div v-if="articles">
           <VueSlickCarousel v-bind="settings">
-            <div v-for="article in articles">
+            <div>
               <div class="rounded overflow-hidden shadow-lg m-8 bg-white">
                 <div class="bg-rockstar-yellow author-block -mt-4 ml-4 pl-4 pr-4 pb-2 pt-2">
-                  <p>{{ article.Author }}</p>
+                  <p>Fabian</p>
                 </div>
                 <div>
                   <img class="w-full thumbnail" :src="require('assets/img/Banner.png')">
                 </div>
                 <div class="px-6 py-4">
                   <Title size="3" class="font-bold mb-2">
-                    {{ article.Name }}
+                    Tweede Artikel
                   </Title>
                   <p class="text-gray-700 text-xs">
-                    {{ article.Description }}
+                    Waarom Python coool is
                   </p>
                 </div>
                 <div>
@@ -36,6 +36,75 @@
                 </div>
               </div>
             </div>
+            <div>
+              <div class="rounded overflow-hidden shadow-lg m-8 bg-white">
+                <div class="bg-rockstar-yellow author-block -mt-4 ml-4 pl-4 pr-4 pb-2 pt-2">
+                  <p>Fabianna</p>
+                </div>
+                <div>
+                  <img class="w-full thumbnail" :src="require('assets/img/Banner.png')">
+                </div>
+                <div class="px-6 py-4">
+                  <Title size="3" class="font-bold mb-2">
+                    Vierde Artikel
+                  </Title>
+                  <p class="text-gray-700 text-xs">
+                    4e artikel met test data
+                  </p>
+                </div>
+                <div>
+                  <Button theme="light">
+                    GA NAAR
+                  </Button>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="rounded overflow-hidden shadow-lg m-8 bg-white">
+                <div class="bg-rockstar-yellow author-block -mt-4 ml-4 pl-4 pr-4 pb-2 pt-2">
+                  <p>Tom</p>
+                </div>
+                <div>
+                  <img class="w-full thumbnail" :src="require('assets/img/Banner.png')">
+                </div>
+                <div class="px-6 py-4">
+                  <Title size="3" class="font-bold mb-2">
+                    Eerste Artikel
+                  </Title>
+                  <p class="text-gray-700 text-xs">
+                    1e artikel met test data
+                  </p>
+                </div>
+                <div>
+                  <Button theme="light">
+                    GA NAAR
+                  </Button>
+                </div>
+              </div>
+            </div>
+<!--            <div v-for="article in articles">-->
+<!--              <div class="rounded overflow-hidden shadow-lg m-8 bg-white">-->
+<!--                <div class="bg-rockstar-yellow author-block -mt-4 ml-4 pl-4 pr-4 pb-2 pt-2">-->
+<!--                  <p>{{ article.Author }}</p>-->
+<!--                </div>-->
+<!--                <div>-->
+<!--                  <img class="w-full thumbnail" :src="require('assets/img/Banner.png')">-->
+<!--                </div>-->
+<!--                <div class="px-6 py-4">-->
+<!--                  <Title size="3" class="font-bold mb-2">-->
+<!--                    {{ article.Name }}-->
+<!--                  </Title>-->
+<!--                  <p class="text-gray-700 text-xs">-->
+<!--                    {{ article.Description }}-->
+<!--                  </p>-->
+<!--                </div>-->
+<!--                <div>-->
+<!--                  <Button theme="light">-->
+<!--                    GA NAAR-->
+<!--                  </Button>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
           </VueSlickCarousel>
         </div>
       </client-only>
