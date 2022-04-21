@@ -1,8 +1,11 @@
 <template>
   <section>
     <div class="container">
-      <form  v-on:submit.prevent="submitForm()">
+      <form v-on:submit.prevent="submitForm()">
         <div class="mb-4">
+          <Modal :type="statusType" v-show="statusText">
+            {{ statusText }}
+          </Modal>
           <Title size="2" class="mb-4" style="color: white">
             Jouw Gegevens
           </Title>
@@ -28,7 +31,7 @@
               <p class="mt-2 hidden peer-invalid:block text-red-500 text-sm">Geef alstublieft een geldig email adres.</p>
             </div>
             <div class="mt-5">
-              <input type="tel" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" name="telephone" id="telephone" v-model="phone_number"
+              <input type="tel" pattern="[0-9]{10}" name="telephone" id="telephone" v-model="phone_number"
                      class="peer max-h-11 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500 disabled:shadow-none"
                      placeholder="Telefoonnummer">
               <p class="mt-2 hidden peer-invalid:block text-red-500 text-sm">Geef alstublieft een geldig
@@ -82,6 +85,7 @@ export default {
       datetime: null,
       subject: null,
       picked: null,
+      statusText: null
     }
   },
   methods: {
@@ -89,11 +93,36 @@ export default {
      const res = await axios.post('https://s8ifzokvp35u68fi.azurewebsites.net/api/v1/ondemand/', {
        name: this.name,
        email: this.email,
-       phone_number: "test",
+       phone_number: this.phone_number,
        date: this.datetime,
        subject: this.subject
+     }).then(response => {
+          this.clearForm();
+          if (response.status === 201) {
+            this.setModal("Formulier is correct verzonden.", 'correct');
+          } else {
+            this.setModal("Er is een fout opgetreden.", 'error');
+          }
+       }
+     ).catch(error => {
+       console.log(error)
+       this.setModal("Er is een fout opgetreden.", 'error');
      });
-     alert(res.status);
+    },
+    setModal(text, type=true, time=-1) {
+      if (time !== -1) {
+        setTimeout(() => {this.statusText = null}, time)
+      }
+      this.statusType = type;
+      this.statusText = text;
+    },
+    clearForm() {
+        this.name = null
+        this.email = null
+        this.phone_number = null
+        this.datetime = null
+        this.subject = null
+        this.picked = null
     }
   }
 }
