@@ -3,10 +3,12 @@
     <div v-if="tribe">
       <div v-if="tribeRockstars">
         <DescriptionBox title="Rockstar Tribes" :subtitle="`${tribe.Name} Tribe`"
-                        :description="tribe.Description" :rockstars="tribeRockstars"></DescriptionBox>
+                        :description="tribe.Description" :rockstars="tribeRockstars" />
       </div>
     </div>
-    <Carousel :articles="tribeArticles"></Carousel>
+    <div v-if="tribeArticles" >
+<!--      <Carousel :articles="tribeArticles" />-->
+    </div>
   </div>
 </template>
 
@@ -18,7 +20,7 @@ export default {
   name: "TribeId",
   components: {Carousel},
   methods: {
-    ...mapActions(['articleRead', 'tribeGet', 'tribeRockstarGet', "tribeArticlesGet"])
+    ...mapActions(['articleRead', 'rockstarRead', 'tribeGet'])
   },
   computed: {
     tribe_id() {
@@ -27,18 +29,17 @@ export default {
     tribe() {
       return this.$store.getters.tribeGet(this.tribe_id);
     },
-    tribeRockstars() {
-      return this.$store.getters.tribeRockstarGet;
-    },
     tribeArticles() {
-      return this.$store.getters.tribeArticlesGet;
+      return this.$store.getters.articleRead(this.tribe_id);
+    },
+    tribeRockstars() {
+      return this.$store.getters.rockstarRead(this.tribe_id);
     }
   },
   created() {
-    this.articleRead();
     this.tribeGet({id: this.tribe_id});
-    this.tribeRockstarGet({id: this.tribe_id});
-    this.tribeArticlesGet({id: this.tribe_id});
+    this.articleRead({id: this.tribe_id});
+    this.rockstarRead({id: this.tribe_id});
   },
 };
 </script>

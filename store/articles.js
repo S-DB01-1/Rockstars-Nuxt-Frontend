@@ -5,12 +5,12 @@ const resourceURL = 'articles'
 export const state = () => ({})
 
 export const getters = {
-  articleRead: state => {
+  articleRead: state => (id) => {
     return state.articles
   },
   articleGet: state => (id) => {
     return state.articles[id]
-  }
+  },
 }
 
 export const mutations = {
@@ -22,17 +22,15 @@ export const mutations = {
 axios.defaults.baseURL = "https://s8ifzokvp35u68fi.azurewebsites.net/api/v1"
 
 export const actions = {
-  articleRead({ commit }) {
+  articleRead({ commit }, { id }) {
     axios.get(
-      resourceURL
+      `${resourceURL}/?tribe=${id}`
     ).then(response => {
       response.data.results.forEach(item => {
         commit('articleSet', item)
       })
     }).catch(error => {
       console.error(error)
-    }).finally(() => {
-      console.log("i finishedddd")
     })
   },
   articleGet({ commit }, { id }) {
@@ -46,17 +44,6 @@ export const actions = {
       console.error(error)
     })
   },
-  tribeArticlesGet({commit}, {id}) {
-    axios.get(
-      `${resourceURL}/?tribe=${id}`
-    ).then(response => {
-      response.data.results.forEach(item => {
-        commit('rockstarSetFilter', item);
-      });
-    }).catch(error => {
-      console.error(error);
-    });
-  }
 }
 
 export default {

@@ -6,18 +6,19 @@ const resourceURL = 'rockstars';
 export const state = () => ({});
 
 export const getters = {
-  rockstarRead: state => {
+  rockstarRead: state => (id) => {
     return state.rockstars;
   },
   rockstarGet: state => (id) => {
     return state.rockstars[id];
-  }
+  },
 };
 
 export const mutations = {
   rockstarSet(state, item) {
     Vue.set(state.rockstars, item.id, item);
   },
+  // Workaround for Array length
   rockstarSetFilter(state, item) {
     Vue.set(state.rockstars, indexFilter, item);
     indexFilter++;
@@ -27,10 +28,10 @@ export const mutations = {
 axios.defaults.baseURL = "https://s8ifzokvp35u68fi.azurewebsites.net/api/v1";
 
 export const actions = {
-  rockstarRead({commit}) {
+  rockstarRead({commit}, {id}) {
     // Send get request to the backend.
     axios.get(
-      resourceURL
+      `${resourceURL}/?tribe=${id}`
     ).then(response => {
       response.data.results.forEach(item => {
         commit('rockstarSet', item);
@@ -50,17 +51,6 @@ export const actions = {
       console.error(error);
     });
   },
-  tribeRockstarGet({commit}, {id}) {
-    axios.get(
-      `${resourceURL}/?tribe=${id}`
-    ).then(response => {
-      response.data.results.forEach(item => {
-        commit('rockstarSetFilter', item);
-      });
-    }).catch(error => {
-      console.error(error);
-    });
-  }
 };
 
 

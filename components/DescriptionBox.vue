@@ -17,22 +17,22 @@
           </div>
 
           <div class="loading" v-if="!isEmpty(rockstars)">
-            <transition name="fade" v-on:before-enter="beforeEnter" v-on:enter="enter" v-on:leave="leave">
+            <transition name="fade">
               <div v-if="show" class="profileBox">
                 <div>
                   <img :src="require('assets/img/User.jpg')" class="avatar" />
                 </div>
                 <div>
                   <Title size="1">
-                    {{ rockstars[index].Name }}
+                    {{ rockstarsArray[index].Name }}
                   </Title>
                   <Title size="3">
-                    {{ rockstars.length }}
+                    {{ rockstarsArray[index].Description }}
                   </Title>
                 </div>
-                <div v-if="linkedIn" class="flex justify-center items-center">
-                  <a :href="linkedIn">
-                    <img :src="require('assets/image/linkedin.svg')" class="h-10 w-10">
+                <div v-show="rockstarsArray[index].LinkedIn" class="flex justify-center items-center">
+                  <a :href="rockstarsArray[index].LinkedIn">
+                    <img :src="require('assets/image/linkedin.svg')" alt="Linkedin logo" class="h-10 w-10">
                   </a>
                 </div>
               </div>
@@ -64,50 +64,41 @@ export default {
       String,
     },
   },
+  computed: {
+    rockstarsArray () {
+      const output = [];
+
+      Object.keys(this.rockstars).forEach((key, index ) => {
+        output.push(this.rockstars[key])
+      });
+
+      return output;
+    }
+  },
   methods: {
     isEmpty(object) {
       return object && Object.keys(object).length === 0 && Object.getPrototypeOf(object) === Object.prototype
-    },
-    beforeEnter: function (el) {
-
-    },
-    enter: function (el) {
-
-    },
-    leave: function (el) {
-      el.style.opacity = 0
-        if (this.index <= this.rockstarsLength)
-        {
-          if (this.index === 0) {
-            for (var i in this.rockstars) {
-              this.rockstarsLength = i
-            }
-            this.index++
-            this.rockstarsLength--
-          }
-          else{
-            this.index++
-            console.log("index:" + this.index)
-            console.log("rockstarsLength:" + this.rockstarsLength)
-          }
-        }
-        else
-        {
-          console.log("index > length")
-          this.index = 0
-        }
     },
   },
   data() {
     return {
       show: true,
-      index: 0,
-      rockstarsLength: 0
+      index: 0
     }
   },
   created () {
     setInterval(() => {
-      this.show = !this.show
+      if (this.rockstarsArray) {
+        this.show = false;
+        console.log(this.index)
+        this.index++;
+        console.log(this.index)
+        console.log(this.rockstarsArray.length)
+        if (this.index >= this.rockstarsArray.length) {
+          this.index = 0;
+        }
+        setTimeout(() => {this.show = true}, 500)
+      }
     }, 2000)
   },
 }
@@ -136,6 +127,13 @@ export default {
     margin: auto;
     text-align: center;
   }
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 
 </style>
