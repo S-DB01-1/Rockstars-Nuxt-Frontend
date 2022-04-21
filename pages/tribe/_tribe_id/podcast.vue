@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <DescriptionBox></DescriptionBox>
+<!--    <DescriptionBox :tribe_id="tribe_id"></DescriptionBox>-->
 
     <div class="hero-image mt-10 relative ">
       <img class="hero-banner" :src="require('assets/img/Buildings.jpg')" alt="">
@@ -25,16 +25,32 @@
 </template>
 
 <script>
+import {mapActions} from "vuex";
+
 export default {
   data() {
     return {
       episodes: []
     };
   },
+  computed: {
+    tribe_id() {
+      return this.$route.params.tribe_id;
+    },
+  },
+  methods: {
+    ...mapActions(['articleRead', 'rockstarRead', 'tribeGet'])
+  },
   async fetch() {
     this.episodes = await fetch(
       "https://s8ifzokvp35u68fi.azurewebsites.net/api/v1/episodes/?podcast=1&format=json"
     ).then(res => res.json());
   },
+  created () {
+
+    this.tribeGet({id: this.tribe_id});
+    this.articleRead({id: this.tribe_id});
+    this.rockstarRead({id: this.tribe_id});
+  }
 };
 </script>

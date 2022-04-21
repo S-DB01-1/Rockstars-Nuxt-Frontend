@@ -63,19 +63,24 @@ export default {
     linkedIn: {
       String,
     },
+    tribe_id: String
   },
   computed: {
     rockstarsArray () {
       const output = [];
 
-      Object.keys(this.rockstars).forEach((key, index ) => {
-        output.push(this.rockstars[key])
-      });
+      if (this.rockstars) {
+        Object.keys(this.rockstars).forEach((key, index ) => {
+          output.push(this.rockstars[key])
+        });
+      }
+
 
       return output;
     }
   },
   methods: {
+    ...mapActions(['articleRead', 'rockstarRead', 'tribeGet']),
     isEmpty(object) {
       return object && Object.keys(object).length === 0 && Object.getPrototypeOf(object) === Object.prototype
     },
@@ -87,13 +92,14 @@ export default {
     }
   },
   created () {
+    this.tribeGet({id: 2});
+    this.rockstarRead({id: 2});
     setInterval(() => {
       if (this.rockstarsArray) {
         this.show = false;
-        console.log(this.index)
+
         this.index++;
-        console.log(this.index)
-        console.log(this.rockstarsArray.length)
+
         if (this.index >= this.rockstarsArray.length) {
           this.index = 0;
         }
