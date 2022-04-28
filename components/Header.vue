@@ -43,4 +43,11 @@ header img {
   height: 40vh;
   background: rgba(0,0,0,.5);
 }
+
+@media (min-width: 1536px) {
+  .hero {
+    height: 20vh;
+  }
+
+}
 </style>

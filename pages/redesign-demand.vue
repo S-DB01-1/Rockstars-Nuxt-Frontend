@@ -52,10 +52,16 @@
             </label>
           </div>
 
-          <Button theme="default">
-            VERZENDEN
-          </Button>
-
+          <div v-if="btnLoading === false">
+            <Button status="normal" theme="default" id="submitButton">
+              VERZENDEN
+            </Button>
+          </div>
+          <div v-else-if="btnLoading === true">
+            <Button  status="loading" theme="default" id="loadingButton" disabled>
+              VERZENDEN
+            </Button>
+          </div>
 
         </div>
       </form>
@@ -77,7 +83,8 @@ export default {
       subject: null,
       picked: null,
       company: null,
-      statusText: null
+      statusText: null,
+      btnLoading: false
     }
   },
   methods: {
@@ -91,23 +98,16 @@ export default {
        company: this.company
      }).then(response => {
           this.clearForm();
-          if (response.status === 201) {
-            this.setModal("Formulier is correct verzonden.", 'correct');
-          } else {
-            this.setModal("Er is een fout opgetreden.", 'error');
+          this.btnLoading = true;
+
+          if (response.status === 201){
+
+            this.$router.push({path: '/success'});
           }
        }
      ).catch(error => {
        console.log(error)
-       this.setModal("Er is een fout opgetreden.", 'error');
      });
-    },
-    setModal(text, type=true, time=-1) {
-      if (time !== -1) {
-        setTimeout(() => {this.statusText = null}, time)
-      }
-      this.statusType = type;
-      this.statusText = text;
     },
     clearForm() {
         this.name = null
@@ -121,20 +121,26 @@ export default {
     setMinDate() {
 
       let today = new Date();
-      let dd = today.getDate();
-      let mm = today.getMonth()+1;
-      let yyyy = today.getFullYear();
+      let day = today.getDate();
+      let month = today.getMonth()+1;
+      let year = today.getFullYear();
       let hours = today.getHours();
       let min = today.getMinutes();
-      let second = today.getSeconds();
 
-      if(dd<10){
-        dd='0'+dd
+      //Makes is so that minutes between 1-10 get a 0 before it
+      if (min<10){
+        min='0'+min
       }
-      if(mm<10){
-        mm='0'+mm
+      //Makes is so that days between 1-10 get a 0 before it
+      if(day<10){
+        day='0'+day
       }
-      today = yyyy+'-'+mm+'-'+dd+'T'+hours+':'+min+':00';
+      //Makes is so that months between 1-10 get a 0 before it
+      if(month<10){
+        month='0'+month
+      }
+
+      today = year+'-'+month+'-'+day+'T'+hours+':'+min+':00';
       document.getElementById("datetime").setAttribute("min", today);
 
     }

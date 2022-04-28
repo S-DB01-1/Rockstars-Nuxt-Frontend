@@ -11,10 +11,11 @@ module.exports = {
     container: {
       center: true,
       padding: {
-        DEFAULT: '1rem',
-        sm: '1rem',
-        lg: '4rem',
-        xl: '8rem',
+        'DEFAULT': '1rem',
+        'sm': '1rem',
+        'lg': '4rem',
+        'xl': '8rem',
+        '2xl': '16rem',
       },
     },
     fontSize: {
@@ -26,7 +27,18 @@ module.exports = {
       'xl': ['4.375rem', {
         lineHeight: '4rem',
       }],
-    }
+    },
   },
-  plugins: []
+  plugins: [
+    function ({ addComponents }) {
+      addComponents({
+        '.container': {
+          width: '100%',
+          '@screen 2xl': {
+            maxWidth: '130rem',
+          },
+        }
+      })
+    }
+  ]
 }
