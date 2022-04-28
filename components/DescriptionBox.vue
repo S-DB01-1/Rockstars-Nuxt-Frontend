@@ -20,15 +20,17 @@
             <transition name="fade">
               <div v-if="show" class="profileBox">
                 <div>
-                  <img :src="require('assets/img/User.jpg')" class="avatar" />
+                  <img :src="require('assets/img/User.jpg')" alt="avatar logo" class="avatar" />
                 </div>
                 <div>
                   <Title size="1">
                     {{ rockstarsArray[index].Name }}
                   </Title>
-                  <Title size="3">
-                    {{ rockstarsArray[index].Description }}
-                  </Title>
+                  <div class="truncate w-50">
+                    <Title size="3">
+                      {{ rockstarsArray[index].Description }}
+                    </Title>
+                  </div>
                 </div>
                 <div v-show="rockstarsArray[index].LinkedIn" class="flex justify-center items-center">
                   <a :href="rockstarsArray[index].LinkedIn">
@@ -114,8 +116,8 @@ export default {
 
 .avatar {
   border-radius: 50%;
-  width: 200px;
-  height: 200px;
+  width: 125px;
+  height: 125px;
   object-fit: cover;
   margin-left: auto;
   margin-right: auto;
