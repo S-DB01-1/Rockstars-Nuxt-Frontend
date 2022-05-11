@@ -22,10 +22,10 @@ export default {
   },
   created() {
     this.tribeRead()
-    this.articleRead()
-    this.rockstarRead()
-    this.podcastRead()
-    this.videoRead()
+    this.articleRead({id: 1})
+    this.rockstarRead({id: 1})
+    this.podcastRead({id: 1})
+    this.videoRead({id: 1})
   },
   data () {
     return {

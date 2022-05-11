@@ -16,16 +16,16 @@ export const getters = {
 export const mutations = {
   podcastSet(state, item) {
     Vue.set(state.podcasts, item.id, item)
-  }
+  },
 }
 
 axios.defaults.baseURL = "https://s8ifzokvp35u68fi.azurewebsites.net/api/v1"
 
 export const actions = {
-  podcastRead({ commit }) {
+  podcastRead({ commit }, { id }) {
     // Send get request to the backend.
     axios.get(
-      resourceURL
+      `${resourceURL}/?tribe=${id}`
     ).then(response => {
       response.data.results.forEach(item => {
         commit('podcastSet', item)
