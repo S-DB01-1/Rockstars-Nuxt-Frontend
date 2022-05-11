@@ -42,10 +42,7 @@
           </div>
 
           <div class="mt-5 flex flex-wrap gap-4 text-white">
-            <label class=" form-radio">Op Locatie
-              <input type="radio" name="location" value="opLocatie" v-model="picked">
-              <span class="mt-1 checkmark"></span>
-            </label>
+            <RadioButton/>
             <label class=" form-radio">Digitaal
               <input type="radio" name="location" value="digitaal" v-model="picked">
               <span class="mt-1 checkmark"></span>
@@ -71,9 +68,11 @@
 
 <script>
 import axios from "axios";
+import RadioButtons from '@/components/Dumb/Atoms/RadioButtons'
 
 export default {
   name: "redesign-demand",
+  components: { RadioButtons },
   data() {
     return {
       name: null,
@@ -192,7 +191,7 @@ export default {
   background-color: #ccc;
 }
 
-/* When the radio button is checked, add a blue background */
+/* When the radio button is checked, add a yellow background */
 .form-radio input:checked ~ .checkmark {
   background-color: #FFE000;
 }
