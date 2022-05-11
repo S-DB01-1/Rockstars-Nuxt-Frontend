@@ -3,23 +3,23 @@
     <div class="container">
       <form v-on:submit.prevent="submitForm()">
         <div class="mb-4">
-          <Modal :type="statusType" v-show="statusText">
-            {{ statusText }}
-          </Modal>
           <Title size="2" class="mb-4" style="color: white">
             Jouw Gegevens
           </Title>
-          <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-4">
-            <div class="mt-5">
+          <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-4">
+            <div class="mt-1">
               <input type="text" name="naam" id="naam" v-model="name"
                      class="peer max-h-11 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500 disabled:shadow-none"
                      placeholder="Naam">
-              <p class="mt-2 hidden peer-required:block text-red-500 text-sm">Vul alstublieft een naam in.</p>
             </div>
-            <div class="mt-5">
+            <div class="mt-1">
               <input type="datetime-local" name="datetime" id="datetime" v-model="datetime"
                      class="peer max-h-11 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500 disabled:shadow-none">
-              <p class="mt-2 hidden peer-required:block text-red-500 text-sm">Vul alstublieft een bedrijf naam in.</p>
+            </div>
+            <div class="mt-1">
+              <input type="tel" name="telephone" id="telephone" v-model="phone_number"
+                     class="peer max-h-11 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500 disabled:shadow-none"
+                     placeholder="Telefoonnummer">
             </div>
           </div>
 
@@ -28,21 +28,12 @@
               <input type="email" name="email" id="email" v-model="email"
                      class="peer max-h-11 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500 disabled:shadow-none"
                      placeholder="Email">
-              <p class="mt-2 hidden peer-invalid:block text-red-500 text-sm">Geef alstublieft een geldig email adres.</p>
             </div>
-            <div class="mt-5">
-              <input type="tel" pattern="[0-9]{10}" name="telephone" id="telephone" v-model="phone_number"
+            <div class="mt-1 lg:mt-5">
+              <input type="text" name="bedrijf" id="bedrijf" v-model="company"
                      class="peer max-h-11 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500 disabled:shadow-none"
-                     placeholder="Telefoonnummer">
-              <p class="mt-2 hidden peer-invalid:block text-red-500 text-sm">Geef alstublieft een geldig
-                telefoonnummer.</p>
+                     placeholder="Bedrijf">
             </div>
-<!--            <div class="mt-1 lg:mt-5">-->
-<!--              <input type="text" name="bedrijf" id="bedrijf" v-model="business"-->
-<!--                     class="peer max-h-11 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500 disabled:shadow-none"-->
-<!--                     placeholder="Bedrijf">-->
-<!--              <p class="mt-2 hidden peer-required:block text-red-500 text-sm">Vul alstublieft een bedrijf naam in.</p>-->
-<!--            </div>-->
           </div>
           <div class="mt-5">
             <textarea name="subject" id="subject" maxlength="254" v-model="subject"
@@ -61,10 +52,16 @@
             </label>
           </div>
 
-          <Button theme="default">
-            VERZENDEN
-          </Button>
-
+          <div v-if="btnLoading === false">
+            <Button status="normal" theme="default" id="submitButton">
+              VERZENDEN
+            </Button>
+          </div>
+          <div v-else-if="btnLoading === true">
+            <Button  status="loading" theme="default" id="loadingButton" disabled>
+              VERZENDEN
+            </Button>
+          </div>
 
         </div>
       </form>
@@ -85,47 +82,76 @@ export default {
       datetime: null,
       subject: null,
       picked: null,
-      statusText: null
+      company: null,
+      statusText: null,
+      btnLoading: false
     }
   },
   methods: {
     submitForm: async function () {
-     const res = await axios.post('https://s8ifzokvp35u68fi.azurewebsites.net/api/v1/ondemand/', {
-       name: this.name,
-       email: this.email,
-       phone_number: this.phone_number,
-       date: this.datetime,
-       subject: this.subject
-     }).then(response => {
+      const res = await axios.post('https://s8ifzokvp35u68fi.azurewebsites.net/api/v1/ondemand/', {
+        name: this.name,
+        email: this.email,
+        phone_number: this.phone_number,
+        date: this.datetime,
+        subject: this.subject,
+        company: this.company
+      }).then(response => {
           this.clearForm();
-          if (response.status === 201) {
-            this.setModal("Formulier is correct verzonden.", 'correct');
-          } else {
-            this.setModal("Er is een fout opgetreden.", 'error');
+          this.btnLoading = true;
+
+          if (response.status === 201){
+
+            this.$router.push({path: '/success'});
           }
-       }
-     ).catch(error => {
-       console.log(error)
-       this.setModal("Er is een fout opgetreden.", 'error');
-     });
-    },
-    setModal(text, type=true, time=-1) {
-      if (time !== -1) {
-        setTimeout(() => {this.statusText = null}, time)
-      }
-      this.statusType = type;
-      this.statusText = text;
+        }
+      ).catch(error => {
+        console.log(error)
+      });
     },
     clearForm() {
-        this.name = null
-        this.email = null
-        this.phone_number = null
-        this.datetime = null
-        this.subject = null
-        this.picked = null
+      this.name = null
+      this.email = null
+      this.phone_number = null
+      this.datetime = null
+      this.subject = null
+      this.picked = null
+      this.company = null
+    },
+    setMinDate() {
+
+      let today = new Date();
+      let day = today.getDate();
+      let month = today.getMonth()+1;
+      let year = today.getFullYear();
+      let hours = today.getHours();
+      let min = today.getMinutes();
+
+      //Makes is so that minutes between 1-10 get a 0 before it
+      if (min<10){
+        min='0'+min
+      }
+      //Makes is so that days between 1-10 get a 0 before it
+      if(day<10){
+        day='0'+day
+      }
+      //Makes is so that months between 1-10 get a 0 before it
+      if(month<10){
+        month='0'+month
+      }
+
+      today = year+'-'+month+'-'+day+'T'+hours+':'+min+':00';
+      document.getElementById("datetime").setAttribute("min", today);
+
     }
-  }
+  },
+  mounted(){
+    this.setMinDate()
+  },
 }
+
+
+
 </script>
 
 <style lang="scss">
