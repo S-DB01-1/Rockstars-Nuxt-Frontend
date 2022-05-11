@@ -15,7 +15,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "assets/css/variables";
+@import "../../../assets/css/variables";
 
 header {
   position: relative;
@@ -42,14 +42,5 @@ header img {
   bottom: 0;
   height: 40vh;
   background: rgba(0,0,0,.5);
-}
-
-@media (min-width: 1920px) {
-  .hero {
-    height: 20vh;
-  }
-  .hero::before {
-    height: 20vh;
-  }
 }
 </style>

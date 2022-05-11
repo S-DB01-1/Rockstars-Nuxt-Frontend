@@ -40,7 +40,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "assets/css/variables";
+@import "../../../assets/css/variables";
 
 button {
   font-family: DIN2014-Bold, sans-serif;

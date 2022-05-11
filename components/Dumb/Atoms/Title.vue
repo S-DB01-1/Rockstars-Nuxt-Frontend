@@ -34,7 +34,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "assets/css/variables";
+@import "../../../assets/css/variables";
 
 .title {
   h1 {

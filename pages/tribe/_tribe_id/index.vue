@@ -2,11 +2,20 @@
   <div>
     <div v-if="tribe">
       <div v-if="tribeRockstars">
-        <DescriptionBox title="Rockstar Tribes" :subtitle="`${tribe.Name} Tribe`"
+        <TribeDescriptionBox title="Rockstar Tribes" :subtitle="`${tribe.Name} Tribe`"
                         :description="tribe.Description" :rockstars="tribeRockstars" />
       </div>
     </div>
     <div v-if="tribeArticles" >
+      <img class="hero-banner" :src="require('assets/img/Buildings.jpg')" alt="">
+      <div class="relative text-center text-white">
+        <Title size="2">
+          Artikelen
+        </Title>
+        <Title size="4">
+          WAAR ZIJN WIJ ZOAL MEE BEZIG ?
+        </Title>
+      </div>
       <Carousel :articles="tribeArticles" />
     </div>
   </div>
@@ -15,10 +24,11 @@
 <script>
 import {mapActions} from "vuex";
 import Carousel from "~/components/Carousel";
+import TribeDescriptionBox from "@/components/Smart/Organisms/TribeDescriptionBox";
 
 export default {
   name: "TribeId",
-  components: {Carousel},
+  components: {TribeDescriptionBox, Carousel},
   methods: {
     ...mapActions(['articleRead', 'rockstarRead', 'tribeGet'])
   },

@@ -1,14 +1,5 @@
 <template>
   <div class="hero-image mt-10 relative">
-    <img class="hero-banner" :src="require('assets/img/Buildings.jpg')" alt="">
-    <div class="relative text-center text-white">
-      <Title size="2">
-        Artikelen
-      </Title>
-      <Title size="4">
-        WAAR ZIJN WIJ ZOAL MEE BEZIG ?
-      </Title>
-    </div>
     <div class="container">
       <client-only>
         <div v-if="articles">
