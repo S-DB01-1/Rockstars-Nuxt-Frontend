@@ -89,7 +89,7 @@ export default {
   },
   methods: {
     submitForm: async function () {
-     const res = await axios.post('https://s8ifzokvp35u68fi.azurewebsites.net/api/v1/ondemand/', {
+       await axios.post('https://s8ifzokvp35u68fi.azurewebsites.net/api/v1/ondemand/', {
        name: this.name,
        email: this.email,
        phone_number: this.phone_number,
@@ -101,7 +101,6 @@ export default {
           this.btnLoading = true;
 
           if (response.status === 201){
-
             this.$router.push({path: '/success'});
           }
        }
@@ -192,7 +191,7 @@ export default {
   background-color: #ccc;
 }
 
-/* When the radio button is checked, add a blue background */
+/* When the radio button is checked, add a yellow background */
 .form-radio input:checked ~ .checkmark {
   background-color: #FFE000;
 }

@@ -44,10 +44,12 @@ header img {
   background: rgba(0,0,0,.5);
 }
 
-@media (min-width: 1536px) {
+@media (min-width: 1920px) {
   .hero {
     height: 20vh;
   }
-
+  .hero::before {
+    height: 20vh;
+  }
 }
 </style>
