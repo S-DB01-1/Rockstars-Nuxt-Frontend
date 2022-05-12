@@ -51,6 +51,11 @@ export default {
     this.tribeGet({id: this.tribe_id});
     this.articleRead({id: this.tribe_id});
     this.rockstarRead({id: this.tribe_id});
+  },
+  mounted () {
+    // Page "disabled" till other team creates the necessary db tables
+    window.location.href = 'https://xkcd.com/63/';
+
   }
 };
 </script>
