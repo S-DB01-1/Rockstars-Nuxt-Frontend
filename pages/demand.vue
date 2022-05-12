@@ -75,15 +75,25 @@
 import axios from "axios";
 import Button from "~/components/Dumb/Atoms/Button"
 import Title from "~/components/Dumb/Atoms/Title"
+import Recaptcha from "@/components/Smart/Recaptcha";
+
 import RadioButton from "../components/Dumb/Atoms/RadioButton"
 import FormGroup from "../components/Dumb/Atoms/FormGroup"
 
 
 export default {
   name: "redesign-demand",
-  components: { FormGroup, RadioButton, Title, Button },
+  components: {
+    Button,
+    Title,
+    Recaptcha,
+    RadioButton,
+    FormGroup
+  },
   data() {
     return {
+
+
       name: null,
       email: null,
       phone_number: null,
