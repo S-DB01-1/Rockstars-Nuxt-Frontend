@@ -71,9 +71,14 @@
 
 <script>
 import axios from "axios";
-
+import Button from "~/components/Dumb/Atoms/Button"
+import Title from "~/components/Dumb/Atoms/Title"
 export default {
   name: "redesign-demand",
+  components: {
+    Button,
+    Title,
+  },
   data() {
     return {
       name: null,
@@ -89,7 +94,7 @@ export default {
   },
   methods: {
     submitForm: async function () {
-      const res = await axios.post('https://s8ifzokvp35u68fi.azurewebsites.net/api/v1/ondemand/', {
+        await axios.post('https://s8ifzokvp35u68fi.azurewebsites.net/api/v1/ondemand/', {
         name: this.name,
         email: this.email,
         phone_number: this.phone_number,

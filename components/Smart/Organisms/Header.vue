@@ -43,4 +43,14 @@ header img {
   height: 40vh;
   background: rgba(0,0,0,.5);
 }
+
+@media only screen and (min-width: 1920px) {
+  .hero {
+    height: 20vh;
+  }
+  .hero::before {
+    height: 20vh;
+  }
+
+}
 </style>
