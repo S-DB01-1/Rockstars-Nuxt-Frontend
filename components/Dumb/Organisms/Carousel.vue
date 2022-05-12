@@ -19,7 +19,7 @@ import VueSlickCarousel from 'vue-slick-carousel';
 import 'vue-slick-carousel/dist/vue-slick-carousel.css';
 // optional style for arrows & dots
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css';
-import Card from '../components/Dumb/Molecules/Card.vue';
+import Card from '../Molecules/Card.vue';
 
 export default {
   name: 'Carousel',
