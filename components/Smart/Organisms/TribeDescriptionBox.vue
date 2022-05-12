@@ -27,7 +27,7 @@
 
 <script>
 import {mapActions} from "vuex";
-import DescriptionBox from "@/components/Dumb/Organisms/DescriptionBox";
+import DescriptionBox from "~/components/Dumb/Organisms/DescriptionBox";
 
 export default {
   name: 'TribeDescriptionBox',

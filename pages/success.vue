@@ -22,8 +22,15 @@
 </template>
 
 <script>
+import Button from "~/components/Dumb/Atoms/Button"
+import Title from "~/components/Dumb/Atoms/Title"
+
 export default {
-  name: "success"
+  name: "success",
+  components: {
+    Button,
+    Title,
+  }
 }
 </script>
 

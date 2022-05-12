@@ -25,16 +25,17 @@
 </template>
 
 <script>
-import Title from '../Atoms/Title.vue'
-import Button from '../Atoms/Button.vue'
+import Button from "~/components/Dumb/Atoms/Button"
+import Title from "~/components/Dumb/Atoms/Title"
+
 export default {
   name: 'Card',
+  components: {Button, Title},
   props: {
     Author: String,
     Title: String,
     Description: String
   },
-  components: {Button, Title}
 }
 </script>
 
