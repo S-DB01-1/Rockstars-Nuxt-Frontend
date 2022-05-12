@@ -2,34 +2,11 @@
   <div class="hero-image mt-10 relative">
     <div class="container">
       <client-only>
-        <div v-if="articles">
-          <VueSlickCarousel v-bind="settings">
-            <Card Author="Fabianna" Title="test1" Description="Lorem ipsum etc1" />
-            <Card Author="Fabianna" Title="test2" Description="Lorem ipsum etc2" />
-            <Card Author="Fabianna" Title="test3" Description="Lorem ipsum etc3" />
-<!--            <div v-for="article in articles">-->
-<!--              <div class="rounded overflow-hidden shadow-lg m-8 bg-white">-->
-<!--                <div class="bg-rockstar-yellow author-block -mt-4 ml-4 pl-4 pr-4 pb-2 pt-2">-->
-<!--                  <p>{{ article.Author }}</p>-->
-<!--                </div>-->
-<!--                <div>-->
-<!--                  <img class="w-full thumbnail" :src="require('assets/img/Banner.png')">-->
-<!--                </div>-->
-<!--                <div class="px-6 py-4">-->
-<!--                  <Title size="3" class="font-bold mb-2">-->
-<!--                    {{ article.Name }}-->
-<!--                  </Title>-->
-<!--                  <p class="text-gray-700 text-xs">-->
-<!--                    {{ article.Description }}-->
-<!--                  </p>-->
-<!--                </div>-->
-<!--                <div>-->
-<!--                  <Button theme="light">-->
-<!--                    GA NAAR-->
-<!--                  </Button>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </div>-->
+        <div v-if="!isEmpty(articles)">
+          <VueSlickCarousel v-bind="settings">                                                          
+            <div v-for="(article, index) in articles" :key="index">
+              <Card :Author=article.title :Title=article.title :Description=article.description :TribeId=String(article.tribeid) :ArticleId=String(article.id) />                                                                                  
+            </div>  
           </VueSlickCarousel>
         </div>
       </client-only>
@@ -42,7 +19,7 @@ import VueSlickCarousel from 'vue-slick-carousel';
 import 'vue-slick-carousel/dist/vue-slick-carousel.css';
 // optional style for arrows & dots
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css';
-import Card from '../components/Dumb/Molecules/Card.vue';
+import Card from '../Molecules/Card.vue';
 
 export default {
   name: 'Carousel',
@@ -52,6 +29,11 @@ export default {
   },
   props: {
     articles: [],
+  },
+  methods: {
+    isEmpty(object) {
+      return object && Object.keys(object).length === 0 && Object.getPrototypeOf(object) === Object.prototype
+    },
   },
   data() {
     return {
