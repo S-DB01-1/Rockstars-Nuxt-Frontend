@@ -2,8 +2,8 @@
   <div>
     <div v-if="tribe">
       <div v-if="tribeRockstars">
-        <TribeDescriptionBox title="Rockstar Tribes" :subtitle="`${tribe.Name} Tribe`"
-                        :description="tribe.Description" :rockstars="tribeRockstars" />
+        <TribeDescriptionBox  :subtitle="`${tribe.name} Tribe`"
+                        :description="tribe.description" :rockstars="tribeRockstars" />
       </div>
     </div>
     <div v-if="tribeArticles" >
