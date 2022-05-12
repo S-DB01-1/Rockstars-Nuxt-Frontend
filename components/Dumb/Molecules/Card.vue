@@ -16,9 +16,11 @@
         </p>
       </div>
       <div>
-        <Button theme="light">
-          NORMAL STATE
-        </Button>
+        <router-link :to="`/tribe/${TribeId}/article/${ArticleId}`">
+          <Button theme="light">
+            GA NAAR ARTIKEL
+          </Button>
+        </router-link>
       </div>
     </div>
   </div>
@@ -32,7 +34,9 @@ export default {
   props: {
     Author: String,
     Title: String,
-    Description: String
+    Description: String,
+    TribeId: String,
+    ArticleId: String
   },
   components: {Button, Title}
 }
