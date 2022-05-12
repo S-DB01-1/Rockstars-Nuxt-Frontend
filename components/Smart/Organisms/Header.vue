@@ -1,5 +1,5 @@
 <template>
-  <div class="hero" v-bind:style="{ backgroundImage: 'url(' + require('assets/img/Banner.png') + ')' }">
+  <div class="hero h-60 before:h-60"  v-bind:style="{ backgroundImage: 'url(' + require('assets/img/Banner.png') + ')' }">
     <header>
       <div class="container py-4">
         <img :src="require('assets/img/Logo.png')"/>
@@ -27,7 +27,6 @@ header img {
 }
 
 .hero {
-  height: 40vh;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -40,7 +39,7 @@ header img {
   right: 0;
   top: 0;
   bottom: 0;
-  height: 40vh;
   background: rgba(0,0,0,.5);
 }
+
 </style>
