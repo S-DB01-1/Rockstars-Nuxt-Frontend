@@ -1,20 +1,31 @@
 <template>
-  <label class=" form-radio"> {{ text }}
-    <input type="radio" name="location" value="digitaal" v-model="picked">
+  <label class="form-radio">
+    <input type="radio" :name="name" :value="value" :id="value">
+    <label :for="value">
+      {{ text }}
+    </label>
     <span class="mt-1 checkmark"></span>
   </label>
+<!--  <div class="form-check">-->
+<!--    <input type="radio" :name="name" :value="value" :id="value">-->
+<!--    <label class="form-check-label inline-block text-gray-800" :for="value">-->
+<!--      {{ text }}-->
+<!--    </label>-->
+<!--  </div>-->
 </template>
 
 <script>
 export default {
-  name: 'RadioButton'
+  name: 'RadioButton',
+  props: {
+    text: String,
+    name: String,
+    value: String,
+  }
 }
 </script>
 
 <style scoped>
-
-</style>
-<style lang="scss">
 /* The container */
 .form-radio {
   display: block;
@@ -78,3 +89,4 @@ export default {
   border-radius: 50%;
   background: white;
 }
+</style>

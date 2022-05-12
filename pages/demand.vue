@@ -42,11 +42,16 @@
           </div>
 
           <div class="mt-5 flex flex-wrap gap-4 text-white">
-            <RadioButton/>
-            <label class=" form-radio">Digitaal
-              <input type="radio" name="location" value="digitaal" v-model="picked">
-              <span class="mt-1 checkmark"></span>
-            </label>
+            <FormGroup>
+              <RadioButton text="Digitaal" name="location" value="Digitaal" />
+              <RadioButton text="Op locatie" name="location" value="Op locatie" />
+            </FormGroup>
+
+
+            <!--            <label class=" form-radio">Digitaal-->
+<!--              <input type="radio" name="location" value="digitaal" v-model="picked">-->
+<!--              <span class="mt-1 checkmark"></span>-->
+<!--            </label>-->
           </div>
 
           <div v-if="btnLoading === false">
@@ -68,11 +73,12 @@
 
 <script>
 import axios from "axios";
-import RadioButtons from '@/components/Dumb/Atoms/RadioButtons'
+import RadioButton from "../components/Dumb/Atoms/RadioButton";
+import FormGroup from "../components/Dumb/Atoms/FormGroup";
 
 export default {
   name: "redesign-demand",
-  components: { RadioButtons },
+  components: {FormGroup, RadioButton },
   data() {
     return {
       name: null,
