@@ -1,17 +1,20 @@
 <template>
-  <DescriptionBox v-if="tribe" title="Rockstar Tribes" :subtitle="tribe.name" :description="tribe.description">
+  <DescriptionBox title="Rockstar Tribes" :subtitle="subtitle" :description="description">
     <div class="loading" v-if="!isEmpty(rockstars)">
       <transition name="fade">
         <div v-if="show" class="profileBox">
-          <div>
+          <div v-if="rockstarsArray[index].img">
+            <img :src="require( rockstarsArray[index].img )" class="avatar"/>
+          </div>
+          <div v-else>
             <img :src="require('assets/img/User.jpg')" class="avatar"/>
           </div>
           <div>
             <Title size="1">
-              {{ rockstarsArray[index].Name }}
+              {{ rockstarsArray[index].name }}
             </Title>
             <Title size="3">
-              {{ rockstarsArray[index].Description }}
+              {{ rockstarsArray[index].description }}
             </Title>
           </div>
           <div v-show="rockstarsArray[index].LinkedIn" class="flex justify-center items-center">
@@ -33,15 +36,17 @@ export default {
   name: 'TribeDescriptionBox',
   components: {DescriptionBox},
   props: {
-    tribe_id: String
+    subtitle: String,
+    description: String,
+    rockstars: [],
   },
   computed: {
-    tribe() {
-      return this.$store.getters.tribeGet(this.tribe_id)
-    },
-    rockstars() {
-      return this.$store.getters.rockstarRead(this.tribe_id);
-    },
+    // tribe() {
+    //   return this.$store.getters.tribeGet(this.tribe_id)
+    // },
+    // rockstars() {
+    //   return this.$store.getters.rockstarGet(this.tribe_id);
+    // },
     rockstarsArray() {
       const output = [];
 
@@ -56,7 +61,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['articleRead', 'rockstarRead', 'tribeGet']),
+    //...mapActions(['articleRead', 'rockstarGet', 'tribeGet']),
     isEmpty(object) {
       return object && Object.keys(object).length === 0 && Object.getPrototypeOf(object) === Object.prototype;
     },
@@ -68,8 +73,8 @@ export default {
     };
   },
   created() {
-    this.tribeGet({id: 2});
-    this.rockstarRead({id: 2});
+    //this.tribeGet({id: this.tribe_id});
+    //this.rockstarGet({id: this.tribe_id});
     setInterval(() => {
       if (this.rockstarsArray) {
         this.show = false;
