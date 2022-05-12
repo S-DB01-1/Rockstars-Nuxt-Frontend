@@ -72,6 +72,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import Button from "~/components/Dumb/Atoms/Button"
 import Title from "~/components/Dumb/Atoms/Title"
 export default {
