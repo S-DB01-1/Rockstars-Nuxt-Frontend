@@ -71,9 +71,11 @@
 
 <script>
 import axios from "axios";
+//import Recaptcha from "@/components/Smart/Recaptcha";
 
 export default {
-  name: "redesign-demand",
+  name: "demand",
+  //components: {Recaptcha},
   data() {
     return {
       name: null,
