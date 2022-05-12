@@ -75,8 +75,8 @@
 import axios from "axios";
 import Button from "~/components/Dumb/Atoms/Button"
 import Title from "~/components/Dumb/Atoms/Title"
-import RadioButton from "../components/Dumb/Atoms/RadioButton";
-import FormGroup from "../components/Dumb/Atoms/FormGroup";
+import RadioButton from "../components/Dumb/Atoms/RadioButton"
+import FormGroup from "../components/Dumb/Atoms/FormGroup"
 
 
 export default {
