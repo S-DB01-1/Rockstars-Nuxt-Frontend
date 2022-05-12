@@ -23,8 +23,15 @@
 </template>
 
 <script>
+import Button from "~/components/Dumb/Atoms/Button"
+import Title from "~/components/Dumb/Atoms/Title"
+
 export default {
   name: 'AuthorDescriptionBox',
+  components: {
+    Button,
+    Title,
+  },
   props: {
     title: String,
     subtitle: String,

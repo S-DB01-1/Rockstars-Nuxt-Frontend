@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import DescriptionBox from "@/components/Dumb/Organisms/DescriptionBox";
+import DescriptionBox from "~/components/Dumb/Organisms/DescriptionBox";
 export default {
   name: 'AuthorDescriptionBox',
   components: {DescriptionBox}
