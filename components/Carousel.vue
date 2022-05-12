@@ -4,9 +4,9 @@
       <client-only>
         <div v-if="articles">
           <VueSlickCarousel v-bind="settings">
-            <Card Author="Fabianna" Title="test1" Description="Lorem ipsum etc1" />
-            <Card Author="Fabianna" Title="test2" Description="Lorem ipsum etc2" />
-            <Card Author="Fabianna" Title="test3" Description="Lorem ipsum etc3" />
+            <div v-for="article in articles" :key="article">
+              <Card :Author=article.Author :Title=article.Name :Description=article.Description />
+            </div>
 <!--            <div v-for="article in articles">-->
 <!--              <div class="rounded overflow-hidden shadow-lg m-8 bg-white">-->
 <!--                <div class="bg-rockstar-yellow author-block -mt-4 ml-4 pl-4 pr-4 pb-2 pt-2">-->
