@@ -6,7 +6,6 @@
 
 <script>
 export default {
-  name: "_article_id",
   async asyncData({ params }) {
     const tribe_id = params.tribe_id // When calling /abc the slug will be "abc"
     const article_id = params.article_id // When calling /abc the slug will be "abc"

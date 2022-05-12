@@ -50,8 +50,11 @@
 </template>
 
 <script>
+import Title from "@/components/Dumb/Atoms/Title";
+
 export default {
-  name: "Footer"
+  name: "Footer",
+  components: {Title}
 }
 </script>
 

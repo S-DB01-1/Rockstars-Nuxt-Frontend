@@ -55,6 +55,15 @@
   </main>
 </template>
 
+<script>
+import Button from "@/components/Dumb/Atoms/Button";
+import Title from "@/components/Dumb/Atoms/Title";
+
+export default {
+  components: {Button, Title}
+}
+</script>
+
 <style scoped>
 
 </style>
