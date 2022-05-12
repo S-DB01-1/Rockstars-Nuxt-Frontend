@@ -1,6 +1,6 @@
 <template>
   <DescriptionBox title="Auteur" :subtitle="subtitle" :description="description">
-    <div class="loading" v-if="!isEmpty(rockstars)">
+    <div class="loading" v-if="rockstars && tribeName">
       <div class="profileBox">
         <div v-if="rockstars.img">
           <img :src="require( rockstars.img )" class="avatar"/>
@@ -42,11 +42,6 @@ export default {
     description: String,
     rockstars: [],
     tribeName: String,
-  },
-  methods: {
-    isEmpty(object) {
-      return object && Object.keys(object).length === 0 && Object.getPrototypeOf(object) === Object.prototype;
-    },
   },
 };
 </script>
