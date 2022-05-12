@@ -1,23 +1,28 @@
 <template>
-  <DescriptionBox title="Auteur" subtitle="PIETER JAN" description="Lorum Ipsum whatever">
-    <div class="profileBox">
-      <div>
-        <img :src="require('assets/img/User.jpg')" class="avatar"/>
-      </div>
+  <DescriptionBox title="Auteur" :subtitle="subtitle" :description="description">
+    <div class="loading" v-if="rockstars && tribeName">
+      <div class="profileBox">
+        <div v-if="rockstars.img">
+          <img :src="require( rockstars.img )" class="avatar"/>
+        </div>
+        <div v-else>
+          <img :src="require('assets/img/User.jpg')" class="avatar"/>
+        </div>
+        <div>
+          <Title size="1">
+            {{ tribeName }}
+          </Title>
+          <Title size="3">
+            {{ rockstars.quote }}
+          </Title>
+        </div>
 
-      <div>
-        <Title class="font-bold mt-2" size="3">
-          Tribe naam
-        </Title>
-      </div>
-      <div class="justify-center items-center">
-        <Title size="3" class="mr-4 mb-2">
-          Software Developer
-        </Title>
+        <div v-show="rockstars.linkedin" class="flex justify-center items-center">
+          <a :href="rockstars.linkedin">
+            <img :src="require('assets/image/linkedin.svg')" alt="Linkedin logo" class="h-10 w-10">
+          </a>
+        </div>
 
-      </div>
-      <div class="flex justify-center items-center">
-        <img :src="require('assets/image/linkedin.svg')" class="h-10 w-10"/>
       </div>
     </div>
   </DescriptionBox>
@@ -25,10 +30,20 @@
 
 <script>
 import DescriptionBox from "~/components/Dumb/Organisms/DescriptionBox";
+import Title from "~/components/Dumb/Atoms/Title";
 export default {
   name: 'AuthorDescriptionBox',
-  components: {DescriptionBox}
-}
+  components: {
+    DescriptionBox,
+    Title,
+  },
+  props: {
+    subtitle: String,
+    description: String,
+    rockstars: [],
+    tribeName: String,
+  },
+};
 </script>
 
 <style lang="scss">
@@ -46,11 +61,6 @@ export default {
 .profileBox {
   margin: auto;
   text-align: center;
-}
-
-.socials {
-  width: 7%;
-  height: 7%;
 }
 
 </style>
