@@ -1,7 +1,7 @@
 <template>
   <button
     :class="{
-      'p-4 px-6 duration-500 ease-in-out  font-semibold': true,
+      'p-4 px-6 m-2 duration-500 ease-in-out  font-semibold': true,
       //'hover:p-8': status === 'normal',
       'bg-rockstar-yellow text-black': theme === 'default',
       'bg-black text-white': theme === 'dark',
@@ -11,14 +11,14 @@
     <div class="flex items-center">
       <slot />
       <span v-show="status === 'normal'">
-      <img :src="require('assets/img/icons/forward-solid.svg')" class="icon-size ml-2"/>
-    </span>
+        <img :src="require('assets/img/icons/dark/forward-solid.svg')" class="w-4 ml-2"/>
+      </span>
       <span v-show="status === 'loading'">
-      <img :src="require('assets/img/icons/loader.svg')" class="icon-size ml-2"/>
-    </span>
+        <img :src="require('assets/img/icons/dark/loader.svg')" class="w-4 ml-2 animate-spin"/>
+      </span>
       <span v-show="status === 'active'">
-      <img :src="require('assets/img/icons/check-solid.svg')" class="icon-size ml-2"/>
-    </span>
+        <img :src="require('assets/img/icons/dark/check-solid.svg')" class="w-4 ml-2"/>
+      </span>
     </div>
   </button>
 </template>
