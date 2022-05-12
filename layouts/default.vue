@@ -1,7 +1,16 @@
 <template>
   <div>
-  <Header/>
+    <Header/>
     <Nuxt/>
-  <Footer/>
+    <Footer/>
   </div>
 </template>
+
+<script>
+import Header from "~/components/Smart/Organisms/Header";
+import Footer from "~/components/Smart/Organisms/Footer";
+
+export default {
+  components: {Header, Footer}
+}
+</script>
