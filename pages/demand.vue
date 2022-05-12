@@ -72,13 +72,14 @@
 </template>
 
 <script>
-import axios from "axios";
-import RadioButton from "../components/Dumb/Atoms/RadioButton";
-import FormGroup from "../components/Dumb/Atoms/FormGroup";
-
+import Button from "~/components/Dumb/Atoms/Button"
+import Title from "~/components/Dumb/Atoms/Title"
 export default {
   name: "redesign-demand",
-  components: {FormGroup, RadioButton },
+  components: {
+    Button,
+    Title,
+  },
   data() {
     return {
       name: null,
