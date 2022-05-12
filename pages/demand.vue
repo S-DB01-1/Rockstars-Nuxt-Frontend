@@ -42,14 +42,16 @@
           </div>
 
           <div class="mt-5 flex flex-wrap gap-4 text-white">
-            <label class=" form-radio">Op Locatie
-              <input type="radio" name="location" value="opLocatie" v-model="picked">
-              <span class="mt-1 checkmark"></span>
-            </label>
-            <label class=" form-radio">Digitaal
-              <input type="radio" name="location" value="digitaal" v-model="picked">
-              <span class="mt-1 checkmark"></span>
-            </label>
+            <FormGroup>
+              <RadioButton text="Digitaal" name="location" value="Digitaal" />
+              <RadioButton text="Op locatie" name="location" value="Op locatie" />
+            </FormGroup>
+
+
+            <!--            <label class=" form-radio">Digitaal-->
+<!--              <input type="radio" name="location" value="digitaal" v-model="picked">-->
+<!--              <span class="mt-1 checkmark"></span>-->
+<!--            </label>-->
           </div>
 
           <div v-if="btnLoading === false">
@@ -197,7 +199,7 @@ export default {
   background-color: #ccc;
 }
 
-/* When the radio button is checked, add a blue background */
+/* When the radio button is checked, add a yellow background */
 .form-radio input:checked ~ .checkmark {
   background-color: #FFE000;
 }
