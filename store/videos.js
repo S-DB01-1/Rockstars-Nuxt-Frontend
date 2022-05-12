@@ -22,10 +22,10 @@ export const mutations = {
 axios.defaults.baseURL = "https://s8ifzokvp35u68fi.azurewebsites.net/api/v1"
 
 export const actions = {
-  videoRead({ commit }) {
+  videoRead({ commit }, { id }) {
     // Send get request to the backend.
     axios.get(
-      resourceURL
+      `${resourceURL}/?tribe=${id}`
     ).then(response => {
       response.data.results.forEach(item => {
         commit('videoSet', item)
