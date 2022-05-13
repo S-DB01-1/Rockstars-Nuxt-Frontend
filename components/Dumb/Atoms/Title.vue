@@ -1,5 +1,5 @@
 <template>
-  <div class="title">
+  <div :class="{title: true, 'text-white': theme === 'light'}">
     <h1 v-show="size === '1'" class="text-xl">
       <slot />
     </h1>
@@ -25,6 +25,10 @@
 export default {
   name: 'Title',
   props: {
+    theme: {
+      type: String,
+      default: 'default'
+    },
     size: {
       type: String,
       default: '1'
