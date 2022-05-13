@@ -11,13 +11,16 @@
     <div class="flex items-center">
       <slot />
       <span v-show="status === 'normal'">
-        <img :src="require('assets/img/icons/dark/forward-solid.svg')" class="w-4 ml-2"/>
+        <img v-show="theme !== 'dark'" :src="require('assets/img/icons/forward-black.svg')" class="w-4 ml-2"/>
+        <img v-show="theme === 'dark'" :src="require('assets/img/icons/forward-white.svg')" class="w-4 ml-2"/>
       </span>
       <span v-show="status === 'loading'">
-        <img :src="require('assets/img/icons/dark/loader.svg')" class="w-4 ml-2 animate-spin"/>
+        <img v-show="theme !== 'dark'" :src="require('assets/img/icons/loader-black.svg')" class="w-4 ml-2 animate-spin"/>
+        <img v-show="theme === 'dark'" :src="require('assets/img/icons/loader-white.svg')" class="w-4 ml-2 animate-spin"/>
       </span>
       <span v-show="status === 'active'">
-        <img :src="require('assets/img/icons/dark/check-solid.svg')" class="w-4 ml-2"/>
+        <img v-show="theme !== 'dark'" :src="require('assets/img/icons/check-black.svg')" class="w-4 ml-2"/>
+        <img v-show="theme === 'dark'" :src="require('assets/img/icons/check-white.svg')" class="w-4 ml-2"/>
       </span>
     </div>
   </button>
