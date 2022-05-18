@@ -2,9 +2,13 @@
   <section class="p-4 lg:px-24">
     <form v-on:submit.prevent="submitForm()">
       <div class="mb-4">
-        <Modal :type="statusType" v-show="statusText">
+        <p :class="{
+          'px-4': true,
+          'text-red-600': statusType === 'error',
+          'text-green-400': statusType === 'correct'
+        }" v-show="statusText">
           {{ statusText }}
-        </Modal>
+        </p>
         <Title size="2" class="mb-4" style="color: white">
           Jouw Gegevens
         </Title>
@@ -44,7 +48,7 @@
             <span class="mt-1 checkmark"></span>
           </label>
         </div>
-        <Button theme="default">
+        <Button theme="default" @click="submitForm()">
           VERZENDEN
         </Button>
       </div>
@@ -73,6 +77,7 @@ export default {
       picked: null,
       company: null,
       statusText: null,
+      statusType: null,
       btnLoading: false
     }
   },
