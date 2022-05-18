@@ -1,11 +1,10 @@
 <template>
   <button
     :class="{
-      'p-4 px-6 m-2 duration-500 ease-in-out  font-semibold': true,
-      //'hover:p-8': status === 'normal',
-      'bg-rockstar-yellow text-black': theme === 'default',
-      'bg-black text-white': theme === 'dark',
-      'bg-white text-black': theme === 'light'
+      'p-4 px-6 m-2 duration-200 ease-in-out  font-semibold': true,
+      'bg-rockstar-yellow text-black hover:bg-yellow-200': theme === 'default',
+      'bg-black text-white hover:bg-neutral-600': theme === 'dark',
+      'bg-white text-black hover:bg-neutral-200': theme === 'light'
     }"
   >
     <div class="flex items-center">

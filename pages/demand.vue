@@ -1,74 +1,54 @@
 <template>
-  <section>
-    <div class="container">
-      <form v-on:submit.prevent="submitForm()">
-        <div class="mb-4">
-          <Modal :type="statusType" v-show="statusText">
-            {{ statusText }}
-          </Modal>
-          <Title size="2" class="mb-4" style="color: white">
-            Jouw Gegevens
-          </Title>
-          <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-4">
-            <div class="mt-5">
-              <input type="text" name="naam" id="naam" v-model="name"
-                     class="peer max-h-11 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500 disabled:shadow-none"
-                     placeholder="Naam">
-              <p class="mt-2 hidden peer-required:block text-red-500 text-sm">Vul alstublieft een naam in.</p>
-            </div>
-            <div class="mt-5">
-              <input type="datetime-local" name="datetime" id="datetime" v-model="datetime"
-                     class="peer max-h-11 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500 disabled:shadow-none">
-              <p class="mt-2 hidden peer-required:block text-red-500 text-sm">Vul alstublieft een bedrijf naam in.</p>
-            </div>
-          </div>
-
-          <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-4">
-            <div class="mt-5">
-              <input type="email" name="email" id="email" v-model="email"
-                     class="peer max-h-11 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500 disabled:shadow-none"
-                     placeholder="Email">
-              <p class="mt-2 hidden peer-invalid:block text-red-500 text-sm">Geef alstublieft een geldig email adres.</p>
-            </div>
-            <div class="mt-5">
-              <input type="tel" pattern="[0-9]{10}" name="telephone" id="telephone" v-model="phone_number"
-                     class="peer max-h-11 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500 disabled:shadow-none"
-                     placeholder="Telefoonnummer">
-              <p class="mt-2 hidden peer-invalid:block text-red-500 text-sm">Geef alstublieft een geldig
-                telefoonnummer.</p>
-            </div>
-<!--            <div class="mt-1 lg:mt-5">-->
-<!--              <input type="text" name="bedrijf" id="bedrijf" v-model="business"-->
-<!--                     class="peer max-h-11 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500 disabled:shadow-none"-->
-<!--                     placeholder="Bedrijf">-->
-<!--              <p class="mt-2 hidden peer-required:block text-red-500 text-sm">Vul alstublieft een bedrijf naam in.</p>-->
-<!--            </div>-->
+  <section class="p-4 lg:px-24">
+    <form v-on:submit.prevent="submitForm()">
+      <div class="mb-4">
+        <Modal :type="statusType" v-show="statusText">
+          {{ statusText }}
+        </Modal>
+        <Title size="2" class="mb-4" style="color: white">
+          Jouw Gegevens
+        </Title>
+        <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-4">
+          <div class="mt-5">
+            <FormInput v-model="name" placeholder="Naam" />
+            <p class="mt-2 hidden peer-required:block text-red-500 text-sm">Vul alstublieft een naam in.</p>
           </div>
           <div class="mt-5">
-            <textarea name="subject" id="subject" maxlength="254" v-model="subject"
-                      class="peer px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500 disabled:shadow-none"
-                      placeholder="Onderwerp"></textarea>
+            <FormInput v-model="datetime" type="datetime-local"/>
+            <p class="mt-2 hidden peer-required:block text-red-500 text-sm">Vul alstublieft een bedrijf naam in.</p>
           </div>
-
-          <div class="mt-5 flex flex-wrap gap-4 text-white">
-            <label class=" form-radio">Op Locatie
-              <input type="radio" name="location" value="opLocatie" v-model="picked">
-              <span class="mt-1 checkmark"></span>
-            </label>
-            <label class=" form-radio">Digitaal
-              <input type="radio" name="location" value="digitaal" v-model="picked">
-              <span class="mt-1 checkmark"></span>
-            </label>
-          </div>
-
-          <Button theme="default">
-            VERZENDEN
-          </Button>
-
-
         </div>
-      </form>
-    </div>
+
+        <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-4">
+          <div class="mt-5">
+            <FormInput v-model="email" type="email" placeholder="Email" />
+            <p class="mt-2 hidden peer-invalid:block text-red-500 text-sm">Geef alstublieft een geldig email adres.</p>
+          </div>
+          <div class="mt-5">
+            <FormInput v-model="phone_number" type="tel" placeholder="Telefoon" />
+            <p class="mt-2 hidden peer-invalid:block text-red-500 text-sm">Geef alstublieft een geldig
+              telefoonnummer.</p>
+          </div>
+        </div>
+        <div class="mt-5">
+          <FormTextArea v-model="subject" placeholder="Onderwerp" />
+        </div>
+
+        <div class="mt-5 flex flex-wrap gap-4 text-white">
+          <label class=" form-radio">Op Locatie
+            <input type="radio" name="location" value="opLocatie" v-model="picked">
+            <span class="mt-1 checkmark"></span>
+          </label>
+          <label class=" form-radio">Digitaal
+            <input type="radio" name="location" value="digitaal" v-model="picked">
+            <span class="mt-1 checkmark"></span>
+          </label>
+        </div>
+        <Button theme="default">
+          VERZENDEN
+        </Button>
+      </div>
+    </form>
   </section>
 </template>
 

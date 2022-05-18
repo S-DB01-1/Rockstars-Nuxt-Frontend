@@ -7,7 +7,11 @@ module.exports = {
     './nuxt.config.{js,ts}'
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'rockstar-yellow': '#FFE000'
+      }
+    },
     container: {
       center: true,
       padding: {
