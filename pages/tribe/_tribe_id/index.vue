@@ -6,7 +6,7 @@
                         :description="tribe.description" :rockstars="tribeRockstars" />
       </div>
     </div>
-    <div v-if="tribeArticles" >
+    <div v-if="tribeArticles">
       <img class="hero-banner" :src="require('assets/img/Buildings.jpg')" alt="">
       <div class="relative text-center text-white">
         <Title size="2">
@@ -18,6 +18,8 @@
       </div>
       <Carousel :articles="tribeArticles" />
     </div>
+    <Videos :videos="tribeVideos" />
+
   </div>
 </template>
 
@@ -25,12 +27,14 @@
 import {mapActions} from "vuex";
 import Carousel from "@/components/Dumb/Organisms/Carousel.vue";
 import TribeDescriptionBox from "@/components/Smart/Organisms/TribeDescriptionBox";
+import Videos from "../../../components/Dumb/Organisms/Videos";
+import Title from "../../../components/Dumb/Atoms/Title";
 
 export default {
   name: "TribeId",
-  components: {TribeDescriptionBox, Carousel},
+  components: {TribeDescriptionBox, Carousel, Videos, Title },
   methods: {
-    ...mapActions(['articleRead', 'rockstarRead', 'tribeGet'])
+    ...mapActions(['articleRead', 'videoRead', 'rockstarRead', 'tribeGet', 'articleGet'])
   },
   computed: {
     tribe_id() {
@@ -44,12 +48,16 @@ export default {
     },
     tribeRockstars() {
       return this.$store.getters.rockstarRead(this.tribe_id);
+    },
+    tribeVideos() {
+      return this.$store.getters.videoRead(this.tribe_id);
     }
   },
   created() {
     this.tribeGet({id: this.tribe_id});
     this.articleRead({id: this.tribe_id});
     this.rockstarRead({id: this.tribe_id});
+    this.videoRead({ id: this.tribe_id });
   },
 };
 </script>
