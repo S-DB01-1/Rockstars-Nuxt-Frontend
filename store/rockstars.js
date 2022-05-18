@@ -6,7 +6,7 @@ const resourceURL = 'rockstars';
 export const state = () => ({});
 
 export const getters = {
-  rockstarRead: state => {
+  rockstarRead: state => (id) => {
     return state.rockstars;
   },
   rockstarGet: state => (id) => {
@@ -25,7 +25,7 @@ export const mutations = {
   }
 };
 
-axios.defaults.baseURL = "https://s8ifzokvp35u68fi.azurewebsites.net/api/v1";
+axios.defaults.baseURL = "https://dd36-145-93-172-152.ngrok.io/api/v1";
 
 export const actions = {
   rockstarRead({commit}, {id}) {

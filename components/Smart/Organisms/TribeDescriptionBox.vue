@@ -7,7 +7,8 @@
             <img :src="require( rockstarsArray[index].img )" class="avatar"/>
           </div>
           <div v-else>
-            <img :src="require('assets/img/User.jpg')" class="avatar"/>
+            <div class="quotebox"><h1 class="overlayText">"dit is een quote maar deze is echt lang maar dan ook echt lang" "dit is een quote maar deze is echt lang maar dan ook echt lang"</h1></div>
+            <!-- <img :src="require('assets/img/User.jpg')" class="avatar"/> -->
           </div>
           <div>
             <Title size="1">
@@ -17,8 +18,8 @@
               {{ rockstarsArray[index].description }}
             </Title>
           </div>
-          <div v-show="rockstarsArray[index].LinkedIn" class="flex justify-center items-center">
-            <a :href="rockstarsArray[index].LinkedIn">
+          <div v-show="rockstarsArray[index].linkedin" class="flex justify-center items-center">
+            <a :href="`https://www.linkedin.com/${rockstarsArray[index].linkedin}`">
               <img :src="require('assets/image/linkedin.svg')" alt="Linkedin logo" class="h-10 w-10">
             </a>
           </div>
@@ -29,29 +30,25 @@
 </template>
 
 <script>
-import {mapActions} from "vuex";
 import DescriptionBox from "~/components/Dumb/Organisms/DescriptionBox";
+import Title from "~/components/Dumb/Atoms/Title.vue";
 
 export default {
   name: 'TribeDescriptionBox',
-  components: {DescriptionBox},
+  components: {DescriptionBox, Title},
   props: {
     subtitle: String,
     description: String,
     rockstars: [],
+    quote: String
   },
   computed: {
-    // tribe() {
-    //   return this.$store.getters.tribeGet(this.tribe_id)
-    // },
-    // rockstars() {
-    //   return this.$store.getters.rockstarGet(this.tribe_id);
-    // },
     rockstarsArray() {
       const output = [];
 
       if (this.rockstars) {
         Object.keys(this.rockstars).forEach((key, index) => {
+          if (this.rockstars[key].name && this.rockstars[key].description && this.rockstars[key].linkedin)
           output.push(this.rockstars[key]);
         });
       }
@@ -61,7 +58,6 @@ export default {
     }
   },
   methods: {
-    //...mapActions(['articleRead', 'rockstarGet', 'tribeGet']),
     isEmpty(object) {
       return object && Object.keys(object).length === 0 && Object.getPrototypeOf(object) === Object.prototype;
     },
@@ -69,16 +65,13 @@ export default {
   data() {
     return {
       show: true,
-      index: 0
+      index: 0,
     };
   },
   created() {
-    //this.tribeGet({id: this.tribe_id});
-    //this.rockstarGet({id: this.tribe_id});
     setInterval(() => {
       if (this.rockstarsArray) {
         this.show = false;
-
         this.index++;
 
         if (this.index >= this.rockstarsArray.length) {
@@ -86,9 +79,9 @@ export default {
         }
         setTimeout(() => {
           this.show = true;
-        }, 500);
+        }, 4000);
       }
-    }, 2000);
+    }, 8000);
   },
 };
 </script>
@@ -108,6 +101,19 @@ export default {
   }
 }
 
+.quotebox {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  margin-left: auto;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  display: table;
+  border: 1px solid black;
+}
+
 .avatar {
   border-radius: 50%;
   width: 200px;
@@ -116,5 +122,29 @@ export default {
   margin-left: auto;
   margin-left: auto;
   margin-right: auto;
+  backface-visibility: hidden;
 }
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 4s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+
+/* hover */
+
+.profileBox:hover .avatar {
+  opacity: 0.2;
+}
+
+.profileBox:hover .overlayText {
+  opacity: 1;
+}
+
+.overlayText {
+  display: table-cell;
+  vertical-align: middle;
+}
+
 </style>
