@@ -44,6 +44,7 @@
       <Button theme="light" status="active">
         ACTIVE STATE
       </Button>
+      <DumbAtomsButtonList :items="buttonList" theme="default"/>
     </section>
     <section class="p-4">
       <Title size="1" theme="light">
@@ -60,7 +61,7 @@
 <script>
 import Button from "@/components/Dumb/Atoms/Button";
 import Title from "@/components/Dumb/Atoms/Title";
-import FormInput from "@/components/Dumb/Atoms/FormInput";
+import FormInput from "@/components/Form/Input";
 import FormSelect from "@/components/Dumb/Atoms/FormSelect";
 
 export default {
@@ -68,7 +69,15 @@ export default {
   data() {
     return {
       testvar: null,
-      testList: null
+      testList: null,
+      buttonList: {
+        'test': () => {
+          console.log('test')
+        },
+        'test2': () => {
+          console.log('test2')
+        }
+      }
     }
   }
 }

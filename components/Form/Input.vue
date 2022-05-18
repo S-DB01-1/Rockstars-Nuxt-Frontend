@@ -1,6 +1,15 @@
 <template>
-  <div class="form-element">
-    <input :type="type" :placeholder="placeholder" :value="value" @input="$emit('input', $event.target.value)" :class="{
+  <div class="form-element w-full">
+    <input
+      :type="type"
+      :placeholder="placeholder"
+      :value="value"
+      @input="$emit('input', $event.target.value)"
+      :max="max"
+      :min="min"
+      :maxlength="max"
+      :minlength="min"
+      :class="{
       'bg-gray-100 m-2 border-b-2 border-gray-400 text-gray-700 hover:text-black': true,
       'border-red-400': status === 'error'
     }">
@@ -26,6 +35,14 @@ export default {
     status: {
       type: String,
       default: 'normal'
+    },
+    max: {
+      type: Number,
+      default: 256
+    },
+    min: {
+      type: Number,
+      default: 0
     }
   }
 }
@@ -36,7 +53,7 @@ export default {
   display: inline-block;
 
   input {
-    width: 400px;
+    width: calc(100% - 1rem);
     cursor: pointer;
     padding: 1rem;
 
