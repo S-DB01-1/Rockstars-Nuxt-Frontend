@@ -7,8 +7,8 @@
             <img :src="require( rockstarsArray[index].img )" class="avatar"/>
           </div>
           <div v-else>
-            <div class="quotebox"><h1 class="overlayText">"dit is een quote maar deze is echt lang maar dan ook echt lang" "dit is een quote maar deze is echt lang maar dan ook echt lang"</h1></div>
-            <!-- <img :src="require('assets/img/User.jpg')" class="avatar"/> -->
+            <div class="quotebox"><h1 class="overlayText">"{{ rockstarsArray[index].quote }}"</h1></div>
+            <img :src="require('assets/img/User.jpg')" class="avatar"/>
           </div>
           <div>
             <Title size="1">
@@ -107,11 +107,11 @@ export default {
   height: 200px;
   object-fit: cover;
   margin-left: auto;
-  margin-left: auto;
   margin-right: auto;
   text-align: center;
   display: table;
-  border: 1px solid black;
+  padding: 5px;
+  overflow: hidden;
 }
 
 .avatar {
@@ -120,8 +120,8 @@ export default {
   height: 200px;
   object-fit: cover;
   margin-left: auto;
-  margin-left: auto;
   margin-right: auto;
+  margin-top: -200px;
   backface-visibility: hidden;
 }
 
