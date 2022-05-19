@@ -48,11 +48,7 @@
             <span class="mt-1 checkmark"></span>
           </label>
         </div>
-        <Recaptcha
-          @error="onError"
-          @success="onSuccess"
-          @expired="onExpired"
-        />
+        <recaptcha />
         <Button theme="default" @click="submitForm()" :status="btnStatus">
           VERZENDEN
         </Button>
@@ -65,14 +61,13 @@
 import axios from "axios";
 import Button from "~/components/Dumb/Atoms/Button"
 import Title from "~/components/Dumb/Atoms/Title"
-import Recaptcha from "@/components/Smart/Recaptcha";
 import RadioButton from "../components/Dumb/Atoms/RadioButton"
 import FormGroup from "../components/Dumb/Atoms/FormGroup"
 
 
 export default {
   name: "redesign-demand",
-  components: { FormGroup, RadioButton, Title, Button, Recaptcha },
+  components: { FormGroup, RadioButton, Title, Button },
   data() {
     return {
       name: null,
