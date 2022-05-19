@@ -25,10 +25,10 @@
 
 <script>
 import {mapActions} from "vuex";
-import Carousel from "@/components/Dumb/Organisms/Carousel.vue";
-import TribeDescriptionBox from "@/components/Smart/Organisms/TribeDescriptionBox";
-import Videos from "../../../components/Dumb/Organisms/Videos";
-import Title from "../../../components/Dumb/Atoms/Title";
+import Carousel from "~/components/Dumb/Organisms/Carousel.vue";
+import TribeDescriptionBox from "~/components/Dumb/Organisms/TribeDescriptionBox";
+import Videos from "~/components/Dumb/Organisms/Videos";
+import Title from "~/components/Dumb/Atoms/Title";
 
 export default {
   name: "TribeId",

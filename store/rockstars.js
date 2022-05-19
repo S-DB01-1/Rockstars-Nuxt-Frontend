@@ -31,7 +31,7 @@ export const actions = {
   rockstarRead({commit}, {id}) {
     // Send get request to the backend.
     axios.get(
-      `${resourceURL}/?tribe=${id}`
+      `${resourceURL}/?tribe=${id}`,
     ).then(response => {
       response.data.results.forEach(item => {
         commit('rockstarSet', item);

@@ -3,11 +3,11 @@
     <div class="container ">
       <div class="bg-rockstar-yellow -mt-16 p-4">
         <div class="grid md:grid-cols-1 lg:grid-cols-2">
-          <div>
+          <div class="text-center lg:text-left">
             <Title size="5" class="py-4">
               {{ title }}
             </Title>
-            <Title class="mb-4" size="1">
+            <Title class="break-all lg:break-normal md:break-normal mb-4" size="1">
               {{ subtitle }}
             </Title>
             <Title size="6">
@@ -39,3 +39,4 @@ export default {
   }
 }
 </script>
+
