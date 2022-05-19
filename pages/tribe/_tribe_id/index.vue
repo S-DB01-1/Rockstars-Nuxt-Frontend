@@ -6,7 +6,7 @@
                         :description="tribe.description" :rockstars="tribeRockstars" />
       </div>
     </div>
-    <div v-if="tribeArticles">
+    <div v-if="tribeArticles" class="hero-image mt-10 relative">
       <img class="hero-banner" :src="require('assets/img/Buildings.jpg')" alt="">
       <div class="relative text-center text-white">
         <Title size="2">
@@ -62,6 +62,22 @@ export default {
 };
 </script>
 
-<style scoped>
+<style >
+
+
+.hero-image {
+  width: 100%;
+}
+
+.hero-banner {
+  width: 100%;
+  position: absolute;
+  max-width: 100%;
+  max-height: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  filter: brightness(0.5);
+}
 
 </style>
