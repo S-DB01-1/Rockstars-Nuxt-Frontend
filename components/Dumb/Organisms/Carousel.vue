@@ -5,7 +5,7 @@
         <div v-if="!isEmpty(articles)">
           <VueSlickCarousel v-bind="settings">                                                          
             <div v-for="(article, index) in articles" :key="index">
-              <Card :Author=article.title :Title=article.title :Description=article.description :TribeId=String(article.tribeid) :ArticleId=String(article.id) />                                                                                  
+              <Card :Author=article.author :Title=article.title :Description=article.description :TribeId=String(article.tribeid) :ArticleId=String(article.id) />                                                                                  
             </div>  
           </VueSlickCarousel>
         </div>

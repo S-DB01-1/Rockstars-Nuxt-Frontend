@@ -23,8 +23,8 @@
 
 <script>
 import {mapActions} from "vuex";
-import Carousel from "@/components/Dumb/Organisms/Carousel.vue";
-import TribeDescriptionBox from "@/components/Smart/Organisms/TribeDescriptionBox";
+import Carousel from "~/components/Dumb/Organisms/Carousel.vue";
+import TribeDescriptionBox from "~/components/Dumb/Organisms/TribeDescriptionBox";
 
 export default {
   name: "TribeId",

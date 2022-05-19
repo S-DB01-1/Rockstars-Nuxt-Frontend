@@ -25,13 +25,13 @@ export const mutations = {
   }
 };
 
-axios.defaults.baseURL = "https://dd36-145-93-172-152.ngrok.io/api/v1";
+axios.defaults.baseURL = "https://s8ifzokvp35u68fi.azurewebsites.net/api/v1";
 
 export const actions = {
   rockstarRead({commit}, {id}) {
     // Send get request to the backend.
     axios.get(
-      `${resourceURL}/?tribe=${id}`
+      `${resourceURL}/?tribe=${id}`,
     ).then(response => {
       response.data.results.forEach(item => {
         commit('rockstarSet', item);

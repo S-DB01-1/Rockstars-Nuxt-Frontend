@@ -6,7 +6,7 @@
           <div v-if="rockstarsArray[index].img">
             <img :src="require( rockstarsArray[index].img )" class="avatar"/>
           </div>
-          <div v-else>
+          <div v-else class="hoverer">
             <div class="quotebox"><h1 class="overlayText">"{{ rockstarsArray[index].quote }}"</h1></div>
             <img :src="require('assets/img/User.jpg')" class="avatar"/>
           </div>
@@ -134,11 +134,11 @@ export default {
 
 /* hover */
 
-.profileBox:hover .avatar {
+.hoverer:hover .avatar {
   opacity: 0.2;
 }
 
-.profileBox:hover .overlayText {
+.hoverer:hover .overlayText {
   opacity: 1;
 }
 
