@@ -5,7 +5,7 @@ const resourceURL = 'tribes'
 export const state = () => ({})
 
 export const getters = {
-  tribeRead: state => {
+  tribeRead: state => (id) => {
     return state.tribes
   },
   tribeGet: state => (id) => {

@@ -6,7 +6,7 @@ const resourceURL = 'rockstars';
 export const state = () => ({});
 
 export const getters = {
-  rockstarRead: state => {
+  rockstarRead: state => (id) => {
     return state.rockstars;
   },
   rockstarGet: state => (id) => {
