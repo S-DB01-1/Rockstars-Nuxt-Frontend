@@ -53,7 +53,9 @@
           @success="onSuccess"
           @expired="onExpired"
         />
-        <Button theme="default" @click="submitForm()">
+        <Button theme="default" @click="submitForm()" :status="btnStatus">
+          VERZENDEN
+        </Button>
       </div>
     </form>
   </section>
@@ -82,11 +84,12 @@ export default {
       company: null,
       statusText: null,
       statusType: null,
-      btnLoading: false
+      btnStatus: 'default'
     }
   },
   methods: {
     submitForm: async function () {
+      this.btnStatus = 'loading'
       try {
         const token = await this.$recaptcha.getResponse()
 
@@ -98,8 +101,8 @@ export default {
           subject: this.subject,
           company: this.company
         }).then(response => {
+            this.btnStatus = 'default';
             this.clearForm();
-            this.btnLoading = true;
 
             if (response.status === 201){
 
@@ -107,13 +110,20 @@ export default {
             }
           }
         ).catch(error => {
+          this.btnStatus = 'default';
+          this.setModal('Er is een fout opgetreden.', 'error')
           console.log(error)
         });
 
         await this.$recaptcha.reset()
       } catch(error) {
+        this.setModal('Er is een fout opgetreden.', 'error')
         console.log(error);
       }
+    },
+    setModal(text, type='error') {
+      this.statusType = type;
+      this.statusText = text;
     },
     onError (error) {
       console.log('Error happened:', error)
