@@ -5,7 +5,7 @@ const resourceURL = 'videos'
 export const state = () => ({})
 
 export const getters = {
-  videoRead: state => {
+  videoRead: state => (id) => {
     return state.videos
   },
   videoGet: state => (id) => {
@@ -19,7 +19,8 @@ export const mutations = {
   }
 }
 
-axios.defaults.baseURL = "https://s8ifzokvp35u68fi.azurewebsites.net/api/v1"
+// axios.defaults.baseURL = "https://s8ifzokvp35u68fi.azurewebsites.net/api/v1"
+axios.defaults.baseURL = "https://dd36-145-93-172-152.ngrok.io/api/v1"
 
 export const actions = {
   videoRead({ commit }, { id }) {

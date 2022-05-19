@@ -9,12 +9,12 @@
           <p class="py-4">
             Bedankt ! We hebben je inzending ontvangen en we nemen snel contact met je op.
           </p>
-
-          <Button theme="dark">
-            NOG EEN FORMULIER INDIENEN
-          </Button>
+          <router-link :to="{ name: 'demand' }">
+            <Button theme="dark">
+              NOG EEN FORMULIER INDIENEN
+            </Button>
+          </router-link>
         </div>
-
       </div>
     </div>
   </div>

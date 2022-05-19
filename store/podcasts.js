@@ -5,7 +5,7 @@ const resourceURL = 'podcasts'
 export const state = () => ({})
 
 export const getters = {
-  podcastRead: state => {
+  podcastRead: state => (id)  => {
     return state.podcasts
   },
   podcastGet: state => (id) => {
