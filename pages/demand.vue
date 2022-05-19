@@ -42,17 +42,21 @@
           </div>
 
           <div class="mt-5 flex flex-wrap gap-4 text-white">
-            <FormGroup>
-              <RadioButton text="Digitaal" name="location" value="Digitaal" />
-              <RadioButton text="Op locatie" name="location" value="Op locatie" />
-            </FormGroup>
-
-
-            <!--            <label class=" form-radio">Digitaal-->
-<!--              <input type="radio" name="location" value="digitaal" v-model="picked">-->
-<!--              <span class="mt-1 checkmark"></span>-->
-<!--            </label>-->
+            <label class=" form-radio">Op Locatie
+              <input type="radio" name="location" value="opLocatie" v-model="picked">
+              <span class="mt-1 checkmark"></span>
+            </label>
+            <label class=" form-radio">Digitaal
+              <input type="radio" name="location" value="digitaal" v-model="picked">
+              <span class="mt-1 checkmark"></span>
+            </label>
           </div>
+
+          <recaptcha
+            @error="onError"
+            @success="onSuccess"
+            @expired="onExpired"
+          />
 
           <div v-if="btnLoading === false">
             <Button status="normal" theme="default" id="submitButton">
@@ -75,13 +79,21 @@
 import axios from "axios";
 import Button from "~/components/Dumb/Atoms/Button"
 import Title from "~/components/Dumb/Atoms/Title"
+import Recaptcha from "@/components/Smart/Recaptcha";
+
 import RadioButton from "../components/Dumb/Atoms/RadioButton"
 import FormGroup from "../components/Dumb/Atoms/FormGroup"
 
 
 export default {
   name: "redesign-demand",
-  components: { FormGroup, RadioButton, Title, Button },
+  components: {
+    Button,
+    Title,
+    Recaptcha,
+    RadioButton,
+    FormGroup
+  },
   data() {
     return {
       name: null,
@@ -97,26 +109,44 @@ export default {
   },
   methods: {
     submitForm: async function () {
-        await axios.post('https://s8ifzokvp35u68fi.azurewebsites.net/api/v1/ondemand/', {
-        name: this.name,
-        email: this.email,
-        phone_number: this.phone_number,
-        date: this.datetime,
-        subject: this.subject,
-        company: this.company
-      }).then(response => {
-          this.clearForm();
-          this.btnLoading = true;
+      try {
+        const token = await this.$recaptcha.getResponse()
 
-          if (response.status === 201){
+        const res = await axios.post('https://s8ifzokvp35u68fi.azurewebsites.net/api/v1/ondemand/', {
+          name: this.name,
+          email: this.email,
+          phone_number: this.phone_number,
+          date: this.datetime,
+          subject: this.subject,
+          company: this.company
+        }).then(response => {
+            this.clearForm();
+            this.btnLoading = true;
 
-            this.$router.push({path: '/success'});
+            if (response.status === 201){
+
+              this.$router.push({path: '/success'});
+            }
           }
-        }
-      ).catch(error => {
-        console.log(error)
-      });
+        ).catch(error => {
+          console.log(error)
+        });
+
+        await this.$recaptcha.reset()
+      } catch(error) {
+        console.log(error);
+      }
     },
+    onError (error) {
+      console.log('Error happened:', error)
+    },
+    onSuccess() {
+      console.log('success');
+    },
+    onExpired() {
+      console.log('expired');
+    },
+
     clearForm() {
       this.name = null
       this.email = null
@@ -200,7 +230,7 @@ export default {
   background-color: #ccc;
 }
 
-/* When the radio button is checked, add a yellow background */
+/* When the radio button is checked, add a blue background */
 .form-radio input:checked ~ .checkmark {
   background-color: #FFE000;
 }
