@@ -52,6 +52,12 @@
             </label>
           </div>
 
+          <recaptcha
+            @error="onError"
+            @success="onSuccess"
+            @expired="onExpired"
+          />
+
           <div v-if="btnLoading === false">
             <Button status="normal" theme="default" id="submitButton">
               VERZENDEN
@@ -103,26 +109,44 @@ export default {
   },
   methods: {
     submitForm: async function () {
-        await axios.post('https://s8ifzokvp35u68fi.azurewebsites.net/api/v1/ondemand/', {
-        name: this.name,
-        email: this.email,
-        phone_number: this.phone_number,
-        date: this.datetime,
-        subject: this.subject,
-        company: this.company
-      }).then(response => {
-          this.clearForm();
-          this.btnLoading = true;
+      try {
+        const token = await this.$recaptcha.getResponse()
 
-          if (response.status === 201){
+        const res = await axios.post('https://s8ifzokvp35u68fi.azurewebsites.net/api/v1/ondemand/', {
+          name: this.name,
+          email: this.email,
+          phone_number: this.phone_number,
+          date: this.datetime,
+          subject: this.subject,
+          company: this.company
+        }).then(response => {
+            this.clearForm();
+            this.btnLoading = true;
 
-            this.$router.push({path: '/success'});
+            if (response.status === 201){
+
+              this.$router.push({path: '/success'});
+            }
           }
-        }
-      ).catch(error => {
-        console.log(error)
-      });
+        ).catch(error => {
+          console.log(error)
+        });
+
+        await this.$recaptcha.reset()
+      } catch(error) {
+        console.log(error);
+      }
     },
+    onError (error) {
+      console.log('Error happened:', error)
+    },
+    onSuccess() {
+      console.log('success');
+    },
+    onExpired() {
+      console.log('expired');
+    },
+
     clearForm() {
       this.name = null
       this.email = null

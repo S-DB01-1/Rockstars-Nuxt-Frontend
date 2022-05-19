@@ -25,7 +25,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    { src: '~plugins/v-calendar.js', ssr: false }
+    { src: '~plugins/v-calendar.js', ssr: false },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -43,8 +43,15 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/recaptcha',
   ],
+  recaptcha: {
+    hideBadge: false, // Hide badge element (v3 & v2 via size=invisible)
+    siteKey: '6LcjYeMfAAAAAPOHfHnJZpvuXjSdabl7199GyPWT',    // Site key for requests
+    version: 2,     // Version
+    size: 'normal'        // Size: 'compact', 'normal', 'invisible' (v2)
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
