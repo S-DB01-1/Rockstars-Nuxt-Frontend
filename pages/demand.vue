@@ -48,7 +48,7 @@
             <span class="mt-1 checkmark"></span>
           </label>
         </div>
-        <recaptcha
+        <Recaptcha
           @error="onError"
           @success="onSuccess"
           @expired="onExpired"
