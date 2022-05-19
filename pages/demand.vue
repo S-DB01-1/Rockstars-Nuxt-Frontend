@@ -48,7 +48,7 @@
             <span class="mt-1 checkmark"></span>
           </label>
         </div>
-        <Button theme="default" @click="submitForm()">
+        <Button theme="default" @click="submitForm()" :status="btnStatus">
           VERZENDEN
         </Button>
       </div>
@@ -78,11 +78,12 @@ export default {
       company: null,
       statusText: null,
       statusType: null,
-      btnLoading: false
+      btnStatus: 'default'
     }
   },
   methods: {
     submitForm: async function () {
+        this.btnStatus = 'loading'
         await axios.post('https://s8ifzokvp35u68fi.azurewebsites.net/api/v1/ondemand/', {
         name: this.name,
         email: this.email,
@@ -91,6 +92,7 @@ export default {
         subject: this.subject,
         company: this.company
       }).then(response => {
+          this.btnStatus = 'default';
           this.clearForm();
           this.btnLoading = true;
 
@@ -100,8 +102,16 @@ export default {
           }
         }
       ).catch(error => {
+        this.btnStatus = 'default';
         console.log(error)
       });
+    },
+    setModal(text, type=true, time=-1) {
+      if (time !== -1) {
+        setTimeout(() => {this.statusText = null}, time)
+      }
+      this.statusType = type;
+      this.statusText = text;
     },
     clearForm() {
       this.name = null
