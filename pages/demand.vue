@@ -48,7 +48,7 @@
             <span class="mt-1 checkmark"></span>
           </label>
         </div>
-        <Button theme="default" @click="submitForm()">
+        <Button theme="default" @click="submitForm()" :status="btnStatus">
           VERZENDEN
         </Button>
       </div>
@@ -70,13 +70,17 @@ export default {
       phone_number: null,
       datetime: null,
       subject: null,
+      company: null,
       picked: null,
       statusText: null,
-      statusType: null
+      statusType: null,
+      btnStatus: 'default'
     }
   },
   methods: {
     submitForm: async function () {
+      this.btnStatus = 'loading'
+
      const res = await axios.post('https://s8ifzokvp35u68fi.azurewebsites.net/api/v1/ondemand/', {
        name: this.name,
        email: this.email,
@@ -84,6 +88,7 @@ export default {
        date: this.datetime,
        subject: this.subject
      }).then(response => {
+        this.btnStatus = 'default';
           this.clearForm();
           if (response.status === 201) {
             this.setModal("Formulier is correct verzonden.", 'correct');
@@ -92,6 +97,7 @@ export default {
           }
        }
      ).catch(error => {
+       this.btnStatus = 'default';
        console.log(error)
        this.setModal("Er is een fout opgetreden.", 'error');
      });

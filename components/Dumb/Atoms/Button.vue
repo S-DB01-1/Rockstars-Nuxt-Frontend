@@ -9,7 +9,7 @@
   >
     <div class="flex items-center">
       <slot />
-      <span v-show="status === 'normal'">
+      <span v-show="status === 'default'">
         <img v-show="theme !== 'dark'" :src="require('assets/img/icons/forward-black.svg')" class="w-4 ml-2"/>
         <img v-show="theme === 'dark'" :src="require('assets/img/icons/forward-white.svg')" class="w-4 ml-2"/>
       </span>
@@ -31,7 +31,7 @@ export default {
   props: {
     status: {
       type: String,
-      default: 'normal'
+      default: 'default'
     },
     theme: {
       type: String,
