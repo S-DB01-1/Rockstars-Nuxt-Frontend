@@ -1,5 +1,5 @@
 <template>
-  <section class="bg-rockstar-yellow p-4">
+  <footer class="bg-rockstar-yellow p-4">
     <div class="my-4">
       <div class="container">
         <div class="grid lg:grid-cols-3 gap-8  md:grid-cols-2  sm:grid-cols-1">
@@ -42,26 +42,20 @@
               </ul>
             </div>
           </div>
-
         </div>
       </div>
+      <p class="text-center">&copy; {{ new Date().getFullYear() }} Rockstars IT</p>
     </div>
-  </section>
+  </footer>
 </template>
 
 <script>
-import Button from "~/components/Dumb/Atoms/Button"
-import Title from "~/components/Dumb/Atoms/Title"
+import Title from "@/components/Dumb/Atoms/Title";
 
 export default {
   name: "Footer",
   components: {
-    Button,
     Title,
   }
 }
 </script>
-
-<style scoped>
-
-</style>

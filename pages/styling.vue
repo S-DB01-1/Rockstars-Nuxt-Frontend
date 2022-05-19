@@ -44,28 +44,45 @@
       <Button theme="light" status="active">
         ACTIVE STATE
       </Button>
+      <DumbAtomsButtonList :items="buttonList" theme="default"/>
     </section>
     <section class="p-4">
-      <Title size="1">
-        FORMS
+      <Title size="1" theme="light">
+        Forms
       </Title>
-      <FormInput type="text" />
-      <FormInput status="error" />
+      <FormInput v-model="testvar" type="text" />
+      <FormInput v-model="testvar" status="correct" />
+      <FormInput v-model="testvar" status="error" />
+      <FormSelect v-model="testList" :choices="[1, 2, 3]" />
     </section>
   </main>
 </template>
 
 <script>
-import Button from "~/components/Dumb/Atoms/Button"
-import Title from "~/components/Dumb/Atoms/Title"
+import Button from "@/components/Dumb/Atoms/Button";
+import Title from "@/components/Dumb/Atoms/Title";
+import FormInput from "@/components/Form/Input";
+import FormSelect from "@/components/Dumb/Atoms/FormSelect";
+
 export default {
-  name: "styling",
-  components: {
-    Button,
-    Title,
-  },
-};
+  components: {Button, Title, FormInput, FormSelect},
+  data() {
+    return {
+      testvar: null,
+      testList: null,
+      buttonList: {
+        'test': () => {
+          console.log('test')
+        },
+        'test2': () => {
+          console.log('test2')
+        }
+      }
+    }
+  }
+}
 </script>
+
 <style scoped>
 
 </style>

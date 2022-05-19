@@ -1,15 +1,13 @@
 <template>
-  <div class="form-input">
-    <input :class="{
+  <div class="form-element">
+    <select :value="value" @change="$emit('change', $event.target.value)" :class="{
       'bg-gray-100 m-2 border-b-2 border-gray-400 text-gray-700 hover:text-black': true,
       'border-red-400': status === 'error'
     }">
-    <span class="symbol text-red-400">
-      &times;
-    </span>
-    <span class="symbol">
-      &#10003;
-    </span>
+      <option v-for="(choice, index) in choices" :key="index">
+        {{ choice }}
+      </option>
+    </select>
   </div>
 </template>
 
@@ -17,6 +15,8 @@
 export default {
   name: 'Forms',
   props: {
+    value: String | Number | Date,
+    choices: Array,
     status: {
       type: String,
       default: 'normal'
@@ -26,10 +26,10 @@ export default {
 </script>
 
 <style lang="scss">
-.form-input {
+.form-element {
   display: inline-block;
 
-  input {
+  select {
     width: 400px;
     cursor: pointer;
     padding: 1rem;

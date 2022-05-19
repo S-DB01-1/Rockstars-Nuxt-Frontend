@@ -1,24 +1,26 @@
 <template>
   <button
     :class="{
-      'p-4 px-6 duration-500 ease-in-out  font-semibold': true,
-      //'hover:p-8': status === 'normal',
-      'bg-rockstar-yellow text-black': theme === 'default',
-      'bg-black text-white': theme === 'dark',
-      'bg-white text-black': theme === 'light'
+      'p-4 px-6 m-2 duration-200 ease-in-out  font-semibold': true,
+      'bg-rockstar-yellow text-black hover:bg-yellow-200': theme === 'default',
+      'bg-black text-white hover:bg-neutral-600': theme === 'dark',
+      'bg-white text-black hover:bg-neutral-200': theme === 'light'
     }"
   >
     <div class="flex items-center">
       <slot />
-      <span v-show="status === 'normal'">
-      <img :src="require('assets/img/icons/forward-solid.svg')" class="icon-size ml-2"/>
-    </span>
+      <span v-show="status === 'default'">
+        <img v-show="theme !== 'dark'" :src="require('assets/img/icons/forward-black.svg')" class="w-4 ml-2"/>
+        <img v-show="theme === 'dark'" :src="require('assets/img/icons/forward-white.svg')" class="w-4 ml-2"/>
+      </span>
       <span v-show="status === 'loading'">
-      <img :src="require('assets/img/icons/loader.svg')" class="icon-size ml-2"/>
-    </span>
+        <img v-show="theme !== 'dark'" :src="require('assets/img/icons/loader-black.svg')" class="w-4 ml-2 animate-spin"/>
+        <img v-show="theme === 'dark'" :src="require('assets/img/icons/loader-white.svg')" class="w-4 ml-2 animate-spin"/>
+      </span>
       <span v-show="status === 'active'">
-      <img :src="require('assets/img/icons/check-solid.svg')" class="icon-size ml-2"/>
-    </span>
+        <img v-show="theme !== 'dark'" :src="require('assets/img/icons/check-black.svg')" class="w-4 ml-2"/>
+        <img v-show="theme === 'dark'" :src="require('assets/img/icons/check-white.svg')" class="w-4 ml-2"/>
+      </span>
     </div>
   </button>
 </template>
@@ -29,7 +31,7 @@ export default {
   props: {
     status: {
       type: String,
-      default: 'normal'
+      default: 'default'
     },
     theme: {
       type: String,
