@@ -1,12 +1,12 @@
 <template>
   <div class="bg-rockstar-yellow w-100 videoBox">
-    <div class="descriptionBox p-5">
+    <div class="descriptionBox p-5" v-show="descriptionReveal">
       {{ description }}
     </div>
-    <iframe class="video" width="100%" height="315"
+    <iframe class="video" width="100%" height="315" v-show="!descriptionReveal"
             :src="'https://www.youtube.com/embed/' + link">
     </iframe>
-    <div class="p-5">
+    <div class="p-5 titleBox" @mouseenter="showDescription()" @mouseleave="hideDescription()">
       <div class="flex justify-between">
         <Title size="5">
           {{ title }}
@@ -32,6 +32,19 @@ export default {
     Title
   },
   name: "Video",
+  data() {
+    return {
+      descriptionReveal: false
+    }
+  },
+  methods: {
+    showDescription() {
+      this.descriptionReveal = true
+    },
+    hideDescription() {
+      this.descriptionReveal = false
+    }
+  },
   props: {
     link: String,
     title: String,
@@ -49,22 +62,11 @@ export default {
   animation: fadeIn 1s;
 }
 
-.videoBox:hover > iframe {
-  display: none;
-  z-index: -1;
-}
-
-.videoBox:hover > .descriptionBox {
-  z-index: 1 !important;
-  display: block;
-  -webkit-animation: fadeIn 0.5s;
-  animation: fadeIn 0.5s;
-}
 
 .descriptionBox {
   z-index: 0;
-  display: none;
   height: 315px;
+  animation: fadeIn 1s;
   width: 100%;
 }
 
