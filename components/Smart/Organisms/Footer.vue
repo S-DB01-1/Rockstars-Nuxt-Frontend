@@ -54,8 +54,6 @@ import Title from "@/components/Dumb/Atoms/Title";
 
 export default {
   name: "Footer",
-  components: {
-    Title,
-  }
+  components: {Title}
 }
 </script>

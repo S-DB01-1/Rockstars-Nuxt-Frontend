@@ -83,8 +83,9 @@ export default {
   },
   methods: {
     submitForm: async function () {
-        this.btnStatus = 'loading'
-        await axios.post('https://s8ifzokvp35u68fi.azurewebsites.net/api/v1/ondemand/', {
+      this.btnStatus = 'loading'
+
+      await axios.post('https://s8ifzokvp35u68fi.azurewebsites.net/api/v1/ondemand/', {
         name: this.name,
         email: this.email,
         phone_number: this.phone_number,
@@ -94,7 +95,6 @@ export default {
       }).then(response => {
           this.btnStatus = 'default';
           this.clearForm();
-          this.btnLoading = true;
 
           if (response.status === 201){
 
@@ -103,7 +103,7 @@ export default {
         }
       ).catch(error => {
         this.btnStatus = 'default';
-        console.log(error)
+        console.log(error)this.setModal("Er is een fout opgetreden.", 'error');
       });
     },
     setModal(text, type=true, time=-1) {
