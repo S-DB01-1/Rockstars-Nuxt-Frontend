@@ -8,10 +8,10 @@
         <img class="w-full thumbnail" :src="require('assets/img/Banner.png')">
       </div>
       <div class="px-6 py-4">
-        <Title size="3" class="font-bold mb-2">
+        <Title size="3" class="font-bold mb-2 line-clamp-1">
           {{ Title }}
         </Title>
-        <p class="text-gray-700 text-xs">
+        <p class="text-gray-700 text-xs line-clamp-2">
           {{ Description }}
         </p>
       </div>
