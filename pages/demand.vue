@@ -129,7 +129,6 @@ export default {
     onExpired() {
       console.log('expired');
     },
-
     clearForm() {
         this.name = null
         this.email = null
@@ -138,7 +137,36 @@ export default {
         this.subject = null
         this.picked = null
         this.company = null
-    }
+    },
+    setMinDate() {
+
+      let today = new Date();
+      let day = today.getDate();
+      let month = today.getMonth()+1;
+      let year = today.getFullYear();
+      let hours = today.getHours();
+      let min = today.getMinutes();
+
+      //Makes is so that minutes between 1-10 get a 0 before it
+      if (min<10){
+        min='0'+min
+      }
+      //Makes is so that days between 1-10 get a 0 before it
+      if(day<10){
+        day='0'+day
+      }
+      //Makes is so that months between 1-10 get a 0 before it
+      if(month<10){
+        month='0'+month
+      }
+
+      today = year+'-'+month+'-'+day+'T'+hours+':'+min+':00';
+      document.getElementById("datetime").setAttribute("min", today);
+
+    },
+    mounted(){
+      this.setMinDate()
+    },
   }
 }
 </script>
