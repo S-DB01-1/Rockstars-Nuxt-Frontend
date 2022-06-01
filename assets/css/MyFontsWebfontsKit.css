@@ -27,7 +27,7 @@
 
 
 /* @import must be at top of file, otherwise CSS will not work */
-@import url("//hello.myfonts.net/count/353190");
+@import url("https://hello.myfonts.net/count/353190");
 
 
 @font-face {font-family: 'DIN2014-Bold';src: url('assets/fonts/353190_0_0.eot');src: url('assets/fonts/353190_0_0.eot?#iefix') format('embedded-opentype'),url('assets/fonts/353190_0_0.woff2') format('woff2'),url('assets/fonts/353190_0_0.woff') format('woff'),url('assets/fonts/353190_0_0.ttf') format('truetype');}

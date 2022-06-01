@@ -38,7 +38,7 @@ export const actions = {
   videoGet({ commit }, { id }) {
     // Send get request to the backend.
     axios.get(
-      `${resourceURL}/${id}`
+      `${resourceURL}/${id}/`
     ).then(response => {
       // If request is successful then add the item to the state.
       commit('videoSet', response.data)

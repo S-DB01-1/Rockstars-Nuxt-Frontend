@@ -43,7 +43,7 @@ export const actions = {
   rockstarGet({commit}, {id}) {
     // Send get request to the backend.
     axios.get(
-      `${resourceURL}/${id}`
+      `${resourceURL}/${id}/`
     ).then(response => {
       // If request is successful then add the item to the state.
       commit('rockstarSet', response.data);
