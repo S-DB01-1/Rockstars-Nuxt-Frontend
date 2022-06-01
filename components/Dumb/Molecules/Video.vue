@@ -13,7 +13,7 @@
         </Title>
         <div>
           <div class="flex justify-between mt-1">
-            <img :src="require('assets/image/eye-solid.svg')" class="mr-2" width="18" alt="Viewcount">
+            <img :src="require('assets/image/icons/eye-solid.svg')" class="mr-2" width="18" alt="Viewcount">
             <Title size="6">
               {{ viewcount }}
             </Title>
