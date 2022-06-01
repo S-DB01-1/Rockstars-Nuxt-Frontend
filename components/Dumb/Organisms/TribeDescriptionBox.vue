@@ -4,11 +4,11 @@
       <transition name="fade">
         <div v-if="show" class="profileBox">
           <div v-if="rockstarsArray[index].img">
-            <img :src="require( rockstarsArray[index].img )" class="avatar"/>
+            <img :src="require( rockstarsArray[index].img )" class="avatar" alt=""/>
           </div>
           <div v-else class="hoverer">
             <div class="quotebox"><h1 class="overlayText">"{{ rockstarsArray[index].quote }}"</h1></div>
-            <img :src="require('assets/image/user.webp')" class="avatar"/>
+            <img :src="require('assets/image/user.webp')" class="avatar" alt=""/>
           </div>
           <div>
             <Title size="1">
@@ -47,7 +47,7 @@ export default {
       const output = [];
 
       if (this.rockstars) {
-        Object.keys(this.rockstars).forEach((key, index) => {
+        Object.keys(this.rockstars).forEach((key) => {
           if (this.rockstars[key].name && this.rockstars[key].description && this.rockstars[key].linkedin)
           output.push(this.rockstars[key]);
         });
