@@ -7,7 +7,7 @@
       </div>
     </div>
     <div v-if="tribeArticles" class="hero-image mt-10 relative">
-      <img class="hero-banner" :src="require('assets/img/Buildings.jpg')" alt="">
+      <img class="hero-banner" :src="require('assets/image/buildings.webp')" alt="">
       <div class="relative text-center text-white">
         <Title size="2">
           Artikelen

@@ -3,7 +3,7 @@
 <!--    <DescriptionBox :tribe_id="tribe_id"></DescriptionBox>-->
 
     <div class="hero-image mt-10 relative ">
-      <img class="hero-banner" :src="require('assets/img/Buildings.jpg')" alt="">
+      <img class="hero-banner" :src="require('assets/image/buildings.webp')" alt="">
       <div class="container">
         <div class="relative text-center">
           <Title size="2" class="text-white">

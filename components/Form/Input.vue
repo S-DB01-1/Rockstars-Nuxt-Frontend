@@ -14,10 +14,10 @@
       'border-red-400': status === 'error'
     }">
     <span v-if="status === 'correct'" class="symbol">
-      <img :src="require('assets/img/icons/check-black.svg')" class="w-4 ml-2 absolute -left-12 top-7"/>
+      <img :src="require('assets/image/icons/check-black.svg')" class="w-4 ml-2 absolute -left-12 top-7"/>
     </span>
     <span v-else-if="status === 'error'" class="symbol">
-      <img :src="require('assets/img/icons/cross-red.svg')" class="w-4 ml-2 absolute -left-12 top-6"/>
+      <img :src="require('assets/image/icons/cross-red.svg')" class="w-4 ml-2 absolute -left-12 top-6"/>
     </span>
   </div>
 </template>

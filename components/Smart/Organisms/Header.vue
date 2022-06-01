@@ -1,8 +1,8 @@
 <template>
-  <div class="hero h-60 before:h-60"  v-bind:style="{ backgroundImage: 'url(' + require('assets/img/Banner.png') + ')' }">
+  <div class="hero h-60 before:h-60"  v-bind:style="{ backgroundImage: 'url(' + require('assets/image/banner.webp') + ')' }">
     <header>
       <div class="container py-4">
-        <img :src="require('assets/img/Logo.png')"/>
+        <img :src="require('assets/image/logo.webp')"/>
       </div>
     </header>
   </div>
