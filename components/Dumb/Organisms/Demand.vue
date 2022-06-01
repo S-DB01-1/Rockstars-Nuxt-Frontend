@@ -1,5 +1,5 @@
 <template>
-  <section class="p-4 lg:px-24">
+  <div class="container">
     <form v-on:submit.prevent="submitForm()">
       <div class="mb-4">
         <p :class="{
@@ -12,58 +12,60 @@
         <Title size="2" class="mb-4" style="color: white">
           Jouw Gegevens
         </Title>
-        <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-4">
+        <div class="grid md:grid-cols-1 lg:grid-cols-3 lg:gap-4">
           <div class="mt-5">
             <FormInput v-model="name" placeholder="Naam" />
-            <p class="mt-2 hidden peer-required:block text-red-500 text-sm">Vul alstublieft een naam in.</p>
           </div>
           <div class="mt-5">
-            <FormInput v-model="datetime" type="datetime-local"/>
-            <p class="mt-2 hidden peer-required:block text-red-500 text-sm">Vul alstublieft een bedrijf naam in.</p>
-          </div>
-        </div>
-
-        <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-4">
-          <div class="mt-5">
-            <FormInput v-model="email" type="email" placeholder="Email" />
-            <p class="mt-2 hidden peer-invalid:block text-red-500 text-sm">Geef alstublieft een geldig email adres.</p>
+            <FormInput v-model="datetime" :min="setMinDate()" type="datetime-local"/>
           </div>
           <div class="mt-5">
             <FormInput v-model="phone_number" type="tel" placeholder="Telefoon" />
-            <p class="mt-2 hidden peer-invalid:block text-red-500 text-sm">Geef alstublieft een geldig
-              telefoonnummer.</p>
           </div>
         </div>
-        <div class="mt-5">
-          <FormTextArea v-model="subject" placeholder="Onderwerp" />
+
+        <div class="grid md:grid-cols-1 lg:grid-cols-2 lg:gap-4">
+          <div class="mt-5">
+            <FormInput v-model="email" type="email" placeholder="Email" />
+          </div>
+          <div class="lg:mt-5 flex items-center flex-wrap gap-4 text-white">
+            <RadioButton name="location" value="opLocatie" text="Op locatie"/>
+            <RadioButton name="location" value="digitaal" text="Digitaal"/>
+          </div>
         </div>
 
-        <div class="mt-5 flex flex-wrap gap-4 text-white">
-          <label class=" form-radio">Op Locatie
-            <input type="radio" name="location" value="opLocatie" v-model="picked">
-            <span class="mt-1 checkmark"></span>
-          </label>
-          <label class=" form-radio">Digitaal
-            <input type="radio" name="location" value="digitaal" v-model="picked">
-            <span class="mt-1 checkmark"></span>
-          </label>
+
+
+        <div class="grid md:grid-cols-1 lg:grid-cols-2 lg:gap-4">
+          <div class="lg:mt-5">
+            <FormInput v-model="company" placeholder="Bedrijf" />
+          </div>
+          <div class="mt-5">
+            <FormInput v-model="subject" placeholder="Onderwerp" />
+          </div>
         </div>
-        <recaptcha />
-        <Button theme="default" @click="submitForm()" :status="btnStatus">
-          VERZENDEN
-        </Button>
+
+
+
+        <div class="grid md:grid-cols-1 lg:grid-cols-3 lg:gap-40 gap:4 ">
+          <recaptcha class="mt-5 ml-2 lg:col-span-2"/>
+
+          <Button theme="default" @click="submitForm()" :status="btnStatus" class="lg:my-10 mt-5">
+            VERZENDEN
+          </Button>
+        </div>
+
       </div>
     </form>
-  </section>
+  </div>
 </template>
 
 <script>
 import axios from "axios";
 import Button from "~/components/Dumb/Atoms/Button"
 import Title from "~/components/Dumb/Atoms/Title"
-import RadioButton from "../components/Dumb/Atoms/RadioButton"
-import FormGroup from "../components/Dumb/Atoms/FormGroup"
-
+import RadioButton from "~/components/Dumb/Atoms/RadioButton"
+import FormGroup from "~/components/Dumb/Atoms/FormGroup"
 
 export default {
   name: "redesign-demand",
@@ -130,13 +132,13 @@ export default {
       console.log('expired');
     },
     clearForm() {
-        this.name = null
-        this.email = null
-        this.phone_number = null
-        this.datetime = null
-        this.subject = null
-        this.picked = null
-        this.company = null
+      this.name = null
+      this.email = null
+      this.phone_number = null
+      this.datetime = null
+      this.subject = null
+      this.picked = null
+      this.company = null
     },
     setMinDate() {
 
@@ -161,11 +163,8 @@ export default {
       }
 
       today = year+'-'+month+'-'+day+'T'+hours+':'+min+':00';
-      document.getElementById("datetime").setAttribute("min", today);
+      return today;
 
-    },
-    mounted(){
-      this.setMinDate()
     },
   }
 }

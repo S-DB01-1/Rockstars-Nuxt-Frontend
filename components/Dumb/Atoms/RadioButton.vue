@@ -1,5 +1,5 @@
 <template>
-  <label class="form-radio">
+  <label class="form-radio m-2">
     <input type="radio" :name="name" :value="value" :id="value">
     <label :for="value">
       {{ text }}

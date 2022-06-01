@@ -19,7 +19,7 @@
       <Carousel :articles="tribeArticles" />
     </div>
     <Videos :videos="tribeVideos" />
-
+    <Demand />
   </div>
 </template>
 
@@ -29,10 +29,11 @@ import Carousel from "~/components/Dumb/Organisms/Carousel.vue";
 import TribeDescriptionBox from "~/components/Dumb/Organisms/TribeDescriptionBox";
 import Videos from "~/components/Dumb/Organisms/Videos";
 import Title from "~/components/Dumb/Atoms/Title";
+import Demand from "~/components/Dumb/Organisms/Demand"
 
 export default {
   name: "TribeId",
-  components: {TribeDescriptionBox, Carousel, Videos, Title },
+  components: {TribeDescriptionBox, Carousel, Videos, Title, Demand },
   methods: {
     ...mapActions(['articleRead', 'videoRead', 'rockstarRead', 'tribeGet', 'articleGet'])
   },
