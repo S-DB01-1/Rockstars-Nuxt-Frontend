@@ -10,7 +10,7 @@
       :maxlength="max"
       :minlength="min"
       :class="{
-      'peer max-h-11 px-3 py-2 bg-gray-100 m-2 border-b-2 border-gray-400 text-gray-700 hover:text-black': true,
+      'bg-gray-100 m-2 border-b-2 border-gray-400 text-gray-700 hover:text-black': true,
       'border-red-400': status === 'error'
     }">
     <span v-if="status === 'correct'" class="symbol">

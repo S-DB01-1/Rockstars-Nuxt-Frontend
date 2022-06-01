@@ -12,7 +12,7 @@
         <Title size="2" class="mb-4" style="color: white">
           Jouw Gegevens
         </Title>
-        <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-4">
+        <div class="grid md:grid-cols-1 lg:grid-cols-3 lg:gap-4">
           <div class="mt-5">
             <FormInput v-model="name" placeholder="Naam" />
           </div>
@@ -24,11 +24,11 @@
           </div>
         </div>
 
-        <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-4">
+        <div class="grid md:grid-cols-1 lg:grid-cols-2 lg:gap-4">
           <div class="mt-5">
             <FormInput v-model="email" type="email" placeholder="Email" />
           </div>
-          <div class="mt-5 flex items-center flex-wrap gap-4 text-white">
+          <div class="lg:mt-5 flex items-center flex-wrap gap-4 text-white">
             <RadioButton name="location" value="opLocatie" text="Op locatie"/>
             <RadioButton name="location" value="digitaal" text="Digitaal"/>
           </div>
@@ -36,8 +36,8 @@
 
 
 
-        <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-4">
-          <div class="mt-5">
+        <div class="grid md:grid-cols-1 lg:grid-cols-2 lg:gap-4">
+          <div class="lg:mt-5">
             <FormInput v-model="company" placeholder="Bedrijf" />
           </div>
           <div class="mt-5">
@@ -45,11 +45,15 @@
           </div>
         </div>
 
-        <recaptcha class="m-2"/>
 
-          <Button theme="default" @click="submitForm()" :status="btnStatus">
+
+        <div class="grid md:grid-cols-1 lg:grid-cols-3 lg:gap-40 gap:4 ">
+          <recaptcha class="mt-5 ml-2 lg:col-span-2"/>
+
+          <Button theme="default" @click="submitForm()" :status="btnStatus" class="lg:my-10 mt-5">
             VERZENDEN
           </Button>
+        </div>
 
       </div>
     </form>
