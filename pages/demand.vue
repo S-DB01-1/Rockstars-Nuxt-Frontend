@@ -48,7 +48,7 @@
             <span class="mt-1 checkmark"></span>
           </label>
         </div>
-        <recaptcha />
+<!--        <recaptcha />-->
         <Button theme="default" @click="submitForm()" :status="btnStatus">
           VERZENDEN
         </Button>

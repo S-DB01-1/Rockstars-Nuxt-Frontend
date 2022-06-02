@@ -11,7 +11,7 @@
             <img :src="require('assets/img/User.jpg')" class="avatar"/>
           </div>
           <div>
-            <Title size="1">
+            <Title size="2">
               {{ rockstarsArray[index].name }}
             </Title>
             <Title size="3">
