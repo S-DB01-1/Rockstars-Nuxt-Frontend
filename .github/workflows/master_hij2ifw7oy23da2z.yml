@@ -34,7 +34,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: node-app
-          path: files.zip
+          path: release.zip
 
   deploy:
     runs-on: ubuntu-latest
@@ -50,7 +50,7 @@ jobs:
           name: node-app
           
       - name: Unzip release
-        run: unzip -oq files.zip && rm files.zip
+        run: unzip -oq release.zip && rm release.zip
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
