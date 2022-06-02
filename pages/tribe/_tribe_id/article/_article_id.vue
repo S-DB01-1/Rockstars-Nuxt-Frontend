@@ -59,7 +59,7 @@ export default {
     this.tribeGet({id: this.tribe_id});
     this.articleGet({id: this.article_id });
     this.rockstarGet({id: this.article_id});
-    this.articleTextGet({id: 1});
+    this.articleTextGet({id: this.article_id});
   }
 }
 </script>
