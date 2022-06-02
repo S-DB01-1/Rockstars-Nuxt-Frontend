@@ -5,7 +5,7 @@
         <p>{{ Author }}</p>
       </div>
       <div>
-        <img class="w-full thumbnail" :src="require('assets/img/Banner.png')">
+        <img class="w-full thumbnail" :src="require('assets/image/banner.webp')">
       </div>
       <div class="px-6 py-4">
         <Title size="3" class="font-bold mb-2 line-clamp-1">
