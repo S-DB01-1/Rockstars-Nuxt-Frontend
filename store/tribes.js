@@ -10,7 +10,10 @@ export const getters = {
   },
   tribeGet: state => (id) => {
     return state.tribes[id]
-  }
+  },
+  tribeGetLastThree: state => (id) => {
+    return state.tribes
+  },
 }
 
 export const mutations = {
@@ -44,7 +47,19 @@ export const actions = {
         }).catch(error => {
             console.error(error)
         })
-    }
+    },
+    tribeGetLastThree({commit}, { limit }) {
+      // Send get request to the backend.
+      axios.get(
+        `tribes/?limit=${limit}`
+      ).then(response => {
+        response.data.results.forEach(item => {
+          commit('tribeSet', item)
+        })
+      }).catch(error => {
+        console.error(error)
+      })
+    },
 }
 
 export default {
