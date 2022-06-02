@@ -5,6 +5,7 @@ import rockstars from "./rockstars.js";
 import articles from './articles';
 import videos from "./videos";
 import podcasts from "./podcasts";
+import articleText from "./articleText";
 
 Vue.use(Vuex);
 
@@ -14,7 +15,8 @@ export default () => new Vuex.Store({
     articles: {},
     rockstars: {},
     podcasts: {},
-    videos: {}
+    videos: {},
+    articleText: {}
   }),
   mutations: {
     ...tribes.mutations,
@@ -22,6 +24,7 @@ export default () => new Vuex.Store({
     ...rockstars.mutations,
     ...podcasts.mutations,
     ...videos.mutations,
+    ...articleText.mutations,
   },
   actions: {
     ...tribes.actions,
@@ -29,6 +32,7 @@ export default () => new Vuex.Store({
     ...rockstars.actions,
     ...podcasts.actions,
     ...videos.actions,
+    ...articleText.actions
   },
   modules: {},
   getters: {
@@ -37,5 +41,6 @@ export default () => new Vuex.Store({
     ...rockstars.getters,
     ...podcasts.getters,
     ...videos.getters,
+    ...articleText.getters,
   }
 })
