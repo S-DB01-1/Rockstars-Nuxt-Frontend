@@ -82,7 +82,7 @@ export default {
 
 .parallax {
   /* The image used */
-  background-image: url("../../../assets/img/Buildings(1).jpg");
+  background-image: url("../../../assets/image/Buildings(1).jpg");
 
   /* Set a specific height */
   min-height: 500px;
