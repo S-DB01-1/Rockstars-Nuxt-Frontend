@@ -11,6 +11,9 @@ export const getters = {
   articleGet: state => (id) => {
     return state.articles[id]
   },
+  articleGetLastThree: state => (id) => {
+    return state.articles
+  },
 }
 
 export const mutations = {
@@ -40,6 +43,18 @@ export const actions = {
     ).then(response => {
       // If request is successful then add the item to the state.
       commit('articleSet', response.data)
+    }).catch(error => {
+      console.error(error)
+    })
+  },
+  articleGetLastThree({ commit }) {
+    // Send get request to the backend.
+    axios.get(
+      `articles/?ordering=-datecreated&format=json`
+    ).then(response => {
+      response.data.results.forEach(item => {
+        commit('articleSet', item)
+      })
     }).catch(error => {
       console.error(error)
     })

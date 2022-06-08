@@ -21,11 +21,12 @@
             <Title size="4">
               LAATSTE ARTIKELEN
             </Title>
-            <div>
+
+            <div v-if="articleLastThree">
               <ul>
-                <li><a>Artikel naam</a></li>
-                <li><a>Artikel naam</a></li>
-                <li><a>Artikel naam</a></li>
+                <div v-for="articles of articleLastThree">
+                  <li><a :href="`/tribe/${articles.tribeid}/article/${articles.id}`" target="_blank">{{ articles.title }}</a></li>
+                </div>
               </ul>
             </div>
           </div>
@@ -44,7 +45,7 @@
           </div>
         </div>
 
-        <p class="">&copy; {{ new Date().getFullYear() }} Rockstars IT</p>
+        <p class="mt-3">&copy; {{ new Date().getFullYear() }} Rockstars IT</p>
       </div>
 
 
@@ -62,15 +63,19 @@ export default {
     Title,
   },
   methods: {
-    ...mapActions(['tribeGetLastThree'])
+    ...mapActions(['tribeGetLastThree', 'articleGetLastThree'])
   },
   computed: {
     tribeLastThree() {
       return this.$store.getters.tribeGetLastThree();
     },
+    articleLastThree() {
+      return this.$store.getters.articleGetLastThree();
+    }
   },
   created() {
     this.tribeGetLastThree({limit: 3});
+    this.articleGetLastThree();
   },
 }
 </script>
