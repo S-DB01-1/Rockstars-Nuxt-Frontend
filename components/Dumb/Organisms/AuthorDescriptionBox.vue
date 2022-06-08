@@ -18,19 +18,18 @@
         </div>
 
         <div v-show="rockstars.linkedin" class="flex justify-center items-center">
-          <a :href="rockstars.linkedin">
+          <a :href="`https://www.linkedin.com/${rockstars.linkedin}`">
             <img :src="require('assets/image/icons/linkedin.svg')" alt="Linkedin logo" class="h-10 w-10">
           </a>
         </div>
-
       </div>
     </div>
   </DescriptionBox>
 </template>
 
 <script>
-import DescriptionBox from "~/components/Dumb/Organisms/DescriptionBox";
-import Title from "~/components/Dumb/Atoms/Title";
+import DescriptionBox from "@/components/Dumb/Organisms/DescriptionBox";
+import Title from "@/components/Dumb/Atoms/Title";
 export default {
   name: 'AuthorDescriptionBox',
   components: {
@@ -47,7 +46,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "assets/css/variables";
+@import "assets/css/variables.scss";
 
 .avatar {
   border-radius: 50%;
@@ -61,6 +60,7 @@ export default {
 .profileBox {
   margin: auto;
   text-align: center;
+  vertical-align: middle;
 }
 
 </style>
