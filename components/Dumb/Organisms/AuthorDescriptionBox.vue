@@ -1,25 +1,27 @@
 <template>
   <DescriptionBox title="Auteur" :subtitle="subtitle" :description="description">
     <div class="loading" v-if="rockstars && tribeName">
-      <div class="profileBox">
-        <div v-if="rockstars.img">
-          <img :src="require( rockstars.img )" class="avatar"/>
-        </div>
-        <div v-else>
-          <img :src="require('assets/image/user.webp')" class="avatar"/>
-        </div>
-        <div>
-          <Title size="1">
-            {{ tribeName }}
-          </Title>
-          <Title size="3">
-            {{ rockstars.quote }}
-          </Title>
-        </div>
-        <div v-show="rockstars.linkedin" class="flex justify-center items-center">
-          <a :href="`https://www.linkedin.com/${rockstars.linkedin}`">
-            <img :src="require('assets/image/icons/linkedin.svg')" alt="Linkedin logo" class="h-10 w-10">
-          </a>
+      <div class="align-bottom">
+        <div class="profileBox">
+          <div v-if="rockstars.img">
+            <img :src="require( rockstars.img )" class="avatar"/>
+          </div>
+          <div v-else>
+            <img :src="require('assets/image/user.webp')" class="avatar"/>
+          </div>
+          <div>
+            <Title size="1">
+              {{ tribeName }}
+            </Title>
+            <Title size="3">
+              {{ rockstars.quote }}
+            </Title>
+          </div>
+          <div v-show="rockstars.linkedin" class="flex justify-center items-center">
+            <a :href="`https://www.linkedin.com/${rockstars.linkedin}`">
+              <img :src="require('assets/image/icons/linkedin.svg')" alt="Linkedin logo" class="h-10 w-10">
+            </a>
+          </div>
         </div>
       </div>
     </div>
