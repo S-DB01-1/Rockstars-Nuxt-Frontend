@@ -11,7 +11,7 @@
             <img :src="require('assets/image/user.webp')" class="avatar" alt=""/>
           </div>
           <div>
-            <Title size="1">
+            <Title size="2">
               {{ rockstarsArray[index].name }}
             </Title>
             <Title size="3">

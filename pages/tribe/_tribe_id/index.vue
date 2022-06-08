@@ -6,8 +6,8 @@
                         :description="tribe.description" :rockstars="tribeRockstars" />
       </div>
     </div>
-    <div v-if="tribeArticles" class="hero-image mt-10 relative">
-      <img class="hero-banner" :src="require('assets/image/buildings.webp')" alt="">
+    <div v-if="tribeArticles" class="hero-image mt-10 relative parallax">
+      <!--<img class="hero-banner" :src="require('assets/img/Buildings.jpg')" alt=""> !-->
       <div class="relative text-center text-white">
         <Title size="2">
           Artikelen
@@ -52,7 +52,7 @@ export default {
     },
     tribeVideos() {
       return this.$store.getters.videoRead(this.tribe_id);
-    }
+    },
   },
   created() {
     this.tribeGet({id: this.tribe_id});
@@ -81,4 +81,18 @@ export default {
   filter: brightness(0.5);
 }
 
+.parallax {
+  /* The image used */
+  background-image: url("../../../assets/img/Buildings(1).jpg");
+
+  /* Set a specific height */
+  min-height: 500px;
+  z-index: -1;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 </style>
