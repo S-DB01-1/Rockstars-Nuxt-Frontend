@@ -1,54 +1,41 @@
-import axios from 'axios'
+import axios from 'axios';
 import Vue from "vue";
 
-const resourceURL = 'podcasts'
-export const state = () => ({})
+const resourceURL = 'podcasts';
+export const state = () => ({});
 
 export const getters = {
-  podcastRead: state => (id)  => {
-    return state.podcasts
+  podcastRead: state => (id) => {
+    return state.podcasts;
   },
   podcastGet: state => (id) => {
-    return state.podcasts[id]
+    return state.podcasts[id];
   }
-}
+};
 
 export const mutations = {
   podcastSet(state, item) {
-    Vue.set(state.podcasts, item.id, item)
+    Vue.set(state.podcasts, item.id, item);
   },
-}
+};
 
-axios.defaults.baseURL = "https://s8ifzokvp35u68fi.azurewebsites.net/api/v1"
+axios.defaults.baseURL = "https://s8ifzokvp35u68fi.azurewebsites.net/api/v1";
 
 export const actions = {
-  podcastRead({ commit }, { id }) {
-    // Send get request to the backend.
-    axios.get(
-      `${resourceURL}/?tribe=${id}`
-    ).then(response => {
-      response.data.results.forEach(item => {
-        commit('podcastSet', item)
-      })
-    }).catch(error => {
-      console.error(error)
-    })
+  async podcastRead({commit}, {id}) {
+    const response = await axios.get(`${resourceURL}/?tribe=${id}`);
+    response.data.results.forEach(item => {
+      commit('podcastSet', item);
+    });
   },
-  podcastGet({ commit }, { id }) {
-    // Send get request to the backend.
-    axios.get(
-      `${resourceURL}/${id}/`
-    ).then(response => {
-      // If request is successful then add the item to the state.
-      commit('podcastSet', response.data)
-    }).catch(error => {
-      console.error(error)
-    })
+  async podcastGet({commit}, {id}) {
+    const response = await axios.get(`${resourceURL}/${id}/`);
+    commit('articleSet', response.data);
   }
-}
+};
 
 export default {
   actions,
   getters,
   mutations
-}
+};
