@@ -16,7 +16,6 @@
             {{ rockstars.quote }}
           </Title>
         </div>
-
         <div v-show="rockstars.linkedin" class="flex justify-center items-center">
           <a :href="`https://www.linkedin.com/${rockstars.linkedin}`">
             <img :src="require('assets/image/icons/linkedin.svg')" alt="Linkedin logo" class="h-10 w-10">
