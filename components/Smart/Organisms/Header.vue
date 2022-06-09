@@ -1,5 +1,5 @@
 <template>
-  <div class="hero h-60 before:h-60"  v-bind:style="{ backgroundImage: 'url(' + require('assets/img/Banner.png') + ')' }">
+  <div class="hero h-60 before:h-60"  v-bind:style="{ backgroundImage: 'url(' + require('assets/image/banner.webp') + ')' }">
     <header>
       <div class="container py-4">
         <div class="flex justify-between">
@@ -24,6 +24,7 @@
 
 
         </div>
+        <img :src="require('assets/image/logo.webp')"/>
       </div>
     </header>
   </div>

@@ -10,14 +10,14 @@
       :maxlength="max"
       :minlength="min"
       :class="{
-      'peer max-h-11 px-3 py-2 bg-gray-100 m-2 border-b-2 border-gray-400 text-gray-700 hover:text-black': true,
+      'bg-gray-100 m-2 border-b-2 border-gray-400 text-gray-700 hover:text-black': true,
       'border-red-400': status === 'error'
     }">
     <span v-if="status === 'correct'" class="symbol">
-      <img :src="require('assets/img/icons/check-black.svg')" class="w-4 ml-2 absolute -left-12 top-7"/>
+      <img :src="require('assets/image/icons/check-black.svg')" class="w-4 ml-2 absolute -left-12 top-7"/>
     </span>
     <span v-else-if="status === 'error'" class="symbol">
-      <img :src="require('assets/img/icons/cross-red.svg')" class="w-4 ml-2 absolute -left-12 top-6"/>
+      <img :src="require('assets/image/icons/cross-red.svg')" class="w-4 ml-2 absolute -left-12 top-6"/>
     </span>
   </div>
 </template>

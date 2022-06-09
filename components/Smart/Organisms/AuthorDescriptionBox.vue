@@ -6,7 +6,7 @@
           <img :src="require( rockstars.img )" class="avatar"/>
         </div>
         <div v-else>
-          <img :src="require('assets/img/User.jpg')" class="avatar"/>
+          <img :src="require('assets/image/user.webp')" class="avatar"/>
         </div>
         <div>
           <Title size="1">
@@ -19,7 +19,7 @@
 
         <div v-show="rockstars.linkedin" class="flex justify-center items-center">
           <a :href="rockstars.linkedin">
-            <img :src="require('assets/image/linkedin.svg')" alt="Linkedin logo" class="h-10 w-10">
+            <img :src="require('assets/image/icons/linkedin.svg')" alt="Linkedin logo" class="h-10 w-10">
           </a>
         </div>
 

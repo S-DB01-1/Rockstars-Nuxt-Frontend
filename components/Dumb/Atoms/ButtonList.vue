@@ -16,8 +16,8 @@
         'border-white text-white hover:bg-neutral-200': theme === 'light'
       }">
       <button class="py-2">{{ text }}</button>
-      <img v-show="theme !== 'light'" :src="require('assets/img/icons/forward-black.svg')" class="w-4 ml-2"/>
-      <img v-show="theme === 'light'" :src="require('assets/img/icons/forward-white.svg')" class="w-4 ml-2"/>
+      <img v-show="theme !== 'light'" :src="require('assets/image/icons/forward-black.svg')" class="w-4 ml-2"/>
+      <img v-show="theme === 'light'" :src="require('assets/image/icons/forward-white.svg')" class="w-4 ml-2"/>
     </li>
   </ul>
 </template>
