@@ -11,6 +11,9 @@ export const getters = {
   articleGet: state => (id) => {
     return state.articles[id]
   },
+  articleSearch: state => (id, query) => {
+    return state.articles
+  }
 }
 
 export const mutations = {
@@ -44,6 +47,17 @@ export const actions = {
       console.error(error)
     })
   },
+  articleSearch({ commit }, { id, query }) {
+    axios.get(
+      `${resourceURL}/?tribe_id=${id}&search=${query}`
+    ).then(response => {
+      response.data.results.forEach(item => {
+        commit('articleSet', item)
+      })
+    }).catch(error => {
+      console.error(error)
+    })
+  }
 }
 
 export default {
