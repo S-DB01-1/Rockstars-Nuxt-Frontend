@@ -3,7 +3,7 @@
     <header>
       <div class="container py-4">
         <div class="flex justify-between">
-          <img :src="require('assets/img/Logo.png')"/>
+          <img :src="require('assets/image/logo.webp')"/>
 
           <div class="mt-3">
             <form action="/search?type=type&input=input" class="flex w-full justify-center">

@@ -11,6 +11,9 @@ export const getters = {
   articleGet: state => (id) => {
     return state.articles[id]
   },
+  articleGetLastThree: state => (id) => {
+    return state.articles
+  },
   articleSearch: state => (id, query) => {
     return state.articles
   }
