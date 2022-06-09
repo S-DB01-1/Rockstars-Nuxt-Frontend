@@ -18,6 +18,7 @@
 <script>
 import {mapActions} from "vuex";
 import AuthorDescriptionBox from "@/components/Dumb/Organisms/AuthorDescriptionBox";
+import Title from "@/components/Dumb/Atoms/Title.vue";
 
 export default {
   name: "ArticlePage",
