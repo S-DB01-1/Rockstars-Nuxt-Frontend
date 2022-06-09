@@ -4,10 +4,10 @@
       <div class="align-bottom">
         <div class="profileBox">
           <div v-if="rockstars.img">
-            <img :src="require( rockstars.img )" class="avatar"/>
+            <img :src="require( rockstars.img )" class="auth-avatar"/>
           </div>
           <div v-else>
-            <img :src="require('assets/image/user.webp')" class="avatar"/>
+            <img :src="require('assets/image/user.webp')" class="auth-avatar"/>
           </div>
           <div>
             <Title size="1">
@@ -49,7 +49,7 @@ export default {
 <style lang="scss">
 @import "assets/css/variables.scss";
 
-.avatar {
+.auth-avatar {
   border-radius: 50%;
   width: 200px;
   height: 200px;
