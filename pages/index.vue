@@ -1,6 +1,6 @@
 <template>
   <section >
-    <div class="h-screen w-screen bg-cover bg-center bg-no-repeat bg-scroll absolute"
+    <div class="h-screen w-screen bg-cover bg-center bg-no-repeat bg-scroll absolute items-center"
          v-bind:style="{ backgroundImage: 'url(' + require('assets/img/rockstar-banner.png') + ')' }">
       <div class="table h-full w-full m-0 container">
         <div class="h-2/5 table-row">
@@ -11,7 +11,7 @@
         </div>
 
         <div class="table-row">
-          <div class="grid grid-cols-3 gap-8 h-full" id='infinite-list'>
+          <div class="grid md:grid-cols-3 lg:grid-cols-3 md:gap-8 lg:gap-8 h-full" id='infinite-list'>
             <div v-for="tribe in tribeReadAll">
               <TribeCard :tribeName="tribe.name" />
             </div>
