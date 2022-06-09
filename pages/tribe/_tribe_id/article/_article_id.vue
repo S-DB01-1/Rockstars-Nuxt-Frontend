@@ -16,9 +16,8 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
-import AuthorDescriptionBox from "@/components/Smart/Organisms/AuthorDescriptionBox";
-import Title from "@/components/Dumb/Atoms/Title.vue";
+import {mapActions} from "vuex";
+import AuthorDescriptionBox from "@/components/Dumb/Organisms/AuthorDescriptionBox";
 
 export default {
   name: "ArticlePage",

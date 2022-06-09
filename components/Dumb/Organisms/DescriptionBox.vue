@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <div class="container ">
+    <div class="container">
       <div class="bg-rockstar-yellow -mt-16 p-4">
         <div class="grid md:grid-cols-1 lg:grid-cols-2">
           <div class="text-center lg:text-left">
