@@ -1,7 +1,7 @@
 <template>
   <section >
     <div class="h-screen w-screen bg-cover bg-center bg-no-repeat bg-scroll absolute items-center"
-         v-bind:style="{ backgroundImage: 'url(' + require('assets/img/rockstar-banner.png') + ')' }">
+         v-bind:style="{ backgroundImage: 'url(' + require('assets/image/rockstar-banner.webp') + ')' }">
       <div class="table h-full w-full container">
         <div class="h-2/5 table-row">
           <div class="table-cell align-middle">
