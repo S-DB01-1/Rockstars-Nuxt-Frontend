@@ -1,7 +1,7 @@
 <template>
-  <section class="max-w-sm overflow-hidden shadow-lg">
-    <img class="object-cover h-96" :src="require('assets/img/Banner.png')" alt="">
-    <div class="grid">
+  <section class="overflow-hidden shadow-lg h-full">
+    <img class="object-cover h-80" :src="require('assets/img/Banner.png')" alt="">
+    <div class="grid lg:h-fit md:h-20">
       <Button class="m-0">{{ tribeName }}</Button>
     </div>
   </section>
