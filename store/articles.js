@@ -22,7 +22,7 @@ export const getters = {
 export const mutations = {
   articleSet(state, item) {
     Vue.set(state.articles, item.id, item)
-  }
+  },
 }
 
 axios.defaults.baseURL = "https://s8ifzokvp35u68fi.azurewebsites.net/api/v1"
