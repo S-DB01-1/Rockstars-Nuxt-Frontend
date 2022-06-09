@@ -2,6 +2,28 @@
   <div class="hero h-60 before:h-60"  v-bind:style="{ backgroundImage: 'url(' + require('assets/image/banner.webp') + ')' }">
     <header>
       <div class="container py-4">
+        <div class="flex justify-between">
+          <img :src="require('assets/img/Logo.png')"/>
+
+          <div class="mt-3">
+            <form action="/search?type=type&input=input" class="flex w-full justify-center">
+              <select name="type" class="bg-rockstar-yellow p-1 h-8 text-xs border-none outline-0">
+                <option value="Video" selected>Video's</option>
+                <option value="Artikelen">Artikelen</option>
+                <option value="Podcasts">Podcasts</option>
+              </select>
+              <div class="w-full relative flex">
+                <input name="input" type="text" class="w-full h-8 border-none outline-0 p-1 ">
+                <button type="submit" class="h-8 w-10 p-2 text-center bg-rockstar-yellow border-none">
+                  <img :src="require('assets/img/icons/search.svg')"/>
+                </button>
+              </div>
+            </form>
+          </div>
+
+
+
+        </div>
         <img :src="require('assets/image/logo.webp')"/>
       </div>
     </header>
