@@ -10,6 +10,9 @@ export const getters = {
   },
   videoGet: state => (id) => {
     return state.videos[id]
+  },
+  videoSearch: state => (id, query) => {
+    return state.videos
   }
 }
 
@@ -19,8 +22,7 @@ export const mutations = {
   }
 }
 
-// axios.defaults.baseURL = "https://s8ifzokvp35u68fi.azurewebsites.net/api/v1"
-axios.defaults.baseURL = "https://dd36-145-93-172-152.ngrok.io/api/v1"
+axios.defaults.baseURL = "https://s8ifzokvp35u68fi.azurewebsites.net/api/v1"
 
 export const actions = {
   videoRead({ commit }, { id }) {
@@ -42,6 +44,17 @@ export const actions = {
     ).then(response => {
       // If request is successful then add the item to the state.
       commit('videoSet', response.data)
+    }).catch(error => {
+      console.error(error)
+    })
+  },
+  videoSearch({ commit }, { id, query }) {
+    axios.get(
+      `${resourceURL}/?tribe_id=${id}&search=${query}`
+    ).then(response => {
+      response.data.results.forEach(item => {
+        commit('videoSet', item)
+      })
     }).catch(error => {
       console.error(error)
     })

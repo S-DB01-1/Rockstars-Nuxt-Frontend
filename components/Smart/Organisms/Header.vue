@@ -1,7 +1,7 @@
 <template>
   <div class="hero h-60 before:h-60"  v-bind:style="{ backgroundImage: 'url(' + require('assets/img/Banner.png') + ')' }">
     <header>
-      <div class="container py-4">
+      <div class="container py-4 flex justify-between">
         <img :src="require('assets/img/Logo.png')"/>
       </div>
     </header>
