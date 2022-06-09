@@ -43,7 +43,30 @@ export const actions = {
     }).catch(error => {
       console.error(error)
     })
-  }  
+  },
+  articleGetLastThree({ commit }) {
+    // Send get request to the backend.
+    axios.get(
+      `articles/?ordering=-datecreated&format=json`
+    ).then(response => {
+      response.data.results.forEach(item => {
+        commit('articleSet', item)
+      })
+    }).catch(error => {
+      console.error(error)
+    })
+  },
+  articleSearch({ commit }, { id, query }) {
+    axios.get(
+      `${resourceURL}/?tribe_id=${id}&search=${query}`
+    ).then(response => {
+      response.data.results.forEach(item => {
+        commit('articleSet', item)
+      })
+    }).catch(error => {
+      console.error(error)
+    })
+  }
 }
 
 export default {
