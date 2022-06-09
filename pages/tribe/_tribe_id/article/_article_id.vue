@@ -1,6 +1,6 @@
 <template>
-  <div class="mb-16">
-    <div v-if="tribeRockstars && tribe && tribeArticles">
+  <div class="mb-16" v-if="tribe && tribeArticles">
+    <div v-if="tribeRockstars">
       <AuthorDescriptionBox :subtitle="tribeRockstars.name" :tribeName="tribe.name"
         :description="tribeArticles.description" :rockstars="tribeRockstars" />
     </div>
@@ -61,13 +61,13 @@ export default {
       return this.$store.getters.articleGet(this.article_id);
     },
     tribeRockstars() {
-      return this.$store.getters.rockstarGet(this.article_id);
+      this.rockstarGet({id: this.article[this.$route.params.article_id].rockstarid})
+      return this.$store.state.rockstars[this.article[this.$route.params.article_id].rockstarid];
     },
   },
   created() {
     this.tribeGet({ id: this.tribe_id });
     this.articleGet({ id: this.article_id });
-    this.rockstarGet({ id: this.article_id });
     this.articleTextGet({ id: this.article_id });
   }
 }
