@@ -6,7 +6,7 @@
       </Title>
     </div>
     <div class="grid sm:grid-cols-1 lg:grid-cols-2 gap-4">
-      <div v-for="video in videos" class="videoBox">
+      <div v-for="video in videos" class="">
         <Video :link="video.link" :title="video.title" :viewcount="video.viewcount" :description="video.description"/>
       </div>
     </div>

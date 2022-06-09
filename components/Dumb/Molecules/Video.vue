@@ -1,24 +1,32 @@
 <template>
-  <div class="bg-rockstar-yellow w-100 videoBox">
-    <div class="descriptionBox p-5" v-show="descriptionReveal">
-      {{ description }}
-    </div>
-    <iframe class="video" width="100%" height="315" v-show="!descriptionReveal"
-            :src="'https://www.youtube.com/embed/' + link">
-    </iframe>
-    <div class="p-5 titleBox" @mouseenter="showDescription()" @mouseleave="hideDescription()">
-      <div class="flex justify-between">
-        <Title size="5">
-          {{ title }}
-        </Title>
-        <div>
-          <div class="flex justify-between mt-1">
-            <img :src="require('assets/image/icons/eye-solid.svg')" class="mr-2" width="18" alt="Viewcount">
-            <Title size="6">
-              {{ viewcount }}
+  <div class="relative">
+    <div class="" id="bottom" v-on:click="greet">
+      <div class="bg-rockstar-yellow">
+        <iframe class="video" width="100%" height="315" v-on:click="greet"
+                :src="'https://www.youtube.com/embed/' + link">
+        </iframe>
+        <div class="p-5 titleBox">
+          <div class="flex justify-between">
+            <Title size="5">
+              {{ title }}
             </Title>
+            <div>
+              <div class="flex justify-between mt-1">
+                <img :src="require('assets/image/icons/eye-solid.svg')" class="mr-2" width="18" alt="Viewcount">
+                <Title size="6">
+                  {{ viewcount }}
+                </Title>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
+      </div>
+
+
+    <div class="absolute pointer-events-none top-0 left-0 w-full" id="top">
+      <div class="descriptionBox p-5 text-base">
+        {{ description }}
       </div>
     </div>
   </div>
@@ -38,11 +46,20 @@ export default {
     }
   },
   methods: {
-    showDescription() {
-      this.descriptionReveal = true
+    descriptionShow: function () {
+      let x = document.getElementById("top");
+      console.log(x);
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
     },
-    hideDescription() {
-      this.descriptionReveal = false
+    greet: function (event) {
+      // `this` inside methods point to the Vue instance
+      alert('Hello ' + this.name + '!')
+      // `event` is the native DOM event
+      alert(event.target.tagName)
     }
   },
   props: {
@@ -55,27 +72,33 @@ export default {
 </script>
 
 <style scoped>
-.videoBox iframe {
-  z-index: 1;
-  display: block;
-  -webkit-animation: fadeIn 1s;
-  animation: fadeIn 1s;
-}
-
-
 .descriptionBox {
-  z-index: 0;
   height: 315px;
-  animation: fadeIn 1s;
   width: 100%;
+  background-color: #FFE000;
+  opacity: 0.8;
 }
 
-@-webkit-keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
+
+#bottom {
+  z-index: 10;
+}
+
+#top{
+  z-index: 20;
+  display: block;
+  pointer-events: none;
+  display: none
+}
+
+#bottom:hover~#top {
+  display: block;
+  animation: fadeIn 1s;
+}
+
+
 </style>
