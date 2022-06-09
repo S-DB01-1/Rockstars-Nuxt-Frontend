@@ -7,13 +7,13 @@
             <Title size="4">
               TRIBES
             </Title>
-            <div>
-              <ul>
-                <li><a>Java Tribe</a></li>
-                <li><a>.Net Tribe</a></li>
-                <li><a>Mobile Tribe</a></li>
-                <li><a>All Tribes</a></li>
-              </ul>
+            <div v-if="tribeLastThree">
+                <ul>
+                  <div v-for="tribe of tribeLastThree">
+                    <li><a :href="`/tribe/${tribe.id}`" target="_blank">{{ tribe.name }}</a></li>
+                  </div>
+                  <li> <a href="/" target="_blank">Alle tribes</a></li>
+                </ul>
             </div>
           </div>
 
@@ -21,11 +21,12 @@
             <Title size="4">
               LAATSTE ARTIKELEN
             </Title>
-            <div>
+
+            <div v-if="articleLastThree">
               <ul>
-                <li><a>Artikel naam</a></li>
-                <li><a>Artikel naam</a></li>
-                <li><a>Artikel naam</a></li>
+                <div v-for="articles of articleLastThree">
+                  <li><a :href="`/tribe/${articles.tribeid}/article/${articles.id}`" target="_blank">{{ articles.title }}</a></li>
+                </div>
               </ul>
             </div>
           </div>
@@ -43,19 +44,38 @@
             </div>
           </div>
         </div>
+
+        <p class="mt-3">&copy; {{ new Date().getFullYear() }} Rockstars IT</p>
       </div>
-      <p class="text-center">&copy; {{ new Date().getFullYear() }} Rockstars IT</p>
+
+
     </div>
   </footer>
 </template>
 
 <script>
+import {mapActions} from "vuex";
 import Title from "@/components/Dumb/Atoms/Title";
 
 export default {
   name: "Footer",
   components: {
     Title,
-  }
+  },
+  methods: {
+    ...mapActions(['tribeGetLastThree', 'articleGetLastThree'])
+  },
+  computed: {
+    tribeLastThree() {
+      return this.$store.getters.tribeGetLastThree();
+    },
+    articleLastThree() {
+      return this.$store.getters.articleGetLastThree();
+    }
+  },
+  created() {
+    this.tribeGetLastThree({limit: 3});
+    this.articleGetLastThree();
+  },
 }
 </script>
