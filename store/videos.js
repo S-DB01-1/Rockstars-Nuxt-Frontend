@@ -11,7 +11,7 @@ export const getters = {
   },
   videoSearch: state => (id, query) => {
     return state.videos;
-  };
+  }
 };
 
 export const mutations = {
