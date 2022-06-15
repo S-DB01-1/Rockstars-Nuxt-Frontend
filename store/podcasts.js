@@ -26,7 +26,7 @@ export const actions = {
   },
   async podcastGet({commit}, {id}) {
     const podcast = await this.$axios.$get(`/api/${resourceURL}/${id}/?format=json`);
-    commit('articleSet', podcast);
+    commit('podcastSet', podcast);
   }
 };
 

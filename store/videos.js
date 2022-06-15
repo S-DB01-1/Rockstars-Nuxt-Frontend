@@ -8,7 +8,10 @@ export const getters = {
   },
   videoGet: state => (id) => {
     return state.videos[id];
-  }
+  },
+  videoSearch: state => (id, query) => {
+    return state.videos;
+  };
 };
 
 export const mutations = {
@@ -27,6 +30,12 @@ export const actions = {
   async videoGet({commit}, {id}) {
     const video = await this.$axios.$get(`/api/${resourceURL}/${id}/?format=json`);
     commit('videoSet', video);
+  },
+  async videoSearch({commit}, {id, query}) {
+    const videos = await this.$axios.$get(`/api/${resourceURL}/?tribe_id=${id}&search=${query}`);
+    videos.results.forEach(item => {
+      commit('videoSet', item);
+    });
   }
 };
 

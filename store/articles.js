@@ -9,6 +9,12 @@ export const getters = {
   articleGet: state => (id) => {
     return state.articles[id];
   },
+  articleGetLastThree: state => (id) => {
+    return state.articles;
+  },
+  articleSearch: state => (id, query) => {
+    return state.articles;
+  }
 };
 
 export const mutations = {
@@ -28,6 +34,18 @@ export const actions = {
     const article = await this.$axios.$get(`/api/${resourceURL}/${id}/?format=json`);
     commit('articleSet', article);
   },
+  async articleGetLastThree({commit}) {
+    const articles = await this.$axios.$get(`/api/${resourceURL}/?ordering=-datecreated&format=json`);
+    articles.results.forEach(item => {
+      commit('articleSet', item);
+    });
+  },
+  async articleSearch({commit}, {id, query}) {
+    const articles = await this.$axios.$get(`/api/${resourceURL}/?tribe_id=${id}&search=${query}`);
+    articles.results.forEach(item => {
+      commit('articleSet', item);
+    });
+  }
 };
 
 export default {

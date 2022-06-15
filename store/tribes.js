@@ -8,7 +8,10 @@ export const getters = {
   },
   tribeGet: state => (id) => {
     return state.tribes[id];
-  }
+  },
+  tribeGetLastThree: state => (id) => {
+    return state.tribes;
+  },
 };
 
 export const mutations = {
@@ -27,6 +30,12 @@ export const actions = {
   async tribeGet({commit}, {id}) {
     const tribe = await this.$axios.$get(`/api/${resourceURL}/${id}/?format=json`);
     commit('tribeSet', tribe);
+  },
+  async tribeGetLastThree({commit}, {limit}) {
+    const tribes = await this.$axios.$get(`/api/${resourceURL}/?limit=${limit}`);
+    tribes.results.forEach(item => {
+      commit('tribeSet', item);
+    });
   }
 };
 

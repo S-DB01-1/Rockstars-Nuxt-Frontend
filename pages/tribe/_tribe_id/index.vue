@@ -7,7 +7,7 @@
       <TribeDescriptionBox :subtitle="`${tribe.name} Tribe`"
                            :description="tribe.description" :rockstars="tribeRockstars"/>
     </div>
-    <div v-if="tribeArticles" class="hero-image mt-10 relative">
+    <div v-if="tribeArticles" class="hero-image mt-10 relative parallax">
       <img class="hero-banner" :src="require('assets/image/buildings.webp')" alt="">
       <div class="relative text-center text-white">
         <Title size="2">
@@ -83,4 +83,18 @@ export default {
   filter: brightness(0.5);
 }
 
+.parallax {
+  /* The image used */
+  background-image: url("../../../assets/image/Buildings(1).jpg");
+
+  /* Set a specific height */
+  min-height: 500px;
+  z-index: -1;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 </style>
