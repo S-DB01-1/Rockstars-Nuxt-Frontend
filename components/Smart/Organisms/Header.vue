@@ -20,11 +20,7 @@
               </div>
             </form>
           </div>
-
-
-
         </div>
-        <img :src="require('assets/image/logo.webp')"/>
       </div>
     </header>
   </div>
