@@ -26,7 +26,7 @@ export const actions = {
     });
   },
   async rockstarGet({commit}, {id}) {
-    const rockstar = await this.$axios.$get(`${baseURL}/${resourceURL}/?format=json`);
+    const rockstar = await this.$axios.$get(`${baseURL}/${resourceURL}/${id}/?format=json`);
     commit('rockstarSet', rockstar);
   },
 };
