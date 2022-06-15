@@ -17,9 +17,9 @@
         </Title>
       </div>
       <Carousel :articles="tribeArticles" />
-      <div v-if="tribePodcasts" class="container py-10">
+      <!-- <div v-if="tribePodcasts" class="container py-10">
         <Spotify spotify_url="https://open.spotify.com/embed/show/1ijid0felknQbJ3vhGm9Et?utm_source=generator" />
-      </div>
+      </div> -->
     </div>
     <Videos :videos="tribeVideos" />
     <Demand />
@@ -96,7 +96,6 @@ export default {
 
   /* Set a specific height */
   min-height: 500px;
-  z-index: -1;
 
   /* Create the parallax scrolling effect */
   background-attachment: fixed;
