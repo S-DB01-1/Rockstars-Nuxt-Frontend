@@ -10,18 +10,10 @@
             <Title size="5">
               {{ title }}
             </Title>
-            <div>
-              <div class="flex justify-between mt-1">
-                <img :src="require('assets/image/icons/eye-solid.svg')" class="mr-2" width="18" alt="Viewcount">
-                <Title size="6">
-                  {{ viewcount }}
-                </Title>
-              </div>
-            </div>
           </div>
         </div>
       </div>
-      </div>
+    </div>
 
 
     <div class="absolute pointer-events-none top-0 left-0 w-full" id="top">
@@ -75,9 +67,8 @@ export default {
 
 #top{
   z-index: 20;
-  display: block;
   pointer-events: none;
-  display: none
+  display: none;
 }
 
 #bottom:hover~#top {
