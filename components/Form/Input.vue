@@ -37,11 +37,11 @@ export default {
       default: 'normal'
     },
     max: {
-      type: Number,
+      type: Number | String,
       default: 256
     },
     min: {
-      type: Number,
+      type: Number | String,
       default: 0
     }
   }

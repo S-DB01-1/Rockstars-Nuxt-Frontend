@@ -19,8 +19,8 @@
       </div>
       <Carousel :articles="tribeArticles"/>
     </div>
-    <Videos :videos="tribeVideos"/>
-
+    <Videos :videos="tribeVideos" />
+    <Demand />
   </div>
 </template>
 
@@ -31,10 +31,11 @@ import TribeDescriptionBox from "~/components/Dumb/Organisms/TribeDescriptionBox
 import DescriptionBox from "@/components/Dumb/Organisms/DescriptionBox";
 import Videos from "~/components/Dumb/Organisms/Videos";
 import Title from "~/components/Dumb/Atoms/Title";
+import Demand from "~/components/Dumb/Organisms/Demand"
 
 export default {
   name: "TribeId",
-  components: {TribeDescriptionBox, DescriptionBox, Carousel, Videos, Title},
+  components: {TribeDescriptionBox, DescriptionBox, Carousel, Videos, Title, Demand},
   methods: {
     ...mapActions(['articleRead', 'videoRead', 'rockstarRead', 'tribeGet', 'articleGet'])
   },

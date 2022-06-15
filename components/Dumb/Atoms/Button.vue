@@ -7,7 +7,7 @@
       'bg-white text-black hover:bg-neutral-200': theme === 'light'
     }"
   >
-    <div class="flex items-center">
+    <div class="flex items-center justify-center">
       <slot />
       <span v-show="status === 'default'">
         <img v-show="theme !== 'dark'" :src="require('assets/image/icons/forward-black.svg')" class="w-4 ml-2"/>
