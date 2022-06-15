@@ -1,10 +1,11 @@
 <template>
   <div>
-    <div v-if="tribe">
-      <div v-if="tribeRockstars">
-        <TribeDescriptionBox  :subtitle="`${tribe.name} Tribe`"
-                        :description="tribe.description" :rockstars="tribeRockstars" />
-      </div>
+    <div v-if="!tribe && tribeRockstars">
+      <DescriptionBox subtitle="Loading..."/>
+    </div>
+    <div v-else>
+      <TribeDescriptionBox :subtitle="`${tribe.name} Tribe`"
+                           :description="tribe.description" :rockstars="tribeRockstars"/>
     </div>
     <div v-if="tribeArticles" class="hero-image mt-10 relative">
       <img class="hero-banner" :src="require('assets/image/buildings.webp')" alt="">
@@ -16,9 +17,9 @@
           WAAR ZIJN WIJ ZOAL MEE BEZIG ?
         </Title>
       </div>
-      <Carousel :articles="tribeArticles" />
+      <Carousel :articles="tribeArticles"/>
     </div>
-    <Videos :videos="tribeVideos" />
+    <Videos :videos="tribeVideos"/>
 
   </div>
 </template>
@@ -27,12 +28,13 @@
 import {mapActions} from "vuex";
 import Carousel from "~/components/Dumb/Organisms/Carousel.vue";
 import TribeDescriptionBox from "~/components/Dumb/Organisms/TribeDescriptionBox";
+import DescriptionBox from "@/components/Dumb/Organisms/DescriptionBox";
 import Videos from "~/components/Dumb/Organisms/Videos";
 import Title from "~/components/Dumb/Atoms/Title";
 
 export default {
   name: "TribeId",
-  components: {TribeDescriptionBox, Carousel, Videos, Title },
+  components: {TribeDescriptionBox, DescriptionBox, Carousel, Videos, Title},
   methods: {
     ...mapActions(['articleRead', 'videoRead', 'rockstarRead', 'tribeGet', 'articleGet'])
   },
@@ -44,25 +46,25 @@ export default {
       return this.$store.getters.tribeGet(this.tribe_id);
     },
     tribeArticles() {
+      this.articleRead({id: this.tribe_id});
       return this.$store.getters.articleRead(this.tribe_id);
     },
     tribeRockstars() {
+      this.rockstarRead({id: this.tribe_id});
       return this.$store.getters.rockstarRead(this.tribe_id);
     },
     tribeVideos() {
+      this.videoRead({id: this.tribe_id});
       return this.$store.getters.videoRead(this.tribe_id);
-    }
+    },
   },
   created() {
     this.tribeGet({id: this.tribe_id});
-    this.articleRead({id: this.tribe_id});
-    this.rockstarRead({id: this.tribe_id});
-    this.videoRead({ id: this.tribe_id });
-  },
+  }
 };
 </script>
 
-<style >
+<style>
 
 
 .hero-image {

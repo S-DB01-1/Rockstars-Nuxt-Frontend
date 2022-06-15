@@ -1,11 +1,9 @@
-import axios from 'axios';
 import Vue from "vue";
 
 const resourceURL = 'videos';
-export const state = () => ({});
 
 export const getters = {
-  videoRead: state => (id) => {
+  videoRead: state => () => {
     return state.videos;
   },
   videoGet: state => (id) => {
@@ -19,18 +17,16 @@ export const mutations = {
   }
 };
 
-axios.defaults.baseURL = "https://s8ifzokvp35u68fi.azurewebsites.net/api/v1";
-
 export const actions = {
   async videoRead({commit}, {id}) {
-    const response = await axios.get(`${resourceURL}/?tribe=${id}`);
-    response.data.results.forEach(item => {
+    const videos = await this.$axios.$get(`/api/${resourceURL}/?tribe=${id}&format=json`);
+    videos.results.forEach(item => {
       commit('videoSet', item);
     });
   },
   async videoGet({commit}, {id}) {
-    const response = await axios.get(`${resourceURL}/${id}/`);
-    commit('videoSet', response.data);
+    const video = await this.$axios.$get(`/api/${resourceURL}/${id}/?format=json`);
+    commit('videoSet', video);
   }
 };
 

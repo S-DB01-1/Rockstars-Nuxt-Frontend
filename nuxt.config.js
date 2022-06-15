@@ -6,20 +6,20 @@ export default {
       lang: 'en'
     },
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Rockstars IT Tribe site' },
-      { name: 'format-detection', content: 'telephone=no' },
-      { name: 'msapplication-TileColor', content: '#333333' },
-      { name: 'theme-color', content: '#ffe000' }
+      {charset: 'utf-8'},
+      {name: 'viewport', content: 'width=device-width, initial-scale=1'},
+      {hid: 'description', name: 'description', content: 'Rockstars IT Tribe site'},
+      {name: 'format-detection', content: 'telephone=no'},
+      {name: 'msapplication-TileColor', content: '#333333'},
+      {name: 'theme-color', content: '#ffe000'}
     ],
     link: [
       // { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
-      { rel: 'icon', type:'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
-      { rel: 'icon', type:'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
-      { rel: 'manifest', href: '/site.webmanifest' },
-      { rel: 'mask-icon',  href: '/safari-pinned-tab.svg', color: '#ffe000' }
+      {rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png'},
+      {rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png'},
+      {rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png'},
+      {rel: 'manifest', href: '/site.webmanifest'},
+      {rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#ffe000'}
     ]
   },
 
@@ -32,7 +32,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    { src: '~plugins/v-calendar.js', ssr: false },
+    {src: '~plugins/v-calendar.js', ssr: false}
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -51,8 +51,9 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxtjs/recaptcha',
+    '@nuxtjs/recaptcha'
   ],
+
   recaptcha: {
     hideBadge: false, // Hide badge element (v3 & v2 via size=invisible)
     siteKey: '6LcjYeMfAAAAAPOHfHnJZpvuXjSdabl7199GyPWT',    // Site key for requests
@@ -62,8 +63,11 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/'
+    proxy: true
+  },
+
+  proxy: {
+    '/api/': {target: 'https://s8ifzokvp35u68fi.azurewebsites.net/api/v1/', pathRewrite: {'^/api/': ''}}
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
@@ -80,4 +84,4 @@ export default {
     host: '0.0.0.0',
     port: process.env.PORT
   }
-}
+};

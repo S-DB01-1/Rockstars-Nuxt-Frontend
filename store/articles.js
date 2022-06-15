@@ -1,11 +1,9 @@
-import axios from 'axios';
 import Vue from "vue";
 
 const resourceURL = 'articles';
-export const state = () => ({});
 
 export const getters = {
-  articleRead: state => (id) => {
+  articleRead: state => () => {
     return state.articles;
   },
   articleGet: state => (id) => {
@@ -19,18 +17,16 @@ export const mutations = {
   }
 };
 
-axios.defaults.baseURL = "https://s8ifzokvp35u68fi.azurewebsites.net/api/v1";
-
 export const actions = {
   async articleRead({commit}, {id}) {
-    const response = await axios.get(`${resourceURL}/?tribe=${id}`);
-    response.data.results.forEach(item => {
+    const articles = await this.$axios.$get(`/api/${resourceURL}/?tribe=${id}&format=json`);
+    articles.results.forEach(item => {
       commit('articleSet', item);
     });
   },
   async articleGet({commit}, {id}) {
-    const response = await axios.get(`${resourceURL}/${id}/`);
-    commit('articleSet', response.data);
+    const article = await this.$axios.$get(`/api/${resourceURL}/${id}/?format=json`);
+    commit('articleSet', article);
   },
 };
 

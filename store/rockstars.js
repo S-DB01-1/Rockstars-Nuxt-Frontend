@@ -1,10 +1,9 @@
-import axios from 'axios';
 import Vue from "vue";
+
 const resourceURL = 'rockstars';
-export const state = () => ({});
 
 export const getters = {
-  rockstarRead: state => (id) => {
+  rockstarRead: state => () => {
     return state.rockstars;
   },
   rockstarGet: state => (id) => {
@@ -18,18 +17,16 @@ export const mutations = {
   }
 };
 
-axios.defaults.baseURL = "https://s8ifzokvp35u68fi.azurewebsites.net/api/v1";
-
 export const actions = {
   async rockstarRead({commit}, {id}) {
-    const response = await axios.get(`${resourceURL}/?tribe=${id}`);
-    response.data.results.forEach(item => {
+    const rockstars = await this.$axios.$get(`/api/${resourceURL}/?tribe=${id}&format=json`);
+    rockstars.results.forEach(item => {
       commit('rockstarSet', item);
     });
   },
   async rockstarGet({commit}, {id}) {
-    const response = await axios.get(`${resourceURL}/${id}/`);
-    commit('rockstarSet', response.data);
+    const rockstar = await this.$axios.$get(`/api/${resourceURL}/${id}/?format=json`);
+    commit('rockstarSet', rockstar);
   },
 };
 
