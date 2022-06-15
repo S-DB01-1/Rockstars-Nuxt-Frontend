@@ -17,6 +17,9 @@
         </Title>
       </div>
       <Carousel :articles="tribeArticles" />
+      <div v-if="tribePodcasts" class="container py-10">
+        <Spotify spotify_url="https://open.spotify.com/embed/show/1ijid0felknQbJ3vhGm9Et?utm_source=generator" />
+      </div>
     </div>
     <Videos :videos="tribeVideos" />
     <Demand />
@@ -30,12 +33,13 @@ import TribeDescriptionBox from "~/components/Dumb/Organisms/TribeDescriptionBox
 import Videos from "~/components/Dumb/Organisms/Videos";
 import Title from "~/components/Dumb/Atoms/Title";
 import Demand from "~/components/Dumb/Organisms/Demand"
+import Spotify from "~/components/Dumb/Atoms/Spotify.vue";
 
 export default {
   name: "TribeId",
-  components: {TribeDescriptionBox, Carousel, Videos, Title, Demand },
+  components: { TribeDescriptionBox, Carousel, Videos, Title, Demand, Spotify },
   methods: {
-    ...mapActions(['articleRead', 'videoRead', 'rockstarRead', 'tribeGet', 'articleGet'])
+    ...mapActions(['articleRead', 'videoRead', 'rockstarRead', 'tribeGet', 'articleGet', 'podcastGet'])
   },
   computed: {
     tribe_id() {
@@ -53,8 +57,12 @@ export default {
     tribeVideos() {
       return this.$store.getters.videoRead(this.tribe_id);
     },
+    tribePodcasts() {
+      return this.$store.getters.podcastGet(this.tribe_id);
+    },
   },
   created() {
+    this.podcastGet({id: this.tribe_id})
     this.tribeGet({id: this.tribe_id});
     this.articleRead({id: this.tribe_id});
     this.rockstarRead({id: this.tribe_id});
