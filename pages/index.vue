@@ -12,7 +12,7 @@
 
         <div class="table-row">
           <div class="grid md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-8 lg:gap-8 h-full p-4" id='infinite-list'>
-            <div v-for="tribe in tribeReadAll">
+            <div v-for="tribe in tribeReadAll" :key='tribe'>
               <TribeCard :tribeName="tribe.name" :tribeId="tribe.id" />
             </div>
           </div>
