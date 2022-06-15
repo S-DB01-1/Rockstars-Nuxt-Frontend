@@ -1,8 +1,8 @@
 <template>
   <div class="relative">
-    <div class="" id="bottom" v-on:click="greet">
+    <div class="" id="bottom">
       <div class="bg-rockstar-yellow">
-        <iframe class="video" width="100%" height="315" v-on:click="greet"
+        <iframe class="video" width="100%" height="315"  id="myIFrame"
                 :src="'https://www.youtube.com/embed/' + link">
         </iframe>
         <div class="p-5 titleBox">
@@ -45,30 +45,15 @@ export default {
       descriptionReveal: false
     }
   },
-  methods: {
-    descriptionShow: function () {
-      let x = document.getElementById("top");
-      console.log(x);
-      if (x.style.display === "none") {
-        x.style.display = "block";
-      } else {
-        x.style.display = "none";
-      }
-    },
-    greet: function (event) {
-      // `this` inside methods point to the Vue instance
-      alert('Hello ' + this.name + '!')
-      // `event` is the native DOM event
-      alert(event.target.tagName)
-    }
-  },
   props: {
     link: String,
     title: String,
     viewcount: Number,
     description: String
-  }
+  },
 }
+
+
 </script>
 
 <style scoped>
@@ -99,6 +84,4 @@ export default {
   display: block;
   animation: fadeIn 1s;
 }
-
-
 </style>
