@@ -1,68 +1,46 @@
-import axios from 'axios'
 import Vue from "vue";
 
-const resourceURL = 'videos'
-export const state = () => ({})
+const resourceURL = 'videos';
 
 export const getters = {
-  videoRead: state => (id) => {
-    return state.videos
+  videoRead: state => () => {
+    return state.videos;
   },
   videoGet: state => (id) => {
-    return state.videos[id]
+    return state.videos[id];
   },
   videoSearch: state => (id, query) => {
-    return state.videos
+    return state.videos;
   }
-}
+};
 
 export const mutations = {
   videoSet(state, item) {
-    Vue.set(state.videos, item.id, item)
+    Vue.set(state.videos, item.id, item);
   }
-}
-
-axios.defaults.baseURL = "https://s8ifzokvp35u68fi.azurewebsites.net/api/v1"
+};
 
 export const actions = {
-  videoRead({ commit }, { id }) {
-    // Send get request to the backend.
-    axios.get(
-      `${resourceURL}/?tribe=${id}`
-    ).then(response => {
-      response.data.results.forEach(item => {
-        commit('videoSet', item)
-      })
-    }).catch(error => {
-      console.error(error)
-    })
+  async videoRead({commit}, {id}) {
+    const videos = await this.$axios.$get(`/api/${resourceURL}/?tribe=${id}&format=json`);
+    videos.results.forEach(item => {
+      commit('videoSet', item);
+    });
   },
-  videoGet({ commit }, { id }) {
-    // Send get request to the backend.
-    axios.get(
-      `${resourceURL}/${id}/`
-    ).then(response => {
-      // If request is successful then add the item to the state.
-      commit('videoSet', response.data)
-    }).catch(error => {
-      console.error(error)
-    })
+  async videoGet({commit}, {id}) {
+    const video = await this.$axios.$get(`/api/${resourceURL}/${id}/?format=json`);
+    commit('videoSet', video);
   },
-  videoSearch({ commit }, { id, query }) {
-    axios.get(
-      `${resourceURL}/?tribe_id=${id}&search=${query}`
-    ).then(response => {
-      response.data.results.forEach(item => {
-        commit('videoSet', item)
-      })
-    }).catch(error => {
-      console.error(error)
-    })
+  async videoSearch({commit}, {id, query}) {
+    const videos = await this.$axios.$get(`/api/${resourceURL}/?tribe_id=${id}&search=${query}`);
+    videos.results.forEach(item => {
+      commit('videoSet', item);
+    });
   }
-}
+};
 
 export default {
   actions,
   getters,
   mutations
-}
+};

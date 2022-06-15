@@ -1,69 +1,46 @@
-import axios from 'axios'
 import Vue from "vue";
 
-const resourceURL = 'tribes'
-export const state = () => ({})
+const resourceURL = 'tribes';
 
 export const getters = {
-  tribeRead: state => (id) => {
-    return state.tribes
+  tribeRead: state => () => {
+    return state.tribes;
   },
   tribeGet: state => (id) => {
-    return state.tribes[id]
+    return state.tribes[id];
   },
   tribeGetLastThree: state => (id) => {
-    return state.tribes
+    return state.tribes;
   },
-}
+};
 
 export const mutations = {
   tribeSet(state, item) {
-    Vue.set(state.tribes, item.id, item)
+    Vue.set(state.tribes, item.id, item);
   }
-}
-
-axios.defaults.baseURL = "https://s8ifzokvp35u68fi.azurewebsites.net/api/v1"
+};
 
 export const actions = {
-    tribeRead({ commit }) {
-        // Send get request to the backend.
-        axios.get(
-            'tribes'
-        ).then(response => {
-            response.data.results.forEach(item => {
-                commit('tribeSet', item)
-            })
-        }).catch(error => {
-            console.error(error)
-        })
-    },
-    tribeGet({ commit }, { id }) {
-        // Send get request to the backend.
-        axios.get(
-            `${resourceURL}/${id}/`
-        ).then(response => {
-            // If request is successful then add the item to the state.
-            commit('tribeSet', response.data)
-        }).catch(error => {
-            console.error(error)
-        })
-    },
-    tribeGetLastThree({commit}, { limit }) {
-      // Send get request to the backend.
-      axios.get(
-        `tribes/?limit=${limit}`
-      ).then(response => {
-        response.data.results.forEach(item => {
-          commit('tribeSet', item)
-        })
-      }).catch(error => {
-        console.error(error)
-      })
-    },
-}
+  async tribeRead({commit}) {
+    const tribes = await this.$axios.$get(`/api/${resourceURL}/?tribe=${id}&format=json`);
+    tribes.results.forEach(item => {
+      commit('tribeSet', item);
+    });
+  },
+  async tribeGet({commit}, {id}) {
+    const tribe = await this.$axios.$get(`/api/${resourceURL}/${id}/?format=json`);
+    commit('tribeSet', tribe);
+  },
+  async tribeGetLastThree({commit}, {limit}) {
+    const tribes = await this.$axios.$get(`/api/${resourceURL}/?limit=${limit}`);
+    tribes.results.forEach(item => {
+      commit('tribeSet', item);
+    });
+  }
+};
 
 export default {
-    actions,
-    getters,
-    mutations
-}
+  actions,
+  getters,
+  mutations
+};

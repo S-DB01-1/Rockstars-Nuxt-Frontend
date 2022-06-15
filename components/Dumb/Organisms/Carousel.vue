@@ -1,15 +1,21 @@
 <template>
   <div class="hero-image mt-10 relative">
     <div class="container">
-      <client-only>
-        <div v-if="!isEmpty(articles)">
-          <VueSlickCarousel v-bind="settings">                                                          
-            <div v-for="(article, index) in articles" :key="index">
-              <Card :Author=article.author :Title=article.title :Description=article.description :TribeId=String(article.tribeid) :ArticleId=String(article.id) />                                                                                  
-            </div>  
-          </VueSlickCarousel>
-        </div>
-      </client-only>
+      <div v-if="isEmpty(articles)">
+        <VueSlickCarousel v-bind="settings">
+          <div v-for="i in 3">
+            <Card Title="Loading..."/>
+          </div>
+        </VueSlickCarousel>
+      </div>
+      <div v-else>
+        <VueSlickCarousel v-bind="settings">
+          <div v-for="(article, index) in articles" :key="index">
+            <Card :Author=article.author :Title=article.title :Description=article.description
+                  :TribeId=String(article.tribeid) :ArticleId=String(article.id) />
+          </div>
+        </VueSlickCarousel>
+      </div>
     </div>
   </div>
 </template>
@@ -32,7 +38,7 @@ export default {
   },
   methods: {
     isEmpty(object) {
-      return object && Object.keys(object).length === 0 && Object.getPrototypeOf(object) === Object.prototype
+      return object && Object.keys(object).length === 0 && Object.getPrototypeOf(object) === Object.prototype;
     },
   },
   data() {

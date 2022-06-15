@@ -1,82 +1,55 @@
-import axios from 'axios'
 import Vue from "vue";
 
-const resourceURL = 'articles'
-export const state = () => ({})
+const resourceURL = 'articles';
 
 export const getters = {
-  articleRead: state => (id) => {
-    return state.articles
+  articleRead: state => () => {
+    return state.articles;
   },
   articleGet: state => (id) => {
-    return state.articles[id]
+    return state.articles[id];
   },
   articleGetLastThree: state => (id) => {
-    return state.articles
+    return state.articles;
   },
   articleSearch: state => (id, query) => {
-    return state.articles
+    return state.articles;
   }
-}
+};
 
 export const mutations = {
   articleSet(state, item) {
-    Vue.set(state.articles, item.id, item)
-  },
-}
-
-axios.defaults.baseURL = "https://s8ifzokvp35u68fi.azurewebsites.net/api/v1"
+    Vue.set(state.articles, item.id, item);
+  }
+};
 
 export const actions = {
-  articleRead({ commit }, { id }) {
-    axios.get(
-      `${resourceURL}/?tribe=${id}`
-    ).then(response => {
-      response.data.results.forEach(item => {
-        commit('articleSet', item)
-      })
-    }).catch(error => {
-      console.error(error)
-    })
+  async articleRead({commit}, {id}) {
+    const articles = await this.$axios.$get(`/api/${resourceURL}/?tribe=${id}&format=json`);
+    articles.results.forEach(item => {
+      commit('articleSet', item);
+    });
   },
-  articleGet({ commit }, { id }) {
-    // Send get request to the backend.
-    axios.get(
-      `${resourceURL}/${id}/`
-    ).then(response => {
-      // If request is successful then add the item to the state.
-      commit('articleSet', response.data)
-    }).catch(error => {
-      console.error(error)
-    })
+  async articleGet({commit}, {id}) {
+    const article = await this.$axios.$get(`/api/${resourceURL}/${id}/?format=json`);
+    commit('articleSet', article);
   },
-  articleGetLastThree({ commit }) {
-    // Send get request to the backend.
-    axios.get(
-      `articles/?ordering=-datecreated&format=json`
-    ).then(response => {
-      response.data.results.forEach(item => {
-        commit('articleSet', item)
-      })
-    }).catch(error => {
-      console.error(error)
-    })
+  async articleGetLastThree({commit}) {
+    const articles = await this.$axios.$get(`/api/${resourceURL}/?ordering=-datecreated&format=json`);
+    articles.results.forEach(item => {
+      commit('articleSet', item);
+    });
   },
-  articleSearch({ commit }, { id, query }) {
-    axios.get(
-      `${resourceURL}/?tribe_id=${id}&search=${query}`
-    ).then(response => {
-      response.data.results.forEach(item => {
-        commit('articleSet', item)
-      })
-    }).catch(error => {
-      console.error(error)
-    })
+  async articleSearch({commit}, {id, query}) {
+    const articles = await this.$axios.$get(`/api/${resourceURL}/?tribe_id=${id}&search=${query}`);
+    articles.results.forEach(item => {
+      commit('articleSet', item);
+    });
   }
-}
+};
 
 export default {
   actions,
   getters,
   mutations
-}
+};

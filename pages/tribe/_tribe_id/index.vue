@@ -1,13 +1,13 @@
 <template>
   <div>
-    <div v-if="tribe">
-      <div v-if="tribeRockstars">
-        <TribeDescriptionBox  :subtitle="`${tribe.name} Tribe`"
-                        :description="tribe.description" :rockstars="tribeRockstars" />
-      </div>
+    <div v-if="!tribe && tribeRockstars">
+      <DescriptionBox subtitle="Loading..."/>
+    </div>
+    <div v-else>
+      <TribeDescriptionBox :subtitle="`${tribe.name} Tribe`"
+                           :description="tribe.description" :rockstars="tribeRockstars"/>
     </div>
     <div v-if="tribeArticles" class="hero-image mt-10 relative parallax">
-      <!--<img class="hero-banner" :src="require('assets/img/Buildings.jpg')" alt=""> !-->
       <div class="relative text-center text-white">
         <Title size="2">
           Artikelen
@@ -30,6 +30,7 @@
 import {mapActions} from "vuex";
 import Carousel from "~/components/Dumb/Organisms/Carousel.vue";
 import TribeDescriptionBox from "~/components/Dumb/Organisms/TribeDescriptionBox";
+import DescriptionBox from "@/components/Dumb/Organisms/DescriptionBox";
 import Videos from "~/components/Dumb/Organisms/Videos";
 import Title from "~/components/Dumb/Atoms/Title";
 import Demand from "~/components/Dumb/Organisms/Demand"
@@ -37,7 +38,7 @@ import Spotify from "~/components/Dumb/Atoms/Spotify.vue";
 
 export default {
   name: "TribeId",
-  components: { TribeDescriptionBox, Carousel, Videos, Title, Demand, Spotify },
+  components: {TribeDescriptionBox, DescriptionBox, Carousel, Videos, Title, Demand},
   methods: {
     ...mapActions(['articleRead', 'videoRead', 'rockstarRead', 'tribeGet', 'articleGet', 'podcastGet'])
   },
@@ -49,12 +50,15 @@ export default {
       return this.$store.getters.tribeGet(this.tribe_id);
     },
     tribeArticles() {
+      this.articleRead({id: this.tribe_id});
       return this.$store.getters.articleRead(this.tribe_id);
     },
     tribeRockstars() {
+      this.rockstarRead({id: this.tribe_id});
       return this.$store.getters.rockstarRead(this.tribe_id);
     },
     tribeVideos() {
+      this.videoRead({id: this.tribe_id});
       return this.$store.getters.videoRead(this.tribe_id);
     },
     tribePodcasts() {
@@ -64,14 +68,11 @@ export default {
   created() {
     this.podcastGet({id: this.tribe_id})
     this.tribeGet({id: this.tribe_id});
-    this.articleRead({id: this.tribe_id});
-    this.rockstarRead({id: this.tribe_id});
-    this.videoRead({ id: this.tribe_id });
-  },
+  }
 };
 </script>
 
-<style >
+<style>
 
 
 .hero-image {
@@ -91,7 +92,7 @@ export default {
 
 .parallax {
   /* The image used */
-  background-image: url("../../../assets/image/Buildings(1).jpg");
+  background-image: url("../../../assets/image/buildings.webp");
 
   /* Set a specific height */
   min-height: 500px;
