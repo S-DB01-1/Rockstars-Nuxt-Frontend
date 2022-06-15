@@ -3,10 +3,8 @@
        v-bind:style="{ backgroundImage: 'url(' + require('assets/image/banner.webp') + ')' }">
     <header>
       <div class="container py-4">
-        <img :src="require('assets/image/logo.webp')"/>
         <div class="flex justify-between">
           <img :src="require('assets/image/logo.webp')"/>
-
           <div class="mt-3">
             <form action="/search?type=type&input=input" class="flex w-full justify-center">
               <select name="type" class="bg-rockstar-yellow p-1 h-8 text-xs border-none outline-0">
@@ -22,10 +20,7 @@
               </div>
             </form>
           </div>
-
-
         </div>
-        <img :src="require('assets/image/logo.webp')"/>
       </div>
     </header>
   </div>

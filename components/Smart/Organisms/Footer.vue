@@ -22,10 +22,10 @@
               LAATSTE ARTIKELEN
             </Title>
 
-            <div v-if="articleLastThree">
+            <div v-if="articles">
               <ul>
-                <div v-for="articles of articleLastThree">
-                  <li><a :href="`/tribe/${articles.tribeid}/article/${articles.id}`" target="_blank">{{ articles.title }}</a></li>
+                <div v-for="article of articles.results">
+                  <li><a :href="`/tribe/${article.tribeid}/article/${article.id}`" target="_blank">{{ article.title }}</a></li>
                 </div>
               </ul>
             </div>
@@ -63,19 +63,25 @@ export default {
     Title,
   },
   methods: {
-    ...mapActions(['tribeGetLastThree', 'articleGetLastThree'])
+    ...mapActions(['tribeGetLastThree'])
+  },
+  data() {
+    return {
+      articles: []
+    };
   },
   computed: {
     tribeLastThree() {
       return this.$store.getters.tribeGetLastThree();
     },
-    articleLastThree() {
-      return this.$store.getters.articleGetLastThree();
-    }
+  },
+  async fetch() {
+    this.articles = await fetch(
+      "https://s8ifzokvp35u68fi.azurewebsites.net/api/v1/articles/?ordering=-datecreated&format=json&limit=3"
+    ).then(res => res.json());
   },
   created() {
     this.tribeGetLastThree({limit: 3});
-    this.articleGetLastThree();
   },
 }
 </script>
