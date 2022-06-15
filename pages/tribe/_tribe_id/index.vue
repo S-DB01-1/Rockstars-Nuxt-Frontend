@@ -4,7 +4,7 @@
       <DescriptionBox subtitle="Loading..."/>
     </div>
     <div v-else>
-      <TribeDescriptionBox :subtitle="`${tribe.name} Tribe`"
+      <TribeDescriptionBox :subtitle="`${tribe.name}`"
                            :description="tribe.description" :rockstars="tribeRockstars"/>
     </div>
     <div v-if="tribeArticles" class="hero-image mt-10 relative parallax">
@@ -17,9 +17,9 @@
         </Title>
       </div>
       <Carousel :articles="tribeArticles" />
-      <!-- <div v-if="tribePodcasts" class="container py-10">
+      <div v-if="tribePodcasts && tribe_id == 2" class="container py-10">
         <Spotify spotify_url="https://open.spotify.com/embed/show/1ijid0felknQbJ3vhGm9Et?utm_source=generator" />
-      </div> -->
+      </div>
     </div>
     <Videos :videos="tribeVideos" />
     <Demand />
@@ -38,7 +38,7 @@ import Spotify from "~/components/Dumb/Atoms/Spotify.vue";
 
 export default {
   name: "TribeId",
-  components: {TribeDescriptionBox, DescriptionBox, Carousel, Videos, Title, Demand},
+  components: {TribeDescriptionBox, DescriptionBox, Carousel, Videos, Title, Demand, Spotify},
   methods: {
     ...mapActions(['articleRead', 'videoRead', 'rockstarRead', 'tribeGet', 'articleGet', 'podcastGet'])
   },
