@@ -1,6 +1,7 @@
 import axios from 'axios'
 import Vue from "vue";
 
+const baseURL = 'https://s8ifzokvp35u68fi.azurewebsites.net/api/v1';
 // const resourceURL = 'articles'
 export const state = () => ({})
 
