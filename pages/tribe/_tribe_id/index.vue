@@ -8,7 +8,6 @@
                            :description="tribe.description" :rockstars="tribeRockstars"/>
     </div>
     <div v-if="tribeArticles" class="hero-image mt-10 relative parallax">
-      <img class="hero-banner" :src="require('assets/image/buildings.webp')" alt="">
       <div class="relative text-center text-white">
         <Title size="2">
           Artikelen
@@ -85,7 +84,7 @@ export default {
 
 .parallax {
   /* The image used */
-  background-image: url("../../../assets/image/Buildings(1).jpg");
+  background-image: url("../../../assets/image/buildings.webp");
 
   /* Set a specific height */
   min-height: 500px;
