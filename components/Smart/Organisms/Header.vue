@@ -1,5 +1,6 @@
 <template>
-  <div class="hero h-60 before:h-60"  v-bind:style="{ backgroundImage: 'url(' + require('assets/image/banner.webp') + ')' }">
+  <div class="hero h-60 before:h-60"
+       v-bind:style="{ backgroundImage: 'url(' + require('assets/image/banner.webp') + ')' }">
     <header>
       <div class="container py-4">
         <img :src="require('assets/image/logo.webp')"/>
@@ -16,12 +17,11 @@
               <div class="w-full relative flex">
                 <input name="input" type="text" class="w-full h-8 border-none outline-0 p-1 ">
                 <button type="submit" class="h-8 w-10 p-2 text-center bg-rockstar-yellow border-none">
-                  <img :src="require('assets/img/icons/search.svg')"/>
+                  <img :src="require('assets/image/icons/search.svg')"/>
                 </button>
               </div>
             </form>
           </div>
-
 
 
         </div>
@@ -34,7 +34,7 @@
 <script>
 export default {
   name: 'Header'
-}
+};
 </script>
 
 <style lang="scss">
@@ -62,7 +62,7 @@ header img {
   right: 0;
   top: 0;
   bottom: 0;
-  background: rgba(0,0,0,.5);
+  background: rgba(0, 0, 0, .5);
 }
 
 </style>
