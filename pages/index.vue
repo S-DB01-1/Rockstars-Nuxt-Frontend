@@ -57,9 +57,9 @@ export default {
 
 /* hide scrollbar but allow scrolling */
 #infinite-list{
-  -ms-overflow-style: none; /* for Internet Explorer, Edge */
-  scrollbar-width: none; /* for Firefox */
-  overflow-y: scroll;
+  //-ms-overflow-style: none; /* for Internet Explorer, Edge */
+  //scrollbar-width: none; /* for Firefox */
+  //overflow-y: scroll;
 }
 
 #infinite-list::-webkit-scrollbar {

@@ -1,6 +1,6 @@
 <template>
   <section class="overflow-hidden shadow-lg h-full">
-    <img class="object-cover h-80" :src="require('assets/image/rockstar-banner.webp')" alt="">
+    <img class="object-cover h-56" :src="require('assets/image/banner.webp')" alt="">
     <div class="grid lg:h-fit md:h-20">
       <Button class="m-0"><a :href="'/tribe/' + tribeId">{{ tribeName }}</a></Button>
     </div>
