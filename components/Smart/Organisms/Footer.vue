@@ -7,9 +7,9 @@
             <Title size="4">
               TRIBES
             </Title>
-            <div v-if="tribeLastThree">
+            <div v-if="tribes">
                 <ul>
-                  <div v-for="tribe of tribeLastThree">
+                  <div v-for="tribe of tribes.results">
                     <li><a :href="`/tribe/${tribe.id}`" target="_blank">{{ tribe.name }}</a></li>
                   </div>
                   <li> <a href="/" target="_blank">Alle tribes</a></li>

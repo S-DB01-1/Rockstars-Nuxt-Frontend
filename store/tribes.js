@@ -23,7 +23,7 @@ export const mutations = {
 
 export const actions = {
   async tribeRead({commit}) {
-    const tribes = await this.$axios.$get(`/api/${resourceURL}/?tribe=${id}&format=json`);
+    const tribes = await this.$axios.$get(`/api/${resourceURL}/?format=json`);
     tribes.results.forEach(item => {
       commit('tribeSet', item);
     });
