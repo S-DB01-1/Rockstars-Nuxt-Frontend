@@ -8,9 +8,12 @@
         <img class="w-full thumbnail" :src="require('assets/image/banner.webp')">
       </div>
       <div class="px-6 py-4">
-        <Title size="3" class="font-bold mb-2 line-clamp-1">
+<!--        <Title v-if="Title" size="3" class="font-bold mb-2 line-clamp-1">-->
+<!--          {{ Title }}-->
+<!--        </Title>-->
+        <h3 class="text-base" style="font-family: DIN2014-Regular; color: #444444;">
           {{ Title }}
-        </Title>
+        </h3>
         <p class="text-gray-700 text-xs line-clamp-2">
           {{ Description }}
         </p>
@@ -39,7 +42,7 @@ export default {
     Description: String,
     TribeId: String,
     ArticleId: String
-  },
+  }
 }
 </script>
 
