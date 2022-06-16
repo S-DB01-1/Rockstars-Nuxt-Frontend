@@ -62,26 +62,19 @@ export default {
   components: {
     Title,
   },
-  methods: {
-    ...mapActions(['tribeGetLastThree'])
-  },
   data() {
     return {
-      articles: []
+      articles: [],
+      tribes: []
     };
-  },
-  computed: {
-    tribeLastThree() {
-      return this.$store.getters.tribeGetLastThree();
-    },
   },
   async fetch() {
     this.articles = await fetch(
       "https://s8ifzokvp35u68fi.azurewebsites.net/api/v1/articles/?ordering=-datecreated&format=json&limit=3"
     ).then(res => res.json());
-  },
-  created() {
-    this.tribeGetLastThree({limit: 3});
+    this.tribes = await fetch(
+      "https://s8ifzokvp35u68fi.azurewebsites.net/api/v1/tribes/?ordering=-datecreated&format=json&limit=3"
+    ).then(res => res.json());
   },
 }
 </script>
