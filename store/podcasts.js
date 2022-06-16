@@ -1,6 +1,5 @@
 import Vue from "vue";
 
-const baseURL = 'https://s8ifzokvp35u68fi.azurewebsites.net/api/v1';
 const resourceURL = 'podcasts';
 
 export const getters = {
@@ -20,13 +19,13 @@ export const mutations = {
 
 export const actions = {
   async podcastRead({commit}, {id}) {
-    const podcasts = await this.$axios.$get(`${baseURL}/${resourceURL}/?tribe=${id}`);
+    const podcasts = await this.$axios.$get(`/api/${resourceURL}/?tribe=${id}&format=json`);
     podcasts.results.forEach(item => {
       commit('podcastSet', item);
     });
   },
   async podcastGet({commit}, {id}) {
-    const podcast = await this.$axios.$get(`${baseURL}/${resourceURL}/${id}/?format=json`);
+    const podcast = await this.$axios.$get(`/api/${resourceURL}/${id}/?format=json`);
     commit('podcastSet', podcast);
   }
 };

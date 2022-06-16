@@ -17,7 +17,7 @@
         </Title>
       </div>
       <Carousel :articles="tribeArticles" />
-      <div v-if="tribePodcasts && tribe_id == 2" class="container py-10">
+      <div v-if="tribe_id == 2" class="container py-10">
         <Spotify spotify_url="https://open.spotify.com/embed/show/1ijid0felknQbJ3vhGm9Et?utm_source=generator" />
       </div>
     </div>

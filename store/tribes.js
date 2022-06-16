@@ -1,6 +1,5 @@
 import Vue from "vue";
 
-const baseURL = 'https://s8ifzokvp35u68fi.azurewebsites.net/api/v1';
 const resourceURL = 'tribes';
 export const state = () => ({})
 
@@ -24,17 +23,17 @@ export const mutations = {
 
 export const actions = {
   async tribeRead({commit}) {
-    const tribes = await this.$axios.$get(`${baseURL}/${resourceURL}`);
+    const tribes = await this.$axios.$get(`/api/${resourceURL}/?tribe=${id}&format=json`);
     tribes.results.forEach(item => {
       commit('tribeSet', item);
     });
   },
   async tribeGet({commit}, {id}) {
-    const tribe = await this.$axios.$get(`${baseURL}/${resourceURL}/${id}/?format=json`);
+    const tribe = await this.$axios.$get(`/api/${resourceURL}/${id}/?format=json`);
     commit('tribeSet', tribe);
   },
   async tribeGetLastThree({commit}, {limit}) {
-    const tribes = await this.$axios.$get(`${baseURL}/${resourceURL}/?limit=${limit}`);
+    const tribes = await this.$axios.$get(`/api/${resourceURL}/?limit=${limit}`);
     tribes.results.forEach(item => {
       commit('tribeSet', item);
     });

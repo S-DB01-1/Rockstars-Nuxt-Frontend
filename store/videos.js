@@ -1,6 +1,5 @@
 import Vue from "vue";
 
-const baseURL = 'https://s8ifzokvp35u68fi.azurewebsites.net/api/v1';
 const resourceURL = 'videos';
 
 export const getters = {
@@ -23,17 +22,17 @@ export const mutations = {
 
 export const actions = {
   async videoRead({commit}, {id}) {
-    const videos = await this.$axios.$get(`${baseURL}/${resourceURL}`);
+    const videos = await this.$axios.$get(`/api/${resourceURL}/?tribe=${id}&format=json`);
     videos.results.forEach(item => {
       commit('videoSet', item);
     });
   },
   async videoGet({commit}, {id}) {
-    const video = await this.$axios.$get(`${baseURL}/${resourceURL}/${id}/?format=json`);
+    const video = await this.$axios.$get(`/api/${resourceURL}/${id}/?format=json`);
     commit('videoSet', video);
   },
   async videoSearch({commit}, {id, query}) {
-    const videos = await this.$axios.$get(`${baseURL}/${resourceURL}/?tribe_id=${id}&search=${query}`);
+    const videos = await this.$axios.$get(`/api/${resourceURL}/?tribe_id=${id}&search=${query}`);
     videos.results.forEach(item => {
       commit('videoSet', item);
     });

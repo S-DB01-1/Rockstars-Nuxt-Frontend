@@ -1,6 +1,5 @@
 import Vue from "vue";
 
-const baseURL = 'https://s8ifzokvp35u68fi.azurewebsites.net/api/v1';
 const resourceURL = 'rockstars';
 
 export const getters = {
@@ -20,13 +19,13 @@ export const mutations = {
 
 export const actions = {
   async rockstarRead({commit}, {id}) {
-    const rockstars = await this.$axios.$get(`${baseURL}/${resourceURL}`);
+    const rockstars = await this.$axios.$get(`/api/${resourceURL}/?tribe=${id}&format=json`);
     rockstars.results.forEach(item => {
       commit('rockstarSet', item);
     });
   },
   async rockstarGet({commit}, {id}) {
-    const rockstar = await this.$axios.$get(`${baseURL}/${resourceURL}/${id}/?format=json`);
+    const rockstar = await this.$axios.$get(`/api/${resourceURL}/${id}/?format=json`);
     commit('rockstarSet', rockstar);
   },
 };
